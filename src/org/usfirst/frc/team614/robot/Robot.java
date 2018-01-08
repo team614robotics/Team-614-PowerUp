@@ -11,8 +11,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team614.robot.commands.ExampleCommand;
-import org.usfirst.frc.team614.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.Clamp;
+import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -26,7 +28,9 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public static FlyWheel flyWheel = new FlyWheel();
+	public static VerticalShooter verticalShooter = new VerticalShooter();
+	public static Clamp clamp = new Clamp();
 	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -45,14 +49,18 @@ public class Robot extends IterativeRobot {
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
         }
+		
+		flyWheel = new FlyWheel();
+		verticalShooter = new VerticalShooter();
+		clamp = new Clamp();
 
     	pdp = new PowerDistributionPanel();
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		chooser.addDefault("Default Auto", new SpinFlyWheel());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Autonomous", chooser);
 
-        SmartDashboard.putNumber("Motor Voltage", 0);
+        SmartDashboard.putNumber("Fly Wheel Speed", 0);
 	}
 
 	/**
@@ -94,7 +102,7 @@ public class Robot extends IterativeRobot {
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
+		 * autonomousCommand = new SpinFlyWheel(); break; }
 		 */
 
 		// schedule the autonomous command (example)

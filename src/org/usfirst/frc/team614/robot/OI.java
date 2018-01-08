@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
-import org.usfirst.frc.team614.robot.commands.ExampleCommand;
+import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.commands.SpinVerticalShooter;
+import org.usfirst.frc.team614.robot.commands.TogglePiston;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -29,23 +31,26 @@ public class OI {
 
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
+	// button.whenPressed(new SpinFlyWheel());
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
-	// button.whileHeld(new ExampleCommand());
+	// button.whileHeld(new SpinFlyWheel());
 
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
+	// button.whenReleased(new SpinFlyWheel());
 	
 	public static final Gamepad driverGamepad = new Gamepad(0);
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 	
-	private static final Button testButton = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
+	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_X);
 	
 	public OI() {
-		testButton.whileHeld(new ExampleCommand());
-		testButton.toggleWhenActive(new ExampleCommand());
+		spinFlyWheel.whileHeld(new SpinFlyWheel());
+		spinVerticalShooter.whileHeld(new SpinVerticalShooter());
+		activateClamp.whenPressed(new TogglePiston());
 	}
 }

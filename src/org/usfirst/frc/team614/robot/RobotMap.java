@@ -1,5 +1,7 @@
 package org.usfirst.frc.team614.robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -17,5 +19,12 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static final int motor = 0;
+	public static final int flyWheelLeft = 0;
+	public static final int flyWheelRight = 1;
+	
+	public static final int verticalShooterLeft = 0;
+	public static final int verticalShooterRight = 1;
+
+	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 }

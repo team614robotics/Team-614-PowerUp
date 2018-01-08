@@ -8,16 +8,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ExampleSubsystem extends Subsystem {
+public class VerticalShooter extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
-	public VictorSP motor = new VictorSP(RobotMap.motor);
+	public VictorSP victorLeft = new VictorSP(RobotMap.verticalShooterLeft);
+	public VictorSP victorRight = new VictorSP(RobotMap.verticalShooterRight);
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		
-		motor.set(0);
+		victorLeft.set(0);
+		victorRight.set(0);
 	}
 }

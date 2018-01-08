@@ -1,7 +1,9 @@
 package org.usfirst.frc.team614.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.ExampleCommand;
 
 /**
@@ -36,4 +38,14 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	public static final Gamepad driverGamepad = new Gamepad(0);
+	public static final Gamepad operatorGamepad = new Gamepad(1);
+	
+	private static final Button testButton = new JoystickButton(driverGamepad, Gamepad.button_A);
+	
+	public OI() {
+		testButton.whileHeld(new ExampleCommand());
+		testButton.toggleWhenActive(new ExampleCommand());
+	}
 }

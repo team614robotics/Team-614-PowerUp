@@ -1,7 +1,10 @@
 
 package org.usfirst.frc.team614.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -11,6 +14,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team614.robot.commands.ExampleCommand;
 import org.usfirst.frc.team614.robot.subsystems.ExampleSubsystem;
 
+import com.kauailabs.navx.frc.AHRS;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -19,8 +24,11 @@ import org.usfirst.frc.team614.robot.subsystems.ExampleSubsystem;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	public static AHRS navX;
+	
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	
+	public static PowerDistributionPanel pdp;
 	public static OI oi;
 
 	Command autonomousCommand;
@@ -32,10 +40,19 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		try {
+            navX = new AHRS(SPI.Port.kMXP,(byte)200);
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
+
+    	pdp = new PowerDistributionPanel();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+		SmartDashboard.putData("Autonomous", chooser);
+
+        SmartDashboard.putNumber("Motor Voltage", 0);
 	}
 
 	/**
@@ -45,7 +62,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+    	// resets NavX and disables the PID controller.
+    	Robot.navX.reset();
 	}
 
 	@Override
@@ -66,6 +84,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+
+    	// resets NavX and disables the PID controller.
+    	Robot.navX.reset();
+		
 		autonomousCommand = chooser.getSelected();
 
 		/*
@@ -76,8 +98,8 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		if (autonomousCommand != null) autonomousCommand.start();
+    	
 	}
 
 	/**
@@ -94,8 +116,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
+		if (autonomousCommand != null) autonomousCommand.cancel();
+		
+    	Robot.navX.reset();
 	}
 
 	/**

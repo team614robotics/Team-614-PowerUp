@@ -22,8 +22,8 @@ public class RobotMap {
 	public static final int flyWheelLeft = 0;
 	public static final int flyWheelRight = 1;
 	
-	public static final int verticalShooterLeft = 0;
-	public static final int verticalShooterRight = 1;
+	public static final int verticalShooterLeft = 2;
+	public static final int verticalShooterRight = 3;
 
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;

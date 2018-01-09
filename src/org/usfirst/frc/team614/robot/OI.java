@@ -5,8 +5,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.commands.SpinVerticalShooter;
-import org.usfirst.frc.team614.robot.commands.TogglePiston;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,7 +48,7 @@ public class OI {
 	
 	public OI() {
 		spinFlyWheel.whileHeld(new SpinFlyWheel());
-		spinVerticalShooter.whileHeld(new SpinVerticalShooter());
-		activateClamp.whenPressed(new TogglePiston());
+		//spinVerticalShooter.whileHeld(new SpinVerticalShooter());
+		//activateClamp.whenPressed(new TogglePiston());
 	}
 }

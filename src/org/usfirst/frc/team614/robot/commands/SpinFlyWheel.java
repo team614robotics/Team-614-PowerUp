@@ -24,8 +24,8 @@ public class SpinFlyWheel extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.flyWheel.victorLeft.set(SmartDashboard.getNumber("Fly Wheel Speed", 0.0));
-		Robot.flyWheel.victorLeft.set(-SmartDashboard.getNumber("Fly Wheel Speed", 0.0));
+		Robot.flyWheel.victorLeft.set(SmartDashboard.getNumber("Left Fly Wheel Speed", 0.0));
+		Robot.flyWheel.victorLeft.set(-SmartDashboard.getNumber("Right Fly Wheel Speed", 0.0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

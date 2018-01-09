@@ -12,10 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
-
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -29,8 +26,8 @@ public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
 	public static FlyWheel flyWheel = new FlyWheel();
-	public static VerticalShooter verticalShooter = new VerticalShooter();
-	public static Clamp clamp = new Clamp();
+	//public static VerticalShooter verticalShooter = new VerticalShooter();
+	//public static Clamp clamp = new Clamp();
 	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -51,8 +48,8 @@ public class Robot extends IterativeRobot {
         }
 		
 		flyWheel = new FlyWheel();
-		verticalShooter = new VerticalShooter();
-		clamp = new Clamp();
+		//verticalShooter = new VerticalShooter();
+		//clamp = new Clamp();
 
     	pdp = new PowerDistributionPanel();
 		oi = new OI();
@@ -60,7 +57,16 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Autonomous", chooser);
 
-        SmartDashboard.putNumber("Fly Wheel Speed", 0);
+        SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
+        SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
+        SmartDashboard.putNumber("Vertical Shooter Speed", 0);
+        
+        SmartDashboard.putBoolean("L1", false);
+        SmartDashboard.putBoolean("L2", false);
+        SmartDashboard.putBoolean("L3", false);
+        SmartDashboard.putBoolean("R1", false);
+        SmartDashboard.putBoolean("R1", false);
+        SmartDashboard.putBoolean("R1", false);
 	}
 
 	/**
@@ -95,9 +101,17 @@ public class Robot extends IterativeRobot {
 
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
+        
+    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	
+        SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
+        SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
+        SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
+        SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
+        SmartDashboard.putBoolean("R1", gameData.charAt(1) == 'R');
+        SmartDashboard.putBoolean("R1", gameData.charAt(2) == 'R');
 		
 		autonomousCommand = chooser.getSelected();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -107,7 +121,6 @@ public class Robot extends IterativeRobot {
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null) autonomousCommand.start();
-    	
 	}
 
 	/**

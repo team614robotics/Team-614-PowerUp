@@ -1,12 +1,11 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package org.usfirst.frc.team614.robot;
-
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
-import org.team708.robot.util.Gamepad;
-import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.commands.SpinVerticalShooter;
-import org.usfirst.frc.team614.robot.commands.TogglePiston;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -31,26 +30,13 @@ public class OI {
 
 	// Start the command when the button is pressed and let it run the command
 	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new SpinFlyWheel());
+	// button.whenPressed(new ExampleCommand());
 
 	// Run the command while the button is being held down and interrupt it once
 	// the button is released.
-	// button.whileHeld(new SpinFlyWheel());
+	// button.whileHeld(new ExampleCommand());
 
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new SpinFlyWheel());
-	
-	public static final Gamepad driverGamepad = new Gamepad(0);
-	public static final Gamepad operatorGamepad = new Gamepad(1);
-	
-	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_A);
-	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
-	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_X);
-	
-	public OI() {
-		spinFlyWheel.whileHeld(new SpinFlyWheel());
-		spinVerticalShooter.whileHeld(new SpinVerticalShooter());
-		activateClamp.whenPressed(new TogglePiston());
-	}
+	// button.whenReleased(new ExampleCommand());
 }

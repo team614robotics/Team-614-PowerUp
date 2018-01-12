@@ -7,13 +7,14 @@
 
 package org.usfirst.frc.team614.robot;
 
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team614.robot.commands.ExampleCommand;
-import org.usfirst.frc.team614.robot.subsystems.ExampleSubsystem;
+
+import org.usfirst.frc.team614.robot.subsystems.Flywheel;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -22,11 +23,11 @@ import org.usfirst.frc.team614.robot.subsystems.ExampleSubsystem;
  * creating this project, you must also update the build.properties file in the
  * project.
  */
-public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem
-			= new ExampleSubsystem();
-	public static OI m_oi;
+public class Robot extends IterativeRobot {
 
+	public static OI m_oi;
+	public static Flywheel flywheel;
+	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -37,9 +38,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		m_oi = new OI();
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		flywheel = new Flywheel();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putNumber("Flywheel Left Motor Speed", 0.0);
+		SmartDashboard.putNumber("Flywheel Right Motor Speed", 0.0);
 	}
 
 	/**

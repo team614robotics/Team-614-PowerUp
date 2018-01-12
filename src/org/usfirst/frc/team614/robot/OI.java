@@ -7,6 +7,11 @@
 
 package org.usfirst.frc.team614.robot;
 
+import org.team708.robot.util.Gamepad;
+import org.usfirst.frc.team614.robot.commands.SpinFlywheel;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -39,4 +44,12 @@ public class OI {
 	// Start the command when the button is released and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	public static final Gamepad driverGamepad = new Gamepad(0);
+	
+	
+	private static final Button flywheel = new JoystickButton(driverGamepad, Gamepad.button_A);
+	public OI() {
+		flywheel.whileHeld(new SpinFlywheel());
+	}
+
 }

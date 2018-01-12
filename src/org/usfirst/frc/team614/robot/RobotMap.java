@@ -24,6 +24,11 @@ public class RobotMap {
 	
 	public static final int verticalShooterLeft = 2;
 	public static final int verticalShooterRight = 3;
+	
+	public static final int drivetrainLeftMotor = 4;
+	public static final int drivetrainRightMotor = 5;
+	
+	
 
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;

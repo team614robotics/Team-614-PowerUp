@@ -26,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
 	public static FlyWheel flyWheel;
+	public static Drivetrain drivetrain;
 	//public static VerticalShooter verticalShooter = new VerticalShooter();
 	//public static Clamp clamp = new Clamp();
 	
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
 		flyWheel = new FlyWheel();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
+		drivetrain = new Drivetrain();
 
     	pdp = new PowerDistributionPanel();
 		oi = new OI();

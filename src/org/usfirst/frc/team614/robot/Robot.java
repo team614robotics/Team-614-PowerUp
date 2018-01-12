@@ -1,42 +1,34 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team614.robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.Clamp;
-import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
-
-import com.kauailabs.navx.frc.AHRS;
+import org.usfirst.frc.team614.robot.commands.ExampleCommand;
+import org.usfirst.frc.team614.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
+ * functions corresponding to each mode, as described in the TimedRobot
  * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * creating this project, you must also update the build.properties file in the
+ * project.
  */
-public class Robot extends IterativeRobot {
-	public static AHRS navX;
-	
-	public static FlyWheel flyWheel = new FlyWheel();
-	public static VerticalShooter verticalShooter = new VerticalShooter();
-	public static Clamp clamp = new Clamp();
-	
-	public static PowerDistributionPanel pdp;
-	public static OI oi;
+public class Robot extends TimedRobot {
+	public static final ExampleSubsystem kExampleSubsystem
+			= new ExampleSubsystem();
+	public static OI m_oi;
 
-	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	Command m_autonomousCommand;
+	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -44,23 +36,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		try {
-            navX = new AHRS(SPI.Port.kMXP,(byte)200);
-        } catch (RuntimeException ex ) {
-            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-        }
-		
-		flyWheel = new FlyWheel();
-		verticalShooter = new VerticalShooter();
-		clamp = new Clamp();
-
-    	pdp = new PowerDistributionPanel();
-		oi = new OI();
-		chooser.addDefault("Default Auto", new SpinFlyWheel());
+		m_oi = new OI();
+		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Autonomous", chooser);
-
-        SmartDashboard.putNumber("Fly Wheel Speed", 0);
+		SmartDashboard.putData("Auto mode", m_chooser);
 	}
 
 	/**
@@ -70,8 +49,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-    	// resets NavX and disables the PID controller.
-    	Robot.navX.reset();
+
 	}
 
 	@Override
@@ -86,32 +64,29 @@ public class Robot extends IterativeRobot {
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
 	 *
-	 * You can add additional auto modes by adding additional commands to the
+	 * <p>You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
-
-    	// resets NavX and disables the PID controller.
-    	Robot.navX.reset();
-		
-		autonomousCommand = chooser.getSelected();
+		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new SpinFlyWheel(); break; }
+		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null) autonomousCommand.start();
-    	
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
+		}
 	}
 
 	/**
-	 * This function is called periodically during autonomous
+	 * This function is called periodically during autonomous.
 	 */
 	@Override
 	public void autonomousPeriodic() {
@@ -124,13 +99,13 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null) autonomousCommand.cancel();
-		
-    	Robot.navX.reset();
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+		}
 	}
 
 	/**
-	 * This function is called periodically during operator control
+	 * This function is called periodically during operator control.
 	 */
 	@Override
 	public void teleopPeriodic() {
@@ -138,10 +113,9 @@ public class Robot extends IterativeRobot {
 	}
 
 	/**
-	 * This function is called periodically during test mode
+	 * This function is called periodically during test mode.
 	 */
 	@Override
 	public void testPeriodic() {
-		LiveWindow.run();
 	}
 }

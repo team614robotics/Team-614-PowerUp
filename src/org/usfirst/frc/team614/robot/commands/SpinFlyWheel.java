@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team614.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,7 +26,7 @@ public class SpinFlyWheel extends Command {
 	@Override
 	protected void execute() {
 		Robot.flyWheel.victorLeft.set(SmartDashboard.getNumber("Left Fly Wheel Speed", 0.0));
-		Robot.flyWheel.victorLeft.set(-SmartDashboard.getNumber("Right Fly Wheel Speed", 0.0));
+		Robot.flyWheel.victorRight.set(-SmartDashboard.getNumber("Right Fly Wheel Speed", 0.0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

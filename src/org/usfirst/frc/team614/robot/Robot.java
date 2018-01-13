@@ -25,7 +25,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
-	public static FlyWheel flyWheel = new FlyWheel();
+	public static FlyWheel flyWheel;
 	//public static VerticalShooter verticalShooter = new VerticalShooter();
 	//public static Clamp clamp = new Clamp();
 	

@@ -11,18 +11,16 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SpinTalonMotors extends Command {
 
 	protected void initialize() {
-		Robot.shooter.talonMaster.changeControlMode(TalonControlMode.Speed);
-		Robot.shooter.talonMaster.set(0);
+		Robot.talonsrxmotors.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.talonMaster.changeControlMode(TalonControlMode.Speed);
-		Robot.shooter.set(SmartDashboard.getNumber(
+		Robot.talonsrxmotors.set(SmartDashboard.getNumber(
 				"Shooter CAN Talon Setpoint", 0));
 
 		if (this.timeSinceInitialized() > 1.0) {
-			Robot.shooter.revFeeder(SmartDashboard.getNumber(
+			Robot.talonsrxmotors.set(SmartDashboard.getNumber(
 					"Shooter Feeder Speed", 0.0));
 		}
 	}
@@ -34,16 +32,12 @@ public class SpinTalonMotors extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.shooter.stop();
-		Robot.shooter.revFeeder(0);
-		// Robot.shooter.setEnabled(false, false);
+		Robot.talonsrxmotors.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.shooter.stop();
-		Robot.shooter.revFeeder(0);
-		// Robot.shooter.setEnabled(false, false);
+		Robot.talonsrxmotors.stop();
 	}
 }

@@ -102,10 +102,8 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
-    	
         
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
@@ -113,8 +111,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
         SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
         SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
-        SmartDashboard.putBoolean("R1", gameData.charAt(1) == 'R');
-        SmartDashboard.putBoolean("R1", gameData.charAt(2) == 'R');
+        SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
+        SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
 		
 		autonomousCommand = chooser.getSelected();
 		/*
@@ -123,6 +121,8 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new SpinFlyWheel(); break; }
 		 */
+		
+		
 
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null) autonomousCommand.start();

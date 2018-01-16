@@ -12,8 +12,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
+
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -28,8 +31,8 @@ public class Robot extends IterativeRobot {
 	
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
-	//public static VerticalShooter verticalShooter = new VerticalShooter();
-	//public static Clamp clamp = new Clamp();
+	public static VerticalShooter verticalShooter = new VerticalShooter();
+	public static Clamp clamp = new Clamp();
 	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;

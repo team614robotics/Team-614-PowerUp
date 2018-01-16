@@ -1,6 +1,7 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,5 +25,15 @@ public class DeliverFromRight extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	if (SmartDashboard.getBoolean("R1", false))
+    	{
+    		
+    		
+    		if (SmartDashboard.getBoolean("R2", false))
+    		{
+    			
+    		}
+    	}
     }
 }

@@ -21,8 +21,8 @@ public class RobotMap {
 	
 	// CANBUS
 	
-	public static final int talonMaster = 0;
-	public static final int talonSlave = 1;
+	public static final int talon1 = 0;
+	public static final int talon2 = 1;
 	
 	// TALONSRXMOTORS CONSTANTS
 	
@@ -30,6 +30,8 @@ public class RobotMap {
 	public static final double talonI = 0.0005;
 	public static final double talonD = 0.0;
 	public static final double talonF = 0.0404;
+	
+	public static final int kTimeoutMs = 10;
 	
 	// PWM
 	

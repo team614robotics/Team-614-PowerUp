@@ -19,11 +19,17 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static final int flyWheelLeft = 0;
-	public static final int flyWheelRight = 1;
+	public static final int flyWheelLeft = 4;
+	public static final int flyWheelRight = 5;
 	
-	public static final int verticalShooterLeft = 2;
-	public static final int verticalShooterRight = 3;
+	public static final int verticalShooterLeft = 6;
+	public static final int verticalShooterRight = 7;
+	
+	public static final int leftMotorA = 0;
+	public static final int leftMotorB = 1;
+	public static final int rightMotorA = 2;
+	public static final int rightMotorB = 3;
+	
 
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;

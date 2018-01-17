@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
 import com.kauailabs.navx.frc.AHRS;
 
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
 	public static FlyWheel flyWheel;
+	public static Drivetrain drivetrain;
 	//public static VerticalShooter verticalShooter = new VerticalShooter();
 	//public static Clamp clamp = new Clamp();
 	
@@ -48,6 +50,7 @@ public class Robot extends IterativeRobot {
         }
 		
 		flyWheel = new FlyWheel();
+		drivetrain = new Drivetrain();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 
@@ -78,6 +81,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
+    	
 	}
 
 	@Override
@@ -101,6 +105,7 @@ public class Robot extends IterativeRobot {
 
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
+    	
         
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
@@ -140,6 +145,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		
     	Robot.navX.reset();
+    	
 	}
 
 	/**

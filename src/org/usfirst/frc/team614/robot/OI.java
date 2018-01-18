@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,8 +47,11 @@ public class OI {
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
 	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_X);
 	
+	public static final Button driveForADistance = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	
 	public OI() {
 		spinFlyWheel.whileHeld(new SpinFlyWheel());
+		driveForADistance.whenPressed(new DriveForADistance(1, 0.5));
 		//spinVerticalShooter.whileHeld(new SpinVerticalShooter());
 		//activateClamp.whenPressed(new TogglePiston());
 	}

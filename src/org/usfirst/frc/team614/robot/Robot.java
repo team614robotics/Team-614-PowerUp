@@ -72,6 +72,10 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Vertical Shooter Speed", 0);
         
+        SmartDashboard.putNumber("Talon Setpoint", 0);
+        
+        SmartDashboard.putBoolean("Go For Scale", false);
+        
         SmartDashboard.putBoolean("L1", false);
         SmartDashboard.putBoolean("L2", false);
         SmartDashboard.putBoolean("L3", false);

@@ -16,13 +16,7 @@ public class SpinTalonMotors extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.talonsrxmotors.set(SmartDashboard.getNumber(
-				"Shooter CAN Talon Setpoint", 0));
-
-		if (this.timeSinceInitialized() > 1.0) {
-			Robot.talonsrxmotors.set(SmartDashboard.getNumber(
-					"Shooter Feeder Speed", 0.0));
-		}
+		Robot.talonsrxmotors.set(SmartDashboard.getNumber("Talon Setpoint", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

@@ -43,16 +43,15 @@ public class OI {
 	public static final Gamepad driverGamepad = new Gamepad(0);
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 	
-	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
-	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_X);
+	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_A);
 	
 	public static final Button driveForADistance = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	
 	public OI() {
 		spinFlyWheel.whileHeld(new SpinFlyWheel());
-		driveForADistance.whenPressed(new DriveForADistance(1, 0.5));
-		//spinVerticalShooter.whileHeld(new SpinVerticalShooter());
-		//activateClamp.whenPressed(new TogglePiston());
+		driveForADistance.whenPressed(new DriveForADistance(400, 0.5));
+		// spinVerticalShooter.whileHeld(new SpinVerticalShooter());
 	}
 }

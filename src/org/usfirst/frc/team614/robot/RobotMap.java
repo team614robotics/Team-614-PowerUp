@@ -43,8 +43,16 @@ public class RobotMap {
 	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 220.0;//250.0;
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	
-	
 
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
+	
+	public static final double drivetrainRotationP = 0.1;
+	public static final double drivetrainRotationI = 0;
+	public static final double drivetrainRotationD = 0.12;
+	public static final double drivetrainRotationF = 0;
+	public static final double drivetrainDistanceP = 0.05;
+	public static final double drivetrainDistanceI = 0;
+	public static final double drivetrainDistanceD = 0.0;
+	public static final double drivetrainDistanceF = 0;
 }

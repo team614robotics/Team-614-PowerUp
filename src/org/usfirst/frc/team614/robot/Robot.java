@@ -16,6 +16,7 @@ import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
 
 import com.kauailabs.navx.frc.AHRS;
@@ -30,6 +31,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
+	public static TalonSRXMotors talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
@@ -111,6 +113,10 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
     	drivetrain.reset();
         
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();

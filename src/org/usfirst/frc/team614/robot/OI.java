@@ -7,6 +7,7 @@ import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraightAtSmartDashboardSpeed;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,11 +49,12 @@ public class OI {
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
 	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_A);
 	
-	public static final Button driveStraight = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	public static final Button driveStraightASDS = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	
 	public OI() {
 		spinFlyWheel.whileHeld(new SpinFlyWheel());
-		driveStraight.whileHeld(new DriveStraight(0.5));
+		driveStraightASDS.whileHeld(new DriveStraightAtSmartDashboardSpeed());
+		
 		// spinVerticalShooter.whileHeld(new SpinVerticalShooter());
 	}
 }

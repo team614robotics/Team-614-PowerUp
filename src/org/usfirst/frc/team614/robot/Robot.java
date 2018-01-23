@@ -117,10 +117,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
     	drivetrain.reset();
         
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();

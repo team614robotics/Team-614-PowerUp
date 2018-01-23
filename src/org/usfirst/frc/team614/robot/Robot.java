@@ -71,6 +71,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Vertical Shooter Speed", 0);
+        SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
+        SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
         
         SmartDashboard.putNumber("Talon Setpoint", 0);
         
@@ -169,6 +171,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		 SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
+	     SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", drivetrain.rightEncoder.getDistance());
 	}
 
 	/**

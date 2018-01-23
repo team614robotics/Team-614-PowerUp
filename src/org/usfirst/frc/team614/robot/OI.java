@@ -7,11 +7,8 @@ import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
-<<<<<<< HEAD
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
-=======
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraightAtSmartDashboardSpeed;
->>>>>>> origin/master
 
 /**
  * This class is the glue that binds the controls on the physical operator

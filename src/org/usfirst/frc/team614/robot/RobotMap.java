@@ -46,7 +46,7 @@ public class RobotMap {
 	public static final int rightMotorA = 2;
 	public static final int rightMotorB = 3;
 	
-	// DIO
+	// Encoders
 	
 	public static final int leftMotorEncoderA = 0;
 	public static final int leftMotorEncoderB = 1;
@@ -59,10 +59,7 @@ public class RobotMap {
 	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 250.0;
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	
-//<<<<<<< HEAD
-
-//=======
-//>>>>>>> origin/master
+	//DIO
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 	

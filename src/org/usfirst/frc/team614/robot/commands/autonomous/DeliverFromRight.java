@@ -38,7 +38,7 @@ public class DeliverFromRight extends CommandGroup {
     		if (SmartDashboard.getBoolean("R2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new DriveForADistance(speed, 168));
+    			this.addSequential(new DriveForADistance(168, speed));
     			this.addSequential(new RotateToAngle(-90, true));
     		}
     		
@@ -52,7 +52,7 @@ public class DeliverFromRight extends CommandGroup {
     	
     	else if (SmartDashboard.getBoolean("L1", false))
     	{
-    		this.addSequential(new DriveForADistance(speed, 80));
+    		this.addSequential(new DriveForADistance(80, speed));
     	}
     	
     	else

@@ -19,10 +19,13 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	// CANBUS
+	// Shooter
 	
 	public static final int talon1 = 0;
 	public static final int talon2 = 1;
+	
+	public static final int accelerator1 = 8;
+	public static final int accelerator2 = 9;
 	
 	// TALONSRXMOTORS CONSTANTS
 	

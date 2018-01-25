@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.team708.robot.util.Gamepad;
+import org.usfirst.frc.team614.robot.commands.SpinAcceleratorMotors;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
@@ -54,16 +55,17 @@ public class OI {
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 	
 	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
-	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
-	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button spinShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
+	private static final Button spinAccelerator = new JoystickButton(driverGamepad, Gamepad.button_A);
+//	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
 	private static final Button togglePusherPneumatics = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	private static final Button shootAtSmartDashboardSpeed = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 	
 	
 	public OI() {
-		spinFlyWheel.whenPressed(new DrivePastBaseline());
 		togglePusherPneumatics.whenPressed(new TogglePusherPneumatics());
 		shootAtSmartDashboardSpeed.whileHeld(new ShootAtSmartDashboardSpeed());
+		spinAccelerator.whileHeld(new SpinAcceleratorMotors());
 		
 		
 

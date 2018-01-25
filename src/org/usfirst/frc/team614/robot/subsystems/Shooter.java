@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,8 +16,6 @@ public class Shooter extends Subsystem {
 	// here. Call these from Commands.
 	public TalonSRX talon1 = new TalonSRX(RobotMap.talon1);
 	public TalonSRX talon2 = new TalonSRX(RobotMap.talon2);
-	public VictorSP victor1 = new VictorSP(RobotMap.accelerator1);
-	public VictorSP victor2 = new VictorSP(RobotMap.accelerator2);
 
 	public void initDefaultCommand() {
         talon1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
@@ -78,15 +75,8 @@ public class Shooter extends Subsystem {
 		talon2.set(ControlMode.Velocity, speed);
 //		talon2.set(ControlMode.Follower, speed);
 	}
-	
-	public void setAccelerator(double speed)
-	{
-		victor1.set(speed);
-		victor2.set(speed);
-	}
 
 	public void stop() {
 		talon1.neutralOutput();
-		talon2.neutralOutput();
 	}
 }

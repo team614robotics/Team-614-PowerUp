@@ -33,6 +33,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
+	public static Shooter talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
@@ -63,6 +64,7 @@ public class Robot extends IterativeRobot {
 		drivetrainCompanion = new DrivetrainCompanion();
 		shooter = new Shooter();
 		pusherPneumatics = new PusherPneumatics();
+		talonsrxmotors = new Shooter();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 
@@ -76,7 +78,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Vertical Shooter Speed", 0);
-        SmartDashboard.putNumber("Accelerator Speed", 0);
         SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
         SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
         

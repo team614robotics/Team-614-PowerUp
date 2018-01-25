@@ -9,17 +9,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class SpinTalonMotors extends Command {
-	public SpinTalonMotors() {
-		requires(Robot.shooter);
-	}
-	
+
 	protected void initialize() {
-		Robot.shooter.set(0);
+		Robot.talonsrxmotors.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.set(SmartDashboard.getNumber("Talon Setpoint", 0));
+		Robot.talonsrxmotors.set(SmartDashboard.getNumber("Talon Setpoint", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -29,12 +26,12 @@ public class SpinTalonMotors extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.shooter.stop();
+		Robot.talonsrxmotors.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.shooter.stop();
+		Robot.talonsrxmotors.stop();
 	}
 }

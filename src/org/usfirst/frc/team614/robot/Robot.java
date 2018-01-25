@@ -15,6 +15,7 @@ import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 //import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
 
@@ -29,13 +30,8 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
-<<<<<<< HEAD
 
-  public static TalonSRXMotors talonsrxmotors;
-=======
-	
-	//public static TalonSRXMotors talonsrxmotors;
->>>>>>> origin/master
+	public static TalonSRXMotors talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
@@ -66,7 +62,7 @@ public class Robot extends IterativeRobot {
 		drivetrainCompanion = new DrivetrainCompanion();
 		// verticalShooter = new VerticalShooter();
 		// clamp = new Clamp();
-        talonsrxmotors = new TalonSRXMotors();
+		talonsrxmotors = new TalonSRXMotors();
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new SpinFlyWheel());
@@ -174,11 +170,13 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+	
 
 		Robot.navX.reset();
 		drivetrain.reset();
 
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
 
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
 		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
@@ -197,6 +195,10 @@ public class Robot extends IterativeRobot {
 
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
+		SmartDashboard.putNumber("Talon Distance", talonsrxmotors.talon1.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Talon Distance 2", talonsrxmotors.talon2.getSelectedSensorPosition(0));
+		
+		
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
 		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
 		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');

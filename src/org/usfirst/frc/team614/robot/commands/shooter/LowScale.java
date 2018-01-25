@@ -1,6 +1,6 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
-import org.usfirst.frc.team614.robot.subsystems.PusherPneumatics;
+import org.usfirst.frc.team614.robot.subsystems.Achoo;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -30,10 +30,10 @@ public class LowScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new TogglePusherPneumatics());
-    	addParallel(new HighRPMFairlanes());
-    	addSequential(new WaitUntilTheBoxIsShot());
-    	addSequential(new TogglePusherPneumatics());
+    	addSequential(new ToggleAchoo());
+    	addParallel(new ZwooshHigh());
+    	addSequential(new WaitUntilBoxIsZwooshed());
+    	addSequential(new ToggleAchoo());
     	
     }
 

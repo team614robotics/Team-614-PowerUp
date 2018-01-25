@@ -1,7 +1,7 @@
 package org.usfirst.frc.team614.robot.subsystems;
 
 import org.usfirst.frc.team614.robot.RobotMap;
-import org.usfirst.frc.team614.robot.commands.shooter.PusherCompressorControl;
+import org.usfirst.frc.team614.robot.commands.shooter.AchooCompressorControl;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -10,22 +10,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class PusherPneumatics extends Subsystem {
-	public Compressor compressorPusherPneumatics;
+public class Achoo extends Subsystem {
+	public Compressor compressorAchoo;
 	public DoubleSolenoid pusherAchoo;
 	
-	public PusherPneumatics() {
-		compressorPusherPneumatics = new Compressor(RobotMap.compressorPusherPneumatics);
-		pusherAchoo = new DoubleSolenoid(RobotMap.pusherPneumaticsSolenoidA, RobotMap.pusherPneumaticsSolenoidB);
-		pusherAchoo.set(RobotMap.pusherPneumaticsPistonIn);
+	public Achoo() {
+		compressorAchoo = new Compressor(RobotMap.compressorAchoo);
+		pusherAchoo = new DoubleSolenoid(RobotMap.achooSolenoidA, RobotMap.achooSolenoidB);
+		pusherAchoo.set(RobotMap.achooPistonIn);
 	}
 	
 	public void extend() {
-		pusherAchoo.set(RobotMap.pusherPneumaticsPistonOut);
+		pusherAchoo.set(RobotMap.achooPistonOut);
 	}
 	
 	public void retract() {
-		pusherAchoo.set(RobotMap.pusherPneumaticsPistonIn);
+		pusherAchoo.set(RobotMap.achooPistonIn);
 	}
 	
 	public DoubleSolenoid.Value getState() {
@@ -44,7 +44,7 @@ public class PusherPneumatics extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new PusherCompressorControl());
+    	setDefaultCommand(new AchooCompressorControl());
     }
 }
 

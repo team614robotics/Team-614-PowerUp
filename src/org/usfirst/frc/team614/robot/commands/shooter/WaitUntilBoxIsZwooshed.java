@@ -1,27 +1,20 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
-import org.usfirst.frc.team614.robot.Robot;
-import org.usfirst.frc.team614.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class TogglePusherPneumatics extends Command {
+public class WaitUntilBoxIsZwooshed extends Command {
 
-    public TogglePusherPneumatics() {
-        requires(Robot.pusherPneumatics);
+    public WaitUntilBoxIsZwooshed() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	setTimeout(1);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.pusherPneumatics.getState().equals(RobotMap.pusherPneumaticsPistonIn)) {
-			Robot.pusherPneumatics.setState(RobotMap.pusherPneumaticsPistonOut);
-		} else {
-			Robot.pusherPneumatics.setState(RobotMap.pusherPneumaticsPistonIn);
-		}
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +23,7 @@ public class TogglePusherPneumatics extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

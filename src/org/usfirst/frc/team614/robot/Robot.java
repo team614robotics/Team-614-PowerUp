@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team614.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,14 +29,14 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
-	
-	public static TalonSRXMotors talonsrxmotors;
+
+  public static TalonSRXMotors talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static VerticalShooter verticalShooter = new VerticalShooter();
 	public static Clamp clamp = new Clamp();
-	
+
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
 
@@ -51,41 +50,46 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		try {
-            navX = new AHRS(SPI.Port.kMXP,(byte)200);
-        } catch (RuntimeException ex ) {
-            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-        }
-		
+			navX = new AHRS(SPI.Port.kMXP, (byte) 200);
+		} catch (RuntimeException ex) {
+			DriverStation.reportError(
+					"Error instantiating navX MXP:  " + ex.getMessage(), true);
+		}
+
 		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
-		//verticalShooter = new VerticalShooter();
-		//clamp = new Clamp();
-
-    	pdp = new PowerDistributionPanel();
+		// verticalShooter = new VerticalShooter();
+		// clamp = new Clamp();
+        talonsrxmotors = new TalonSRXMotors();
+		pdp = new PowerDistributionPanel();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new SpinFlyWheel());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Autonomous", chooser);
 
-        SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
-        SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
-        SmartDashboard.putNumber("Vertical Shooter Speed", 0);
-        SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
-        SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
-        
-        SmartDashboard.putNumber("Talon Setpoint", 0);
-        
-        SmartDashboard.putBoolean("Go For Scale", false);
-        
-        SmartDashboard.putBoolean("L1", false);
-        SmartDashboard.putBoolean("L2", false);
-        SmartDashboard.putBoolean("L3", false);
-        SmartDashboard.putBoolean("R1", false);
-        SmartDashboard.putBoolean("R1", false);
-        SmartDashboard.putBoolean("R1", false);
-        
-        SmartDashboard.putNumber("Drivetrain Target Speed", 0);
+		SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
+		SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
+		SmartDashboard.putNumber("Vertical Shooter Speed", 0);
+		SmartDashboard
+				.putNumber("Drivetrain left Encoder Distance (inches)", 0);
+		SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)",
+				0);
+
+		SmartDashboard.putNumber("Talon Setpoint", 0);
+
+		SmartDashboard.putBoolean("Go For Scale", false);
+
+		SmartDashboard.putNumber("Angle Setpoint", 0);
+
+		SmartDashboard.putBoolean("L1", false);
+		SmartDashboard.putBoolean("L2", false);
+		SmartDashboard.putBoolean("L3", false);
+		SmartDashboard.putBoolean("R1", false);
+		SmartDashboard.putBoolean("R2", false);
+		SmartDashboard.putBoolean("R3", false);
+
+		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 	}
 
 	/**
@@ -95,10 +99,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-    	// resets NavX and disables the PID controller.
-    	Robot.navX.reset();
-    	drivetrain.reset();
-    	
+		// resets NavX and disables the PID controller.
+		Robot.navX.reset();
+		drivetrain.reset();
+
 	}
 
 	@Override
@@ -119,23 +123,23 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-    	// resets NavX and disables the PID controller.
-    	Robot.navX.reset();
-//<<<<<<< HEAD
-//=======
+		// resets NavX and disables the PID controller.
+		Robot.navX.reset();
+		// <<<<<<< HEAD
+		// =======
 
-//>>>>>>> origin/master
-    	drivetrain.reset();
-        
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	
-        SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
-        SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
-        SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
-        SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
-        SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
-        SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
-		
+		// >>>>>>> origin/master
+		drivetrain.reset();
+
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
+		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
+		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
+		SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
+		SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
+		SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
+
 		autonomousCommand = chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -143,11 +147,10 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new SpinFlyWheel(); break; }
 		 */
-		
-		
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null) autonomousCommand.start();
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
 
 	/**
@@ -164,11 +167,20 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null) autonomousCommand.cancel();
-		
-    	Robot.navX.reset();
-    	drivetrain.reset();
-    	
+		if (autonomousCommand != null)
+			autonomousCommand.cancel();
+
+		Robot.navX.reset();
+		drivetrain.reset();
+
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
+		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
+		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
+		SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
+		SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
+		SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
 	}
 
 	/**
@@ -178,9 +190,22 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		 SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
-	     SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", drivetrain.rightEncoder.getDistance());
-		//SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
+		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
+		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
+		SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
+		SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
+		SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
+
+		SmartDashboard.putNumber("Yaw", this.navX.getYaw());
+		SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)",
+				drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)",
+				drivetrain.rightEncoder.getDistance());
+		// SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)",
+		// drivetrain.leftEncoder.getDistance());
 	}
 
 	/**

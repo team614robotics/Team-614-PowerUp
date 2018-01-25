@@ -5,6 +5,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.commands.SpinTalonMotors;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
+import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
@@ -47,7 +50,7 @@ public class OI {
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 	
 	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
-	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
+	private static final Button spinTalonMotors = new JoystickButton(driverGamepad, Gamepad.button_B);
 	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_A);
 	
 	public static final Button driveStraightASDS = new JoystickButton(driverGamepad, Gamepad.button_Y);
@@ -55,6 +58,9 @@ public class OI {
 	public OI() {
 		spinFlyWheel.whileHeld(new SpinFlyWheel());
 		driveStraightASDS.whileHeld(new DriveStraightAtSmartDashboardSpeed());
+		
+		spinTalonMotors.whileHeld(new SpinTalonMotors());
+		activateClamp.whenPressed(new RotateToAngle(90,true));
 		
 		// spinVerticalShooter.whileHeld(new SpinVerticalShooter());
 	}

@@ -4,7 +4,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
+import org.usfirst.frc.team614.robot.commands.CompressorControl;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.commands.TogglePiston;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
+import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
@@ -48,14 +52,15 @@ public class OI {
 	
 	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
-	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
 	
-	public static final Button driveStraightASDS = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	public static final Button togglePiston = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	
 	public OI() {
-		spinFlyWheel.whileHeld(new SpinFlyWheel());
-		driveStraightASDS.whileHeld(new DriveStraightAtSmartDashboardSpeed());
+		spinFlyWheel.whenPressed(new DrivePastBaseline());
+		compressorControl.whenPressed(new CompressorControl());
+		togglePiston.whenPressed(new TogglePiston());
 		
-		// spinVerticalShooter.whileHeld(new SpinVerticalShooter());
+		
 	}
 }

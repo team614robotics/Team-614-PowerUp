@@ -47,7 +47,6 @@ public class TalonSRXMotors extends Subsystem {
 		talon2.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
 
 		talon2.set(ControlMode.Velocity, 0);
-//		talon2.set(ControlMode.Follower, 0);
 	}
 
 	public void reset() {
@@ -73,7 +72,6 @@ public class TalonSRXMotors extends Subsystem {
 	public void set(double speed) {
 		talon1.set(ControlMode.Velocity, speed);
 		talon2.set(ControlMode.Velocity, speed);
-//		talon2.set(ControlMode.Follower, speed);
 	}
 
 	public void stop() {

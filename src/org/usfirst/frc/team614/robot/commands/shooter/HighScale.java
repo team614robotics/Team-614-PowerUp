@@ -28,9 +28,9 @@ public class HighScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new HighRPMFairlanes());
-    	addParallel(new TogglePusherPneumatics());
-        addSequential(new HighRPMFairlanes());
+    	addSequential(new TogglePusherPneumatics());
+        addParallel(new HighRPMFairlanes());
+        addSequential(new WaitUntilTheBoxIsShot());
     	addSequential(new TogglePusherPneumatics());
     }
 }

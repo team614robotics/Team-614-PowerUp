@@ -16,7 +16,11 @@ public class TalonSRXMotors extends Subsystem {
 	// here. Call these from Commands.
 	public TalonSRX talon1 = new TalonSRX(RobotMap.talon1);
 	public TalonSRX talon2 = new TalonSRX(RobotMap.talon2);
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> origin/master
 	public void initDefaultCommand() {
         talon1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
 		talon1.setSensorPhase(true);

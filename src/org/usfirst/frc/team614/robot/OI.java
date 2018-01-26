@@ -7,6 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.CompressorControl;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+<<<<<<< HEAD
+import org.usfirst.frc.team614.robot.commands.SpinTalonMotors;
+=======
+>>>>>>> origin/master
 import org.usfirst.frc.team614.robot.commands.TogglePiston;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
@@ -54,7 +58,13 @@ public class OI {
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 	
 	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
+<<<<<<< HEAD
+	private static final Button spinTalonMotors = new JoystickButton(driverGamepad, Gamepad.button_B);
+	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_A);
+//	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
+=======
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
+>>>>>>> origin/master
 	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
 	
 	public static final Button togglePiston = new JoystickButton(driverGamepad, Gamepad.button_Y);
@@ -65,9 +75,16 @@ public class OI {
 		spinFlyWheel.whenPressed(new DrivePastBaseline());
 		compressorControl.whenPressed(new CompressorControl());
 		togglePiston.whenPressed(new TogglePiston());
+<<<<<<< HEAD
+		spinTalonMotors.whileHeld(new SpinTalonMotors());
+		activateClamp.whenPressed(new RotateToAngle(90,true));
+		
+		// spinVerticalShooter.whileHeld(new SpinVerticalShooter());
+=======
 		
 		
 		
 		
+>>>>>>> origin/master
 	}
 }

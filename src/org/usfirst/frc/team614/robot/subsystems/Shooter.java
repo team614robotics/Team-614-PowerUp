@@ -67,7 +67,7 @@ public class Shooter extends Subsystem {
 		return shooterLeft.getClosedLoopTarget(0);
 	}
 
-	public void set(double speed) {
+	public void setShooter(double speed) {
 		shooterLeft.set(ControlMode.Velocity, speed);
 		shooterRight.set(ControlMode.Velocity, speed);
 	}
@@ -77,8 +77,8 @@ public class Shooter extends Subsystem {
 		shooterRight.neutralOutput();
 	}
 	
-	public void setVictors(double speed) {
+	public void setAccelerator(double speed) {
 		acceleratorLeft.set(speed);
-		acceleratorRight.set(speed);
+		acceleratorRight.set(-speed);
 	}
 }

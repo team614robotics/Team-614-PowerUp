@@ -31,7 +31,7 @@ public class DeliverSwitch extends CommandGroup {
 		// arm.
 
 		addSequential(new RevAcceleratorHigh());
-    	addParallel(new RevShooterSwitch());
+    	addParallel(new RevShooterLow());
     	addSequential(new RevAcceleratorHigh());
 	}
 

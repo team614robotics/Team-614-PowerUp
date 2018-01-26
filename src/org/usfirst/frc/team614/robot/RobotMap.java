@@ -21,8 +21,8 @@ public class RobotMap {
 	
 	// CANBUS
 	
-	public static final int talon1 = 0;
-	public static final int talon2 = 1;
+	public static final int talon1 = 2;
+	public static final int talon2 = 3;
 	
 	// TALONSRXMOTORS CONSTANTS
 	

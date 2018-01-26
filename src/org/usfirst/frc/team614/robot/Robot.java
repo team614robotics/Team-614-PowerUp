@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.Achoo;
 import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
 //import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
+import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -37,6 +39,8 @@ public class Robot extends IterativeRobot {
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static VerticalShooter verticalShooter = new VerticalShooter();
 	public static Clamp clamp = new Clamp();
+	public static Achoo achoo;
+	public static Zwoosh zwoosh = new Zwoosh();
 	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -59,12 +63,15 @@ public class Robot extends IterativeRobot {
 		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
+		zwoosh = new Zwoosh();
+		achoo = new Achoo();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 
     	pdp = new PowerDistributionPanel();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new SpinFlyWheel());
+	//	chooser.addDeafault("Deafault Time", new Zwoosh());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Autonomous", chooser);
 
@@ -73,6 +80,15 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Vertical Shooter Speed", 0);
         SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
         SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
+        
+        SmartDashboard.putNumber("HightZwoosh MotorA Speed",8.2);
+        SmartDashboard.putNumber("HightZwoosh MotorB Speed",-8.2);
+        SmartDashboard.putNumber("LowZwoosh MotroA Speed",5);
+        SmartDashboard.putNumber("LowZwoosh MotorB Spped",-5);
+        SmartDashboard.putNumber("ZwooshHigh TimeOut",1);
+        
+        
+        SmartDashboard.putNumber("Shooter rev time(seconds)", 0);
         
         SmartDashboard.putNumber("Talon Setpoint", 0);
         
@@ -168,6 +184,8 @@ public class Robot extends IterativeRobot {
 		
     	Robot.navX.reset();
     	drivetrain.reset();
+    	
+    	
     	
 	}
 

@@ -42,7 +42,10 @@ public class RobotMap {
 	public static final int verticalShooterRight = 7;
 	
 	public static final int leftMotorA = 0;
-	public static final int rightMotorA = 1;
+	public static final int rightMotorA = 2;
+	
+	public static final int zwooshMotorA = 1;
+	public static final int zwooshMotorB = 3;
 	
 	// Encoders
 	
@@ -60,8 +63,12 @@ public class RobotMap {
 	//DIO
 	public static final int testSolenoidA = 0;
 	public static final int testSolenoidB = 1;
+	public static final int AchooSolenoidA = 2;
+	public static final int AchooSolenoidB = 3;
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
+	public static final DoubleSolenoid.Value AchoopistonOut = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value AchoopistonIn = DoubleSolenoid.Value.kReverse;
 	
 	public static final double drivetrainRotationP = 0.1;
 	public static final double drivetrainRotationI = 0;

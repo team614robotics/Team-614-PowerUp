@@ -16,12 +16,11 @@ public class ToggleIntakePiston extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (Robot.intake.getState().equals(RobotMap.PistonIn)) {
-			Robot.intake.setState(RobotMap.PistonOut);
+		if (Robot.pneumatics.getIntakeState().equals(RobotMap.PistonIn)) {
+			Robot.pneumatics.setIntakeState(RobotMap.PistonOut);
 		} else {
-			Robot.intake.setState(RobotMap.PistonIn);
+			Robot.pneumatics.setIntakeState(RobotMap.PistonIn);
 		}
-
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -21,8 +21,8 @@ public class RobotMap {
 	
 	// SHOOTER
 	
-	public static final int shooterLeft = 0;
-	public static final int shooterRight = 1;
+	public static final int shooterLeft = 2;
+	public static final int shooterRight = 3;
 	
 	public static final int acceleratorLeft = 8;
 	public static final int acceleratorRight = 9;
@@ -38,8 +38,13 @@ public class RobotMap {
 	
 	// PWM
 	
-	public static final int intakeLeft = 0;
-	public static final int intakeRight = 1;
+	public static final int intakeLeft = 4;
+	public static final int intakeRight = 5;
+	
+	public static final int leftMotorA = 0;
+	public static final int leftMotorB = 1;
+	public static final int rightMotorA = 2;
+	public static final int rightMoorB = 3;
 	
 	// Encoders
 	
@@ -57,8 +62,9 @@ public class RobotMap {
 	// DIO
 	
 	public static final int compressor = 0;
-	public static final int SolenoidA = 0;
-	public static final int SolenoidB = 1;
+	public static final int intakeSolenoidA = 0;
+	public static final int intakeSolenoidB = 1;
+	
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;

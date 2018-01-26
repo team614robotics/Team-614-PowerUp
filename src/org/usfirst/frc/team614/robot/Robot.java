@@ -10,12 +10,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
 import org.usfirst.frc.team614.robot.commands.autonomous.DoNothing;
-import org.usfirst.frc.team614.robot.subsystems.IntakePneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
-import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Shooter;
 import org.usfirst.frc.team614.robot.subsystems.Intake;
 
@@ -35,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static Intake intake;
+	public static Pneumatics pneumatics;
 
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -59,6 +58,7 @@ public class Robot extends IterativeRobot {
 		drivetrainCompanion = new DrivetrainCompanion();
 		shooter = new Shooter();
 		intake = new Intake();
+		pneumatics = new Pneumatics();
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
@@ -77,7 +77,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);
-		SmartDashboard.putNumber("Shooter DeliverSwitch Timeout", 0);
+		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
 

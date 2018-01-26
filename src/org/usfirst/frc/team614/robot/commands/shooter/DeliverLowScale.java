@@ -1,8 +1,6 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
-import org.usfirst.frc.team614.robot.subsystems.IntakePneumatics;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**

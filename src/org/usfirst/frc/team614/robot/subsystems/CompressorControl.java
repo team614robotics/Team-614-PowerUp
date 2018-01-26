@@ -1,4 +1,4 @@
-package org.usfirst.frc.team614.robot.commands.intake;
+package org.usfirst.frc.team614.robot.subsystems;
 
 import org.usfirst.frc.team614.robot.Robot;
 
@@ -8,27 +8,27 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class IntakeCompressorControl extends Command {
+public class CompressorControl extends Command {
 
-	public IntakeCompressorControl() {
+	public CompressorControl() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.intake);
+		requires(Robot.pneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.intake.compressor.start();
+		Robot.pneumatics.compressor.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.intake.compressor.enabled()) {
+		if (Robot.pneumatics.compressor.enabled()) {
 			if (DriverStation.getInstance().getBatteryVoltage() < 9.5) {
-				Robot.intake.compressor.stop();
+				Robot.pneumatics.compressor.stop();
 			}
 		} else {
 			if (DriverStation.getInstance().getBatteryVoltage() > 10.5) {
-				Robot.intake.compressor.start();
+				Robot.pneumatics.compressor.start();
 			}
 		}
 	}
@@ -40,12 +40,12 @@ public class IntakeCompressorControl extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intake.compressor.stop();
+		Robot.pneumatics.compressor.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.intake.compressor.stop();
+		Robot.pneumatics.compressor.stop();
 	}
 }

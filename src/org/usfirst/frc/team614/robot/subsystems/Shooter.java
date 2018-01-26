@@ -13,42 +13,42 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Shooter extends Subsystem {
-	public TalonSRX shooter1 = new TalonSRX(RobotMap.shooter2);
-	public TalonSRX shooter2 = new TalonSRX(RobotMap.shooter1);
+	public TalonSRX shooterLeft = new TalonSRX(RobotMap.shooterLeft);
+	public TalonSRX shooterRight = new TalonSRX(RobotMap.shooterRight);
 	
-	public VictorSP accelerator1 = new VictorSP(RobotMap.accelerator1);
-	public VictorSP accelerator2 = new VictorSP(RobotMap.accelerator1);
+	public VictorSP acceleratorLeft = new VictorSP(RobotMap.acceleratorLeft);
+	public VictorSP acceleratorRight = new VictorSP(RobotMap.acceleratorRight);
 
 	public void initDefaultCommand() {
-        shooter1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
-		shooter1.setSensorPhase(true);
+        shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
+		shooterLeft.setSensorPhase(true);
 
-		shooter1.configNominalOutputForward(0, RobotMap.kTimeoutMs);
-		shooter1.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
-		shooter1.configPeakOutputForward(1, RobotMap.kTimeoutMs);
-		shooter1.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
+		shooterLeft.configNominalOutputForward(0, RobotMap.kTimeoutMs);
+		shooterLeft.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
+		shooterLeft.configPeakOutputForward(1, RobotMap.kTimeoutMs);
+		shooterLeft.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
 		
-		shooter1.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
-		shooter1.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
-		shooter1.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
-		shooter1.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
+		shooterLeft.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
+		shooterLeft.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
+		shooterLeft.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
+		shooterLeft.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
 
-		shooter1.set(ControlMode.Velocity, 0);
+		shooterLeft.set(ControlMode.Velocity, 0);
 		
-		shooter2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
-		shooter2.setSensorPhase(true);
+		shooterRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
+		shooterRight.setSensorPhase(true);
 
-		shooter2.configNominalOutputForward(0, RobotMap.kTimeoutMs);
-		shooter2.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
-		shooter2.configPeakOutputForward(1, RobotMap.kTimeoutMs);
-		shooter2.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
+		shooterRight.configNominalOutputForward(0, RobotMap.kTimeoutMs);
+		shooterRight.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
+		shooterRight.configPeakOutputForward(1, RobotMap.kTimeoutMs);
+		shooterRight.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
 		
-		shooter2.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
-		shooter2.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
-		shooter2.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
-		shooter2.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
+		shooterRight.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
+		shooterRight.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
+		shooterRight.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
+		shooterRight.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
 
-		shooter2.set(ControlMode.Velocity, 0);
+		shooterRight.set(ControlMode.Velocity, 0);
 	}
 
 	public void reset() {
@@ -56,24 +56,24 @@ public class Shooter extends Subsystem {
 	}
 
 	public double getSpeed() {
-		return shooter1.getSelectedSensorVelocity(0);
+		return shooterLeft.getSelectedSensorVelocity(0);
 	}
 
 	public double getError() {
-		return shooter1.getSelectedSensorVelocity(0) - shooter1.getClosedLoopTarget(0);
+		return shooterLeft.getSelectedSensorVelocity(0) - shooterLeft.getClosedLoopTarget(0);
 	}
 
 	public double getSetpoint() {
-		return shooter1.getClosedLoopTarget(0);
+		return shooterLeft.getClosedLoopTarget(0);
 	}
 
 	public void set(double speed) {
-		shooter1.set(ControlMode.Velocity, speed);
-		shooter2.set(ControlMode.Velocity, speed);
+		shooterLeft.set(ControlMode.Velocity, speed);
+		shooterRight.set(ControlMode.Velocity, speed);
 	}
 
 	public void stop() {
-		shooter1.neutralOutput();
-		shooter2.neutralOutput();
+		shooterLeft.neutralOutput();
+		shooterRight.neutralOutput();
 	}
 }

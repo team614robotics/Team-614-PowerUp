@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ShooterLow extends Command {
+public class RevShooterSwitch extends Command {
 
-	public ShooterLow() {
+	public RevShooterSwitch() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);

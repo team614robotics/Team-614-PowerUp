@@ -21,11 +21,11 @@ public class RobotMap {
 	
 	// SHOOTER
 	
-	public static final int shooter1 = 0;
-	public static final int shooter2 = 1;
+	public static final int shooterLeft = 0;
+	public static final int shooterRight = 1;
 	
-	public static final int accelerator1 = 8;
-	public static final int accelerator2 = 9;
+	public static final int acceleratorLeft = 8;
+	public static final int acceleratorRight = 9;
 	
 	// TALONSRXMOTORS CONSTANTS
 	
@@ -38,17 +38,8 @@ public class RobotMap {
 	
 	// PWM
 	
-	public static final int flyWheelLeft = 4;
-	public static final int flyWheelRight = 5;
-	
-	public static final int verticalShooterLeft = 6;
-	public static final int verticalShooterRight = 7;
-	
-	public static final int leftMotorA = 0;
-	public static final int rightMotorA = 1;
-	
-	public static final int zwooshLeft = 2;
-	public static final int zwooshRight = 3;
+	public static final int intakeLeft = 0;
+	public static final int intakeRight = 1;
 	
 	// Encoders
 	

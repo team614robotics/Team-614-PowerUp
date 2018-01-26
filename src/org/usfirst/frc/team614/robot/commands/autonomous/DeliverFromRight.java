@@ -1,9 +1,9 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
-import org.usfirst.frc.team614.robot.commands.SpinShooterMotors;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -47,7 +47,7 @@ public class DeliverFromRight extends CommandGroup {
     			this.addSequential(new DriveUntilStopped(speed, 3));
     		}
     	
-			this.addSequential(new SpinShooterMotors());
+			this.addSequential(new RevShooter());
     	}
     	
     	else if (SmartDashboard.getBoolean("L1", false))

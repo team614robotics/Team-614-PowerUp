@@ -1,5 +1,7 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
+import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,9 +10,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *by another team. (Our side of the scale is higher than their side)
  *
  */
-public class HighScale extends CommandGroup {
+public class DeliverHighScale extends CommandGroup {
 
-    public HighScale() {
+    public DeliverHighScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -28,8 +30,8 @@ public class HighScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new TogglePiston());
-        addSequential(new ShooterHigh());
-    	addSequential(new TogglePiston());
+    	addSequential(new ToggleIntakePiston());
+        addSequential(new RevShooterHigh());
+    	addSequential(new ToggleIntakePiston());
     }
 }

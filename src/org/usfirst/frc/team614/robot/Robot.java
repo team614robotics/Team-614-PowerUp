@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.commands.autonomous.DoNothing;
 import org.usfirst.frc.team614.robot.subsystems.IntakePneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
@@ -31,11 +32,9 @@ public class Robot extends IterativeRobot {
 	public static AHRS navX;
 
 	public static Shooter shooter;
-	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
-	public static Intake intake = new Intake();
-	public static IntakePneumatics intakePneumatics;
+	public static Intake intake;
 
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -56,28 +55,29 @@ public class Robot extends IterativeRobot {
 					"Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 
-		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
-		intakePneumatics = new IntakePneumatics();
 		shooter = new Shooter();
+		intake = new Intake();
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
-		chooser.addDefault("Default Auto", new SpinFlyWheel());
+		chooser.addDefault("Default Auto", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
-
-		SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
-		SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
-		SmartDashboard.putNumber("Vertical Shooter Speed", 0);
+		
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
 
 		SmartDashboard.putNumber("Shooter Low RPM", 0);
 		SmartDashboard.putNumber("Shooter High RPM", 0);
-		SmartDashboard.putNumber("Switch RPM", 0);
+		SmartDashboard.putNumber("DeliverSwitch RPM", 0);
 		SmartDashboard.putNumber("Shooter RPM", 0);
+		SmartDashboard.putNumber("Intake Speed", 0);
+
+		SmartDashboard.putNumber("Shooter High Timeout", 0);
+		SmartDashboard.putNumber("Shooter Low Timeout", 0);
+		SmartDashboard.putNumber("Shooter DeliverSwitch Timeout", 0);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
 

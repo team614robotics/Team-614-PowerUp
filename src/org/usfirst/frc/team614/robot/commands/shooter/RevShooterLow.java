@@ -10,13 +10,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ShooterHigh extends Command {
+public class RevShooterLow extends Command {
 
-	public ShooterHigh() {
+	public RevShooterLow() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
-		setTimeout(SmartDashboard.getNumber("Shooter High Timeout", 0));
+		setTimeout(SmartDashboard.getNumber("Shooter DeliverSwitch Timeout", 0));
 	}
 
 	protected void initialize() {
@@ -25,7 +25,7 @@ public class ShooterHigh extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.set(SmartDashboard.getNumber("Shooter High RPM", 0));
+		Robot.shooter.set(SmartDashboard.getNumber("Shooter DeliverSwitch RPM", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

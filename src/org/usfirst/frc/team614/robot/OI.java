@@ -12,7 +12,7 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraightAtSmartDashboardSpeed;
-import org.usfirst.frc.team614.robot.commands.shooter.ShooterHigh;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterHigh;
 import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
 
 /**

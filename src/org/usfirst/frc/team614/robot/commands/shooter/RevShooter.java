@@ -1,31 +1,21 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
 import org.usfirst.frc.team614.robot.Robot;
-import org.usfirst.frc.team614.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class TogglePiston extends Command {
-
-	public TogglePiston() {
-		requires(Robot.intakePneumatics);
-	}
-
-	// Called just before this Command runs the first time
+public class RevShooter extends Command {
 	protected void initialize() {
-		if (Robot.intakePneumatics.getState().equals(RobotMap.PistonIn)) {
-			Robot.intakePneumatics.setState(RobotMap.PistonOut);
-		} else {
-			Robot.intakePneumatics.setState(RobotMap.PistonIn);
-		}
-
+		Robot.shooter.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.shooter.set(SmartDashboard.getNumber("Shooter RPM", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -35,10 +25,12 @@ public class TogglePiston extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.shooter.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		Robot.shooter.stop();
 	}
 }

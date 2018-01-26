@@ -1,8 +1,8 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
-import org.usfirst.frc.team614.robot.commands.SpinShooterMotors;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,14 +37,14 @@ public class DeliverFromCenter extends CommandGroup {
     	{
     		addSequential(new RotateToAngle(-45, true));
     		addSequential(new DriveForADistance(distance, speed));
-    		addSequential(new SpinShooterMotors());
+    		addSequential(new RevShooter());
     	}
     	
     	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		addSequential(new RotateToAngle(45, true));
     		addSequential(new DriveForADistance(distance, speed));
-    		addSequential(new SpinShooterMotors());
+    		addSequential(new RevShooter());
     	}
     	
     	else

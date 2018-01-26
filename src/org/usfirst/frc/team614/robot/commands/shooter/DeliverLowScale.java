@@ -1,5 +1,6 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
+import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.subsystems.IntakePneumatics;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *by our alliance. (Our side of the scale is lower than their side)
  *
  */
-public class LowScale extends CommandGroup {
+public class DeliverLowScale extends CommandGroup {
 
-    public LowScale() {
+    public DeliverLowScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -30,11 +31,9 @@ public class LowScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new TogglePiston());
-    	addParallel(new ShooterHigh());
-    	addSequential(new WaitUntilBoxIsZwooshed());
-    	addSequential(new TogglePiston());
-    	
+    	addSequential(new ToggleIntakePiston());
+    	addParallel(new RevShooterHigh());
+    	addSequential(new ToggleIntakePiston());	
     }
 
 	

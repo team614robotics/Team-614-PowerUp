@@ -72,6 +72,10 @@ public class TalonSRXMotors extends Subsystem {
 	public void set(double speed) {
 		talon1.set(ControlMode.Velocity, speed);
 		talon2.set(ControlMode.Velocity, speed);
+<<<<<<< HEAD:src/org/usfirst/frc/team614/robot/subsystems/TalonSRXMotors.java
+=======
+//		talon2.set(ControlMode.Follower, speed);
+>>>>>>> parent of 23ccb17... added accelerators:src/org/usfirst/frc/team614/robot/subsystems/Shooter.java
 	}
 
 	public void stop() {

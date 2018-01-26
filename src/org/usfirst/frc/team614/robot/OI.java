@@ -54,16 +54,28 @@ public class OI {
 	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
 	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
+<<<<<<< HEAD
 	public static final Button togglePiston = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	
 	
 	private static final Button revIntakeAtSDSpeed = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	private static final Button toggleIntakePneumatics = new JoystickButton(operatorGamepad, Gamepad.button_Y);
 	//Maybe we will mesh these together in a command group but not now
+=======
+	private static final Button togglePusherPneumatics = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	private static final Button shootAtSmartDashboardSpeed = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+>>>>>>> parent of 23ccb17... added accelerators
 	
 	
 	public OI() {
 		spinFlyWheel.whenPressed(new DrivePastBaseline());
+<<<<<<< HEAD
+=======
+		togglePusherPneumatics.whenPressed(new TogglePusherPneumatics());
+		shootAtSmartDashboardSpeed.whileHeld(new ShootAtSmartDashboardSpeed());
+		
+		
+>>>>>>> parent of 23ccb17... added accelerators
 
 		
 		

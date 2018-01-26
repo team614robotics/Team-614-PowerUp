@@ -33,7 +33,11 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
+<<<<<<< HEAD
 	public static TalonSRXMotors talonsrxmotors;
+=======
+	public static Shooter talonsrxmotors;
+>>>>>>> parent of 23ccb17... added accelerators
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
@@ -62,9 +66,15 @@ public class Robot extends IterativeRobot {
 		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
+<<<<<<< HEAD
 		zwoosh = new Zwoosh();
 		achoo = new Achoo();
 		talonsrxmotors = new TalonSRXMotors();
+=======
+		shooter = new Shooter();
+		pusherPneumatics = new PusherPneumatics();
+		talonsrxmotors = new Shooter();
+>>>>>>> parent of 23ccb17... added accelerators
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 

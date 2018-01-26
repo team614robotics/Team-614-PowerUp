@@ -16,23 +16,20 @@ public class ZwooshHigh extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.zwoosh);
-    	setTimeout(SmartDashboard.getNumber("ZwooshHigh TimeOut", 0));
+    	setTimeout(SmartDashboard.getNumber("Zwoosh High Timeout", 0));
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.zwoosh.zwooshMotorA.set(ControlMode.Velocity,0);
-    	Robot.zwoosh.zwooshMotorB.set(ControlMode.Velocity,0);
-    	
-    	
+    	Robot.zwoosh.talonSRXZwooshLeft.set(ControlMode.Velocity, 0);
+		Robot.zwoosh.talonSRXZwooshRight.set(ControlMode.Velocity, 0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.zwoosh.zwooshMotorA.set(ControlMode.Velocity,SmartDashboard.getNumber("HighZwoosh MotorA Speed", 0));
-    	Robot.zwoosh.zwooshMotorB.set(ControlMode.Velocity,SmartDashboard.getNumber("HighZwoosh MotorB Speed",0));
+    	Robot.zwoosh.talonSRXZwooshLeft.set(ControlMode.Velocity, SmartDashboard.getNumber("High Zwoosh Left Motor Speed", 0.0));
+		Robot.zwoosh.talonSRXZwooshRight.set(ControlMode.Velocity, SmartDashboard.getNumber("High Zwoosh Right Motor Speed", 0.0));
     }
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return isTimedOut();
@@ -40,14 +37,14 @@ public class ZwooshHigh extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.zwoosh.zwooshMotorA.set(ControlMode.Velocity,0);
-    	Robot.zwoosh.zwooshMotorB.set(ControlMode.Velocity,0);
+    	Robot.zwoosh.talonSRXZwooshLeft.set(ControlMode.Velocity, 0);
+		Robot.zwoosh.talonSRXZwooshRight.set(ControlMode.Velocity, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.zwoosh.zwooshMotorA.set(ControlMode.Velocity, 0);
-    	Robot.zwoosh.zwooshMotorB.set(ControlMode.Velocity, 0);
+    	Robot.zwoosh.talonSRXZwooshLeft.set(ControlMode.Velocity, 0);
+		Robot.zwoosh.talonSRXZwooshRight.set(ControlMode.Velocity, 0);
     }
 }

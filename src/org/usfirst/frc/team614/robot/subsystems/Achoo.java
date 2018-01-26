@@ -11,33 +11,40 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Achoo extends Subsystem {
-	public Compressor compressor;
-	public DoubleSolenoid squeezer;
-
+	public Compressor compressorAchoo;
+	public DoubleSolenoid pusherAchoo;
+	
 	public Achoo() {
-		compressor = new Compressor(0);
-        squeezer = new DoubleSolenoid(2, 3);
-		squeezer.set(RobotMap.AchoopistonIn);
+		compressorAchoo = new Compressor(RobotMap.compressorAchoo);
+		pusherAchoo = new DoubleSolenoid(RobotMap.achooSolenoidA, RobotMap.achooSolenoidB);
+		pusherAchoo.set(RobotMap.achooPistonIn);
 	}
-
+	
 	public void extend() {
-		squeezer.set(RobotMap.AchoopistonOut);
+		pusherAchoo.set(RobotMap.achooPistonOut);
 	}
-
+	
 	public void retract() {
-		squeezer.set(RobotMap.AchoopistonIn);
+		pusherAchoo.set(RobotMap.achooPistonIn);
 	}
-
+	
 	public DoubleSolenoid.Value getState() {
-		return squeezer.get();
+		return pusherAchoo.get();
 	}
-
+	
 	public void setState(DoubleSolenoid.Value state) {
-		squeezer.set(state);
+		pusherAchoo.set(state);
 	}
+	
+	
 
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		setDefaultCommand(new CompressorControl());
-	}
+    // Put methods for controlling this subsystem
+    // here. Call these from Commands.
+
+    public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new CompressorControl());
+    }
 }
+

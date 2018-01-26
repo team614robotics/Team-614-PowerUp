@@ -3,6 +3,9 @@ package org.usfirst.frc.team614.robot.commands.shooter;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ * 
+ *This is for shooting when the scale is already occupied
+ *by another team. (Our side of the scale is higher than their side)
  *
  */
 public class HighScale extends CommandGroup {
@@ -24,5 +27,9 @@ public class HighScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	addSequential(new ToggleAchoo());
+        addSequential(new ZwooshHigh());
+    	addSequential(new ToggleAchoo());
     }
 }

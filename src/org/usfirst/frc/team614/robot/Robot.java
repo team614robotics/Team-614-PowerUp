@@ -17,6 +17,7 @@ import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 //import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
 import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
@@ -33,7 +34,7 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
-	//public static TalonSRXMotors talonsrxmotors;
+	public static TalonSRXMotors talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
@@ -65,6 +66,7 @@ public class Robot extends IterativeRobot {
 		drivetrainCompanion = new DrivetrainCompanion();
 		zwoosh = new Zwoosh();
 		achoo = new Achoo();
+		talonsrxmotors = new TalonSRXMotors();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 
@@ -81,12 +83,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
         SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
         
-        SmartDashboard.putNumber("HightZwoosh MotorA Speed",8.2);
-        SmartDashboard.putNumber("HightZwoosh MotorB Speed",-8.2);
-        SmartDashboard.putNumber("LowZwoosh MotroA Speed",5);
-        SmartDashboard.putNumber("LowZwoosh MotorB Spped",-5);
-        SmartDashboard.putNumber("ZwooshHigh TimeOut",1);
-        
+        SmartDashboard.putNumber("High Zwoosh Motor Left Speed",8.2);
+        SmartDashboard.putNumber("High Zwoosh Motor Right Speed",-8.2);
+        SmartDashboard.putNumber("Low Zwoosh Motor Left Speed",5);
+        SmartDashboard.putNumber("Low Zwoosh Motor Right Spped",-5);
+        SmartDashboard.putNumber("Zwoosh High Timeout",1);
+        SmartDashboard.putNumber("Zwoosh Low Timeout",1);
         
         SmartDashboard.putNumber("Shooter rev time(seconds)", 0);
         

@@ -1,8 +1,13 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
+import org.usfirst.frc.team614.robot.subsystems.Achoo;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ * 
+ *This is for shooting when the scale is already occupied
+ *by our alliance. (Our side of the scale is lower than their side)
  *
  */
 public class LowScale extends CommandGroup {
@@ -24,5 +29,14 @@ public class LowScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	addSequential(new ToggleAchoo());
+    	addParallel(new ZwooshHigh());
+    	addSequential(new WaitUntilBoxIsZwooshed());
+    	addSequential(new ToggleAchoo());
+    	
     }
-}
+
+	
+		// TODO Auto-generated method stub
+}    

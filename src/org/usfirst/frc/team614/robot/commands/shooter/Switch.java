@@ -3,6 +3,9 @@ package org.usfirst.frc.team614.robot.commands.shooter;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ * 
+ *If you don't know what this is for than you have probably been here
+ *like once or twice
  *
  */
 public class Switch extends CommandGroup {
@@ -24,5 +27,11 @@ public class Switch extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    }
+    	
+    	addSequential(new ToggleAchoo());
+    	addSequential(new ZwooshLow());
+    	addSequential(new WaitUntilBoxIsZwooshed());
+    	addSequential(new ToggleAchoo());    
+    	}
+
 }

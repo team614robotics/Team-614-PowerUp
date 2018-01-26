@@ -16,10 +16,10 @@ public class ToggleAchoo extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.clamp.getState().equals(RobotMap.AchoopistonIn)) {
-			Robot.clamp.setState(RobotMap.AchoopistonOut);
+    	if (Robot.achoo.getState().equals(RobotMap.achooPistonIn)) {
+			Robot.achoo.setState(RobotMap.achooPistonOut);
 		} else {
-			Robot.clamp.setState(RobotMap.AchoopistonIn);
+			Robot.achoo.setState(RobotMap.achooPistonIn);
 		}
     	
     }

@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
 import org.usfirst.frc.team614.robot.subsystems.Achoo;
-import org.usfirst.frc.team614.robot.subsystems.Clamp;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
@@ -39,7 +38,6 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static VerticalShooter verticalShooter = new VerticalShooter();
-	public static Clamp clamp = new Clamp();
 	public static Achoo achoo;
 	public static Zwoosh zwoosh = new Zwoosh();
 	

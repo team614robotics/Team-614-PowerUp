@@ -5,9 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.team708.robot.util.Gamepad;
-import org.usfirst.frc.team614.robot.commands.CompressorControl;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.commands.TogglePiston;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
@@ -62,8 +60,7 @@ public class OI {
 	
 	public OI() {
 		spinFlyWheel.whenPressed(new DrivePastBaseline());
-		compressorControl.whenPressed(new CompressorControl());
-		togglePiston.whenPressed(new TogglePiston());
+
 		
 		
 		

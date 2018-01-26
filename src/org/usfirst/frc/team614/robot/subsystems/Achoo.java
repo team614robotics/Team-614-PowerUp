@@ -1,7 +1,7 @@
 package org.usfirst.frc.team614.robot.subsystems;
 
 import org.usfirst.frc.team614.robot.RobotMap;
-import org.usfirst.frc.team614.robot.commands.CompressorControl;
+import org.usfirst.frc.team614.robot.commands.shooter.AchooCompressorControl;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -44,7 +44,7 @@ public class Achoo extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new CompressorControl());
+    	setDefaultCommand(new AchooCompressorControl());
     }
 }
 

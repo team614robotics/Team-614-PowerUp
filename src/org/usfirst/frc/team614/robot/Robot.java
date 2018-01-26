@@ -12,14 +12,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.Achoo;
+import org.usfirst.frc.team614.robot.subsystems.PusherPneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
+import org.usfirst.frc.team614.robot.subsystems.Shooter;
 //import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
 import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
-import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
+import org.usfirst.frc.team614.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -33,13 +33,13 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
-	public static TalonSRXMotors talonsrxmotors;
+	public static Shooter talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static VerticalShooter verticalShooter = new VerticalShooter();
-	public static Achoo achoo;
-	public static Zwoosh zwoosh = new Zwoosh();
+	public static PusherPneumatics pusherPneumatics;
+	public static Shooter shooter;
 	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -62,9 +62,9 @@ public class Robot extends IterativeRobot {
 		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
-		zwoosh = new Zwoosh();
-		achoo = new Achoo();
-		talonsrxmotors = new TalonSRXMotors();
+		shooter = new Shooter();
+		pusherPneumatics = new PusherPneumatics();
+		talonsrxmotors = new Shooter();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 
@@ -81,12 +81,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
         SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
         
-        SmartDashboard.putNumber("High Zwoosh Motor Left Speed",8.2);
-        SmartDashboard.putNumber("High Zwoosh Motor Right Speed",-8.2);
-        SmartDashboard.putNumber("Low Zwoosh Motor Left Speed",5);
-        SmartDashboard.putNumber("Low Zwoosh Motor Right Spped",-5);
-        SmartDashboard.putNumber("Zwoosh High Timeout",1);
-        SmartDashboard.putNumber("Zwoosh Low Timeout",1);
+        SmartDashboard.putNumber("High Shooter Motor Left Speed",8.2);
+        SmartDashboard.putNumber("High Shooter Motor Right Speed",-8.2);
+        SmartDashboard.putNumber("Low Shooter Motor Left Speed",5);
+        SmartDashboard.putNumber("Low Shooter Motor Right Spped",-5);
+        SmartDashboard.putNumber("Shooter High Timeout",1);
+        SmartDashboard.putNumber("Shooter Low Timeout",1);
         
         SmartDashboard.putNumber("Shooter rev time(seconds)", 0);
         

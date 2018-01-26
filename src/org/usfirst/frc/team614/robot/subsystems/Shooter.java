@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class TalonSRXMotors extends Subsystem {
+public class Shooter extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	public TalonSRX talon1 = new TalonSRX(RobotMap.talon1);

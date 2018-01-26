@@ -8,27 +8,27 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AchooCompressorControl extends Command {
+public class PusherCompressorControl extends Command {
 
-	public AchooCompressorControl() {
+	public PusherCompressorControl() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.achoo);
+		requires(Robot.pusherPneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.achoo.compressorAchoo.start();
+		Robot.pusherPneumatics.compressorPusherPneumatics.start();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.achoo.compressorAchoo.enabled()) {
+		if (Robot.pusherPneumatics.compressorPusherPneumatics.enabled()) {
 			if (DriverStation.getInstance().getBatteryVoltage() < 9.5) {
-				Robot.achoo.compressorAchoo.stop();
+				Robot.pusherPneumatics.compressorPusherPneumatics.stop();
 			}
 		} else {
 			if (DriverStation.getInstance().getBatteryVoltage() > 10.5) {
-				Robot.achoo.compressorAchoo.start();
+				Robot.pusherPneumatics.compressorPusherPneumatics.start();
 			}
 		}
 	}
@@ -40,12 +40,12 @@ public class AchooCompressorControl extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.achoo.compressorAchoo.stop();
+		Robot.pusherPneumatics.compressorPusherPneumatics.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.achoo.compressorAchoo.stop();
+		Robot.pusherPneumatics.compressorPusherPneumatics.stop();
 	}
 }

@@ -28,10 +28,10 @@ public class Switch extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new ToggleAchoo());
-    	addSequential(new ZwooshLow());
-    	addSequential(new WaitUntilBoxIsZwooshed());
-    	addSequential(new ToggleAchoo());    
+    	addSequential(new TogglePusherPneumatics());
+    	addSequential(new LowRPMFairlanes());
+    	addSequential(new WaitUntilTheBoxIsShot());
+    	addSequential(new TogglePusherPneumatics());    
     	}
 
 }

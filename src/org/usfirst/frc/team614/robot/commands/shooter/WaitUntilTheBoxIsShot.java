@@ -1,27 +1,20 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
-import org.usfirst.frc.team614.robot.Robot;
-import org.usfirst.frc.team614.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ToggleAchoo extends Command {
+public class WaitUntilTheBoxIsShot extends Command {
 
-    public ToggleAchoo() {
-        requires(Robot.achoo);
+    public WaitUntilTheBoxIsShot() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	setTimeout(1);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (Robot.achoo.getState().equals(RobotMap.achooPistonIn)) {
-			Robot.achoo.setState(RobotMap.achooPistonOut);
-		} else {
-			Robot.achoo.setState(RobotMap.achooPistonIn);
-		}
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +23,7 @@ public class ToggleAchoo extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

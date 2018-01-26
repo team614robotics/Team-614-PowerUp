@@ -28,8 +28,8 @@ public class HighScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new ToggleAchoo());
-        addSequential(new ZwooshHigh());
-    	addSequential(new ToggleAchoo());
+    	addSequential(new TogglePiston());
+        addSequential(new ShooterHigh());
+    	addSequential(new TogglePiston());
     }
 }

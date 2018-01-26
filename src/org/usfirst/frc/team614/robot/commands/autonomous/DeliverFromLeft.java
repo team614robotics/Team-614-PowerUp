@@ -1,6 +1,6 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
-import org.usfirst.frc.team614.robot.commands.SpinTalonMotors;
+import org.usfirst.frc.team614.robot.commands.SpinShooterMotors;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
@@ -47,7 +47,7 @@ public class DeliverFromLeft extends CommandGroup {
     			this.addSequential(new DriveUntilStopped(speed, 3));
     		}
     		
-			this.addSequential(new SpinTalonMotors());
+			this.addSequential(new SpinShooterMotors());
     	}
     	
     	else if (SmartDashboard.getBoolean("R1", false))

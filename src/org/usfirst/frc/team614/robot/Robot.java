@@ -1,4 +1,3 @@
-
 package org.usfirst.frc.team614.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -12,14 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.Achoo;
+import org.usfirst.frc.team614.robot.subsystems.IntakePneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
-import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
-//import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
-import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
-import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
+import org.usfirst.frc.team614.robot.subsystems.Shooter;
+import org.usfirst.frc.team614.robot.subsystems.Intake;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -32,19 +29,14 @@ import com.kauailabs.navx.frc.AHRS;
  */
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
-	
-<<<<<<< HEAD
-	public static TalonSRXMotors talonsrxmotors;
-=======
-	public static Shooter talonsrxmotors;
->>>>>>> parent of 23ccb17... added accelerators
+
+	public static Shooter shooter;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
 	public static DrivetrainCompanion drivetrainCompanion;
-	public static VerticalShooter verticalShooter = new VerticalShooter();
-	public static Achoo achoo;
-	public static Zwoosh zwoosh = new Zwoosh();
-	
+	public static Intake intake = new Intake();
+	public static IntakePneumatics intakePneumatics;
+
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
 
@@ -58,60 +50,45 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		try {
-            navX = new AHRS(SPI.Port.kMXP,(byte)200);
-        } catch (RuntimeException ex ) {
-            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-        }
-		
+			navX = new AHRS(SPI.Port.kMXP, (byte) 200);
+		} catch (RuntimeException ex) {
+			DriverStation.reportError(
+					"Error instantiating navX MXP:  " + ex.getMessage(), true);
+		}
+
 		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
-<<<<<<< HEAD
-		zwoosh = new Zwoosh();
-		achoo = new Achoo();
-		talonsrxmotors = new TalonSRXMotors();
-=======
+		intakePneumatics = new IntakePneumatics();
 		shooter = new Shooter();
-		pusherPneumatics = new PusherPneumatics();
-		talonsrxmotors = new Shooter();
->>>>>>> parent of 23ccb17... added accelerators
-		//verticalShooter = new VerticalShooter();
-		//clamp = new Clamp();
 
-    	pdp = new PowerDistributionPanel();
+		pdp = new PowerDistributionPanel();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new SpinFlyWheel());
-	//	chooser.addDeafault("Deafault Time", new Zwoosh());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+
 		SmartDashboard.putData("Autonomous", chooser);
 
-        SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
-        SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
-        SmartDashboard.putNumber("Vertical Shooter Speed", 0);
-        SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
-        SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
-        
-        SmartDashboard.putNumber("High Zwoosh Motor Left Speed",8.2);
-        SmartDashboard.putNumber("High Zwoosh Motor Right Speed",-8.2);
-        SmartDashboard.putNumber("Low Zwoosh Motor Left Speed",5);
-        SmartDashboard.putNumber("Low Zwoosh Motor Right Spped",-5);
-        SmartDashboard.putNumber("Zwoosh High Timeout",1);
-        SmartDashboard.putNumber("Zwoosh Low Timeout",1);
-        
-        SmartDashboard.putNumber("Shooter rev time(seconds)", 0);
-        
-        SmartDashboard.putNumber("Talon Setpoint", 0);
-        
-        SmartDashboard.putBoolean("Go For Scale", false);
-        
-        SmartDashboard.putBoolean("L1", false);
-        SmartDashboard.putBoolean("L2", false);
-        SmartDashboard.putBoolean("L3", false);
-        SmartDashboard.putBoolean("R1", false);
-        SmartDashboard.putBoolean("R1", false);
-        SmartDashboard.putBoolean("R1", false);
-        
-        SmartDashboard.putNumber("Drivetrain Target Speed", 0);
+		SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
+		SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
+		SmartDashboard.putNumber("Vertical Shooter Speed", 0);
+		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
+		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
+
+		SmartDashboard.putNumber("Shooter Low RPM", 0);
+		SmartDashboard.putNumber("Shooter High RPM", 0);
+		SmartDashboard.putNumber("Switch RPM", 0);
+		SmartDashboard.putNumber("Shooter RPM", 0);
+
+		SmartDashboard.putBoolean("Go For Scale", false);
+
+		SmartDashboard.putBoolean("L1", false);
+		SmartDashboard.putBoolean("L2", false);
+		SmartDashboard.putBoolean("L3", false);
+		SmartDashboard.putBoolean("R1", false);
+		SmartDashboard.putBoolean("R1", false);
+		SmartDashboard.putBoolean("R1", false);
+
+		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 	}
 
 	/**
@@ -121,10 +98,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-    	// resets NavX and disables the PID controller.
-    	Robot.navX.reset();
-    	drivetrain.reset();
-    	
+		// resets NavX and disables the PID controller.
+		Robot.navX.reset();
+		drivetrain.reset();
+
 	}
 
 	@Override
@@ -145,23 +122,19 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-    	// resets NavX and disables the PID controller.
-    	Robot.navX.reset();
-//<<<<<<< HEAD
-//=======
+		// resets NavX and disables the PID controller.
+		Robot.navX.reset();
+		drivetrain.reset();
 
-//>>>>>>> origin/master
-    	drivetrain.reset();
-        
-    	String gameData = DriverStation.getInstance().getGameSpecificMessage();
-    	
-        SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
-        SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
-        SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
-        SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
-        SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
-        SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
-		
+		String gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
+		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
+		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
+		SmartDashboard.putBoolean("R1", gameData.charAt(0) == 'R');
+		SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
+		SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
+
 		autonomousCommand = chooser.getSelected();
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -169,11 +142,10 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new SpinFlyWheel(); break; }
 		 */
-		
-		
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null) autonomousCommand.start();
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
 
 	/**
@@ -190,13 +162,11 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null) autonomousCommand.cancel();
-		
-    	Robot.navX.reset();
-    	drivetrain.reset();
-    	
-    	
-    	
+		if (autonomousCommand != null)
+			autonomousCommand.cancel();
+
+		Robot.navX.reset();
+		drivetrain.reset();
 	}
 
 	/**
@@ -206,9 +176,10 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		 SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
-	     SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", drivetrain.rightEncoder.getDistance());
-		//SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Distance",
+				drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
+				drivetrain.rightEncoder.getDistance());
 	}
 
 	/**

@@ -11,7 +11,7 @@ import org.usfirst.frc.team614.robot.Robot;
 public class SpinVerticalShooter extends Command {
 	public SpinVerticalShooter() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.verticalShooter);
+		requires(Robot.intake);
 	}
 
 	// Called just before this Command runs the first time

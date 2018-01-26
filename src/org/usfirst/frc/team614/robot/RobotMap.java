@@ -19,10 +19,13 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	// CANBUS
+	// SHOOTER
 	
-	public static final int talon1 = 0;
-	public static final int talon2 = 1;
+	public static final int shooter1 = 0;
+	public static final int shooter2 = 1;
+	
+	public static final int accelerator1 = 8;
+	public static final int accelerator2 = 9;
 	
 	// TALONSRXMOTORS CONSTANTS
 	
@@ -47,8 +50,6 @@ public class RobotMap {
 	public static final int zwooshLeft = 2;
 	public static final int zwooshRight = 3;
 	
-	
-	
 	// Encoders
 	
 	public static final int leftMotorEncoderA = 0;
@@ -62,14 +63,15 @@ public class RobotMap {
 	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 250.0;
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	
-	//DIO
-	public static final int compressorAchoo = 0;
-	public static final int achooSolenoidA = 0;
-	public static final int achooSolenoidB = 1;
+	// DIO
+	
+	public static final int compressor = 0;
+	public static final int SolenoidA = 0;
+	public static final int SolenoidB = 1;
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
-	public static final DoubleSolenoid.Value achooPistonOut = DoubleSolenoid.Value.kForward;
-	public static final DoubleSolenoid.Value achooPistonIn = DoubleSolenoid.Value.kReverse;
+	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;
 	
 	public static final double drivetrainRotationP = 0.1;
 	public static final double drivetrainRotationI = 0;

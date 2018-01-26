@@ -2,35 +2,30 @@ package org.usfirst.frc.team614.robot.commands.shooter;
 
 import org.usfirst.frc.team614.robot.Robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class AchooCompressorControl extends Command {
+public class ShooterHigh extends Command {
 
-	public AchooCompressorControl() {
+	public ShooterHigh() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.intakePneumatics);
+		// eg. requires(chassis);
+		requires(Robot.shooter);
+		setTimeout(SmartDashboard.getNumber("Shooter High Timeout", 0));
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.intakePneumatics.compressorAchoo.start();
+		Robot.shooter.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (Robot.intakePneumatics.compressorAchoo.enabled()) {
-			if (DriverStation.getInstance().getBatteryVoltage() < 9.5) {
-				Robot.intakePneumatics.compressorAchoo.stop();
-			}
-		} else {
-			if (DriverStation.getInstance().getBatteryVoltage() > 10.5) {
-				Robot.intakePneumatics.compressorAchoo.start();
-			}
-		}
+		Robot.shooter.set(SmartDashboard.getNumber("Shooter High RPM", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -40,12 +35,12 @@ public class AchooCompressorControl extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.intakePneumatics.compressorAchoo.stop();
+		Robot.shooter.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.intakePneumatics.compressorAchoo.stop();
+		Robot.shooter.stop();
 	}
 }

@@ -61,6 +61,10 @@ public class OI {
 	private static final Button togglePusherPneumatics = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	private static final Button shootAtSmartDashboardSpeed = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 	
+	private static final Button revIntakeAtSDSpeed = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
+	private static final Button toggleIntakePneumatics = new JoystickButton(operatorGamepad, Gamepad.button_Y);
+	//Maybe we will mesh these together in a command group but not now
+	
 	
 	public OI() {
 		togglePusherPneumatics.whenPressed(new TogglePusherPneumatics());

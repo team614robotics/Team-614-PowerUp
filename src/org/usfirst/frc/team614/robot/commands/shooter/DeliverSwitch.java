@@ -30,9 +30,9 @@ public class DeliverSwitch extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		addSequential(new ToggleIntakePiston());
-		addSequential(new RevShooterSwitch());
-		addSequential(new ToggleIntakePiston());
+		addSequential(new RevAcceleratorHigh());
+    	addParallel(new RevShooterSwitch());
+    	addSequential(new RevAcceleratorHigh());
 	}
 
 }

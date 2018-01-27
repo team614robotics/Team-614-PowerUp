@@ -76,4 +76,9 @@ public class Shooter extends Subsystem {
 		shooterLeft.neutralOutput();
 		shooterRight.neutralOutput();
 	}
+	
+	public void setVictors(double speed) {
+		acceleratorLeft.set(speed);
+		acceleratorRight.set(speed);
+	}
 }

@@ -30,8 +30,8 @@ public class DeliverHighScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addSequential(new ToggleIntakePiston());
-        addSequential(new RevShooterHigh());
-    	addSequential(new ToggleIntakePiston());
+    	addSequential(new RevAcceleratorHigh());
+    	addParallel(new RevShooterHigh());
+    	addSequential(new RevAcceleratorHigh());
     }
 }

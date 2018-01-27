@@ -13,6 +13,8 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraightAtSmartDashboardSpeed;
 import org.usfirst.frc.team614.robot.commands.shooter.HighRPMFairlanes;
+import org.usfirst.frc.team614.robot.commands.shooter.ShootAtSmartDashboardSpeed;
+import org.usfirst.frc.team614.robot.commands.shooter.TogglePusherPneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Shooter;
 
 /**
@@ -54,12 +56,16 @@ public class OI {
 	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
 	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
-	public static final Button togglePiston = new JoystickButton(driverGamepad, Gamepad.button_Y);
-	
+	private static final Button togglePusherPneumatics = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	private static final Button shootAtSmartDashboardSpeed = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 	
 	
 	public OI() {
 		spinFlyWheel.whenPressed(new DrivePastBaseline());
+		togglePusherPneumatics.whenPressed(new TogglePusherPneumatics());
+		shootAtSmartDashboardSpeed.whileHeld(new ShootAtSmartDashboardSpeed());
+		
+		
 
 		
 		

@@ -23,7 +23,9 @@ public class RevAcceleratorHigh extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (this.timeSinceInitialized() > SmartDashboard.getNumber("High Accelerator Intialize Time", 0)) {    		
     	Robot.shooter.setVictors(SmartDashboard.getNumber("High Accelerator Speed", 0));
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

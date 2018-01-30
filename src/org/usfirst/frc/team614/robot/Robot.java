@@ -75,6 +75,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Speed", 0);
 		SmartDashboard.putNumber("High Accelerator Speed", 0);
 		SmartDashboard.putNumber("Low Accelerator Speed", 0);
+		SmartDashboard.putNumber("High Accelerator Intialize Time", 0);
+		SmartDashboard.putNumber("Low Accelerator Intialize Time", 0);
 
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);

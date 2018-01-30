@@ -23,7 +23,10 @@ public class RevAcceleratorLow extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.setVictors(SmartDashboard.getNumber("Low Accelerator Speed", 0));
+    	if (this.timeSinceInitialized() > SmartDashboard.getNumber("Low Accelerator Intialize Time", 0)) {
+    		
+        	Robot.shooter.setVictors(SmartDashboard.getNumber("Low Accelerator Speed", 0));
+        	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

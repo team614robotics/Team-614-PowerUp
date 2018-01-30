@@ -20,12 +20,12 @@ public class RevShooterHigh extends Command {
 	}
 
 	protected void initialize() {
-		Robot.shooter.set(0);
+		Robot.shooter.setShooter(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.set(SmartDashboard.getNumber("Shooter High RPM", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter High RPM", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

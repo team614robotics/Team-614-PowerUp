@@ -2,9 +2,11 @@ package org.usfirst.frc.team614.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
+import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 /**
@@ -25,7 +27,7 @@ public class OI {
 	// commands the same as any other Button.
 
 	// // TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
+	// Once you have a\[] button, it's trivial to bind it to a button in one of
 	// three ways:
 
 	// Start the command when the button is pressed and let it run the command
@@ -46,10 +48,12 @@ public class OI {
 	private static final Button revIntake = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 	private static final Button revShooter = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
 	private static final Button toggleIntakePiston = new JoystickButton(driverGamepad, Gamepad.button_A);
-
+	private static final Button revAccelerator = new JoystickButton(driverGamepad, Gamepad.button_B);
+	
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
 		revShooter.whileHeld(new RevShooter());
+		revAccelerator.whileHeld(new RevAcceleratorLow());
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
 	}
 }

@@ -79,6 +79,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);
 		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
+		
+		// Use Values for Testing
+		SmartDashboard.putNumber("P", 0.26);
+		SmartDashboard.putNumber("I", 0.0001);
+		SmartDashboard.putNumber("D", 0.4);
+		SmartDashboard.putNumber("F", 0.404);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
 
@@ -181,6 +187,10 @@ public class Robot extends IterativeRobot {
 				drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
 				drivetrain.rightEncoder.getDistance());
+		SmartDashboard.putNumber("Shooter Speed",
+				shooter.getSpeed());
+		SmartDashboard.putNumber("Shooter Error",
+				shooter.getError());
 	}
 
 	/**

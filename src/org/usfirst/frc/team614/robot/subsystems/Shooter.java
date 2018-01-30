@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -68,8 +69,12 @@ public class Shooter extends Subsystem {
 	}
 
 	public void setShooter(double speed) {
+		shooterLeft.config_kP(0, SmartDashboard.getNumber("P", 0), RobotMap.kTimeoutMs);
+		shooterLeft.config_kI(0, SmartDashboard.getNumber("I", 0), RobotMap.kTimeoutMs);
+		shooterLeft.config_kD(0, SmartDashboard.getNumber("D", 0), RobotMap.kTimeoutMs);
+		shooterLeft.config_kF(0, SmartDashboard.getNumber("F", 0), RobotMap.kTimeoutMs);
 		shooterLeft.set(ControlMode.Velocity, speed);
-		shooterRight.set(ControlMode.Velocity, speed);
+		shooterRight.set(ControlMode.Follower, shooterLeft.getDeviceID());
 	}
 
 	public void stop() {

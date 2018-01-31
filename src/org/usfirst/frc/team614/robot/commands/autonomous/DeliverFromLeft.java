@@ -38,13 +38,27 @@ public class DeliverFromLeft extends CommandGroup {
     		if (SmartDashboard.getBoolean("L2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new DriveForADistance(168, speed));
+    			this.addSequential(new DriveUntilStopped(speed, 3));
     			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new DriveForADistance(36, speed));
+    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new DriveForADistance(48, speed));
+    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new DriveForADistance(132));
+    			
     		}
     		
     		else
     		{
     			this.addSequential(new DriveUntilStopped(speed, 3));
+    			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new DriveForADistance(36, speed));
+    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new DriveForADistance(50, speed));
+    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new DriveForADistance(132, speed));
+    			
+    			//this.addSequential(new DriveUntilStopped(speed, 3));
     		}
     		
 			this.addSequential(new SpinTalonMotors());
@@ -62,19 +76,3 @@ public class DeliverFromLeft extends CommandGroup {
     	}
     }
 }
-/*Measurements
-
-Switch;
-
-startWallToCloseEdge: 140"
-startWallToFarEdge: 196"
-edgeWallToCloseEdge: 85.25"
-startWallToMiddle: 168"
-
-Scale;
-
-startWallToEdgeOfPlatform: 261.47"
-startWallToEdgeOfScale: 299.65"
-edgeWallToScale: 71.57"	
-
-*/

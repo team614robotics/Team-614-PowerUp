@@ -61,3 +61,19 @@ public class DeliverFromRight extends CommandGroup {
     	}
     }
 }
+/*Measurements
+
+Switch;
+
+startWallToCloseEdge: 140"
+startWallToFarEdge: 196"
+edgeWallToCloseEdge: 85.25"
+startWallToMiddle: 168"
+
+Scale;
+
+startWallToEdgeOfPlatform: 261.47"
+startWallToEdgeOfScale: 299.65"
+edgeWallToScale: 71.57"	
+
+*/

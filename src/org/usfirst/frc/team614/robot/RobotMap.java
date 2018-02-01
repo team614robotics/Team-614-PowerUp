@@ -60,8 +60,12 @@ public class RobotMap {
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	
 	// DIO
-	public static final int ringLightSwitch = 9;
+	public static final int ringLightSwitchC = 9;
+	public static final int ringLightSwitchB = 8;
+	public static final int ringLightSwitchA = 7;
 	
+	
+	//PCM
 	public static final int compressor = 0;
 	public static final int intakeSolenoidA = 0;
 	public static final int intakeSolenoidB = 1;

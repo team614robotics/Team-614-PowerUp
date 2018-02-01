@@ -98,6 +98,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("R1", false);
 
 		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
+		
+		SmartDashboard.putNumber("Angle of Robot", navX.getYaw());
+		SmartDashboard.putNumber("Drivetrain Speed", 0.0);
 	}
 
 	/**
@@ -193,6 +196,9 @@ public class Robot extends IterativeRobot {
 				shooter.getSpeed());
 		SmartDashboard.putNumber("Shooter Error",
 				shooter.getError());
+		SmartDashboard.putNumber("Angle of Robot",
+				navX.getYaw());
+
 	}
 
 	/**

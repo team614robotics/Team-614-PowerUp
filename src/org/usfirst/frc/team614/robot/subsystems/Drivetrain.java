@@ -124,6 +124,12 @@ public void pidWrite(double output) {
 	if(usingTurnPID)
 		PIDrotateToAngleRate = output;
 }
+public double getEncoderRevolutions() {
+	return leftEncoder.getDistance();
+}
+public double getEncoderRevolutions1() {
+	return rightEncoder.getDistance();
+}
 	
 		
 		

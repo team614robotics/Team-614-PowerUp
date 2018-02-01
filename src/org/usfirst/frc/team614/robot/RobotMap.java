@@ -19,7 +19,12 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	// SHOOTER
+	public static final double drivetrainRevolutionToWall = 0.0;
+	public static final double drivetrainRevolutionToWall1 = 0.0;
+	
+	public static final double drawAtWall = 0.0;
+	
+	// SHOOTEr
 	
 	public static final int shooterLeft = 2;
 	public static final int shooterRight = 3;

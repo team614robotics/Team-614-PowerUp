@@ -12,8 +12,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.Achoo;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.FlyWheel;
+import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
+//import org.usfirst.frc.team614.robot.subsystems.TalonSRXMotors;
+import org.usfirst.frc.team614.robot.subsystems.VerticalShooter;
+import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
+
 import com.kauailabs.navx.frc.AHRS;
 
 /**
@@ -26,10 +33,13 @@ import com.kauailabs.navx.frc.AHRS;
 public class Robot extends IterativeRobot {
 	public static AHRS navX;
 	
+	public static TalonSRXMotors talonsrxmotors;
 	public static FlyWheel flyWheel;
 	public static Drivetrain drivetrain;
-	//public static VerticalShooter verticalShooter = new VerticalShooter();
-	//public static Clamp clamp = new Clamp();
+	public static DrivetrainCompanion drivetrainCompanion;
+	public static VerticalShooter verticalShooter = new VerticalShooter();
+	public static Achoo achoo;
+	public static Zwoosh zwoosh = new Zwoosh();
 	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -51,18 +61,38 @@ public class Robot extends IterativeRobot {
 		
 		flyWheel = new FlyWheel();
 		drivetrain = new Drivetrain();
+		drivetrainCompanion = new DrivetrainCompanion();
+		zwoosh = new Zwoosh();
+		achoo = new Achoo();
+		talonsrxmotors = new TalonSRXMotors();
 		//verticalShooter = new VerticalShooter();
 		//clamp = new Clamp();
 
     	pdp = new PowerDistributionPanel();
 		oi = new OI();
 		chooser.addDefault("Default Auto", new SpinFlyWheel());
+	//	chooser.addDeafault("Deafault Time", new Zwoosh());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Autonomous", chooser);
 
         SmartDashboard.putNumber("Left Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Right Fly Wheel Speed", 0);
         SmartDashboard.putNumber("Vertical Shooter Speed", 0);
+        SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", 0);
+        SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", 0);
+        
+        SmartDashboard.putNumber("High Zwoosh Motor Left Speed",8.2);
+        SmartDashboard.putNumber("High Zwoosh Motor Right Speed",-8.2);
+        SmartDashboard.putNumber("Low Zwoosh Motor Left Speed",5);
+        SmartDashboard.putNumber("Low Zwoosh Motor Right Spped",-5);
+        SmartDashboard.putNumber("Zwoosh High Timeout",1);
+        SmartDashboard.putNumber("Zwoosh Low Timeout",1);
+        
+        SmartDashboard.putNumber("Shooter rev time(seconds)", 0);
+        
+        SmartDashboard.putNumber("Talon Setpoint", 0);
+        
+        SmartDashboard.putBoolean("Go For Scale", false);
         
         SmartDashboard.putBoolean("L1", false);
         SmartDashboard.putBoolean("L2", false);
@@ -70,6 +100,8 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("R1", false);
         SmartDashboard.putBoolean("R1", false);
         SmartDashboard.putBoolean("R1", false);
+        
+        SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 	}
 
 	/**
@@ -81,6 +113,7 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
+    	drivetrain.reset();
     	
 	}
 
@@ -104,6 +137,11 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
     	// resets NavX and disables the PID controller.
     	Robot.navX.reset();
+//<<<<<<< HEAD
+//=======
+
+//>>>>>>> origin/master
+    	drivetrain.reset();
         
     	String gameData = DriverStation.getInstance().getGameSpecificMessage();
     	
@@ -145,6 +183,9 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		
     	Robot.navX.reset();
+    	drivetrain.reset();
+    	
+    	
     	
 	}
 
@@ -154,6 +195,10 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
+		 SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
+	     SmartDashboard.putNumber("Drivetrain right Encoder Distance (inches)", drivetrain.rightEncoder.getDistance());
+		//SmartDashboard.putNumber("Drivetrain left Encoder Distance (inches)", drivetrain.leftEncoder.getDistance());
 	}
 
 	/**

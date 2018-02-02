@@ -1,16 +1,17 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
-import org.usfirst.frc.team614.robot.commands.SpinTalonMotors;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
+import org.usfirst.frc.team614.robot.commands.wallCheck.checkAcceleration;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-*
+/**
  *
- 
+ */
 public class DeliverFromLeft extends CommandGroup {
 
     public DeliverFromLeft() {
@@ -38,69 +39,33 @@ public class DeliverFromLeft extends CommandGroup {
     		if (SmartDashboard.getBoolean("L2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new DriveForADistance(168, speed));
-    			this.addSequential(new RotateToAngle(90, true));
-    			this.addSequential(new );
-    		}
-    		
-    		else
-    		{
-    			this.addSequential(new DriveUntilStopped(speed, 3));
-    		}
-    		
-			this.addSequential(new SpinTalonMotors());
-    	}
-    	else if (SmartDashboard.getBoolean("R1", false))
-    	{
-    		if (SmartDashboard.getBoolean("R2", false)
-    				&& SmartDashboard.getBoolean("Go For Scale", false))
-    		{
-    			this.addSequential(new DriveForADistance(168, speed));
-    			this.addSequential(new RotateToAngle(-90, true));
-    		}
-    		
-    		else
-    		{
-    			this.addSequential(new DriveUntilStopped(speed, 3));
-    		}
-    		
-			this.addSequential(new SpinTalonMotors());
-    	}
-    	else if (SmartDashboard.getBoolean("R1", false))
-    	{
-    		if (SmartDashboard.getBoolean("L2", false)
-    				&& SmartDashboard.getBoolean("Go For Scale", false))
-    		{
+    			this.addSequential(new checkAcceleration());
     			this.addSequential(new DriveForADistance(168, speed));
     			this.addSequential(new RotateToAngle(90, true));
     		}
+    		//else
+    			//R2
     		
     		else
     		{
     			this.addSequential(new DriveUntilStopped(speed, 3));
     		}
     		
-			this.addSequential(new SpinTalonMotors());
+			this.addSequential(new RevShooter());
     	}
-    	else if (SmartDashboard.getBoolean("L1", false))
-    	{
-    		if (SmartDashboard.getBoolean("R2", false)
-    				&& SmartDashboard.getBoolean("Go For Scale", false))
-    		{
-    			this.addSequential(new DriveForADistance(168, speed));
-    			this.addSequential(new RotateToAngle(90, true));
-    		}
-    		
-    		else
-    		{
-    			this.addSequential(new DriveUntilStopped(speed, 3));
-    		}
-    		
-			this.addSequential(new SpinTalonMotors());
-    	}
+    	
     	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		this.addSequential(new DriveForADistance(80, speed));
+    		if (SmartDashboard.getBoolean("R2", false)
+    				&& SmartDashboard.getBoolean("Go For Scale", false))
+    		{
+    			this.addSequential(new checkAcceleration());
+    			this.addSequential(new DriveForADistance(-168, speed));
+    			this.addSequential(new RotateToAngle(-90, true));
+    		}
+    		//else
+    			//L2
     		
     	}
     	

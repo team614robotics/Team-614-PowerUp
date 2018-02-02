@@ -2,9 +2,18 @@ package org.usfirst.frc.team614.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.SpinFlyWheel;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
+import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraight;
+import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveStraightAtSmartDashboardSpeed;
+import org.usfirst.frc.team614.robot.commands.shooter.ZwooshHigh;
+import org.usfirst.frc.team614.robot.subsystems.Zwoosh;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,13 +51,23 @@ public class OI {
 	public static final Gamepad driverGamepad = new Gamepad(0);
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 	
-	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button spinFlyWheel = new JoystickButton(driverGamepad, Gamepad.button_X);
 	private static final Button spinVerticalShooter = new JoystickButton(driverGamepad, Gamepad.button_B);
-	private static final Button activateClamp = new JoystickButton(driverGamepad, Gamepad.button_X);
+	private static final Button compressorControl = new JoystickButton(driverGamepad, Gamepad.button_A);
+	public static final Button togglePiston = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	
+	
+	private static final Button revIntakeAtSDSpeed = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
+	private static final Button toggleIntakePneumatics = new JoystickButton(operatorGamepad, Gamepad.button_Y);
+	//Maybe we will mesh these together in a command group but not now
+	
 	
 	public OI() {
-		spinFlyWheel.whileHeld(new SpinFlyWheel());
-		//spinVerticalShooter.whileHeld(new SpinVerticalShooter());
-		//activateClamp.whenPressed(new TogglePiston());
+		spinFlyWheel.whenPressed(new DrivePastBaseline());
+
+		
+		
+		
+		
 	}
 }

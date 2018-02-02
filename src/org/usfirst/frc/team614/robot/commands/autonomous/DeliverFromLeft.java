@@ -8,9 +8,9 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
+*
  *
- */
+ 
 public class DeliverFromLeft extends CommandGroup {
 
     public DeliverFromLeft() {
@@ -40,6 +40,7 @@ public class DeliverFromLeft extends CommandGroup {
     		{
     			this.addSequential(new DriveForADistance(168, speed));
     			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new );
     		}
     		
     		else
@@ -49,13 +50,13 @@ public class DeliverFromLeft extends CommandGroup {
     		
 			this.addSequential(new SpinTalonMotors());
     	}
-    	/*else if (SmartDashboard.getBoolean("R1", false))
+    	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		if (SmartDashboard.getBoolean("R2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
     			this.addSequential(new DriveForADistance(168, speed));
-    			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new RotateToAngle(-90, true));
     		}
     		
     		else
@@ -64,8 +65,8 @@ public class DeliverFromLeft extends CommandGroup {
     		}
     		
 			this.addSequential(new SpinTalonMotors());
-    	}*/
-    	/*else if (SmartDashboard.getBoolean("R1", false))
+    	}
+    	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		if (SmartDashboard.getBoolean("L2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
@@ -80,8 +81,8 @@ public class DeliverFromLeft extends CommandGroup {
     		}
     		
 			this.addSequential(new SpinTalonMotors());
-    	}*/
-    	/*else if (SmartDashboard.getBoolean("L1", false))
+    	}
+    	else if (SmartDashboard.getBoolean("L1", false))
     	{
     		if (SmartDashboard.getBoolean("R2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
@@ -96,7 +97,7 @@ public class DeliverFromLeft extends CommandGroup {
     		}
     		
 			this.addSequential(new SpinTalonMotors());
-    	}*/
+    	}
     	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		this.addSequential(new DriveForADistance(80, speed));
@@ -123,5 +124,4 @@ Scale;
 startWallToEdgeOfPlatform: 261.47"
 startWallToEdgeOfScale: 299.65"
 edgeWallToScale: 71.57"	
-
 */

@@ -46,36 +46,19 @@ public class RobotMap {
 	public static final int rightMotorA = 2;
 	public static final int rightMoorB = 3;
 	
-	// Encoders
+	// ENCODERS
 	
 	public static final int leftMotorEncoderA = 0;
 	public static final int leftMotorEncoderB = 1;
 	public static final int rightMotorEncoderA = 2;
 	public static final int rightMotorEncoderB = 3;
 	
-	// Encoder Constants
+	// DRIVETRAIN CONSTANTS
 	
-	public static final double DRIVETRAIN_WHEEL_DIAMETER = 4;
+	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
 	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 250.0;
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
-	
-	// DIO
-	public static final int ringLightSwitchC = 9;
-	public static final int ringLightSwitchB = 8;
-	public static final int ringLightSwitchA = 7;
-	
-	
-	//PCM
-	public static final int compressor = 0;
-	public static final int intakeSolenoidA = 0;
-	public static final int intakeSolenoidB = 1;
-	public static final int ringLightSolenoid = 4;
-	
-	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
-	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
-	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;
-	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;
-	
+	public static final double kCollisionThreshold_DeltaG = 0.6f;
 	public static final double drivetrainRotationP = 0.1;
 	public static final double drivetrainRotationI = 0;
 	public static final double drivetrainRotationD = 0.12;
@@ -84,4 +67,22 @@ public class RobotMap {
 	public static final double drivetrainDistanceI = 0;
 	public static final double drivetrainDistanceD = 0.0;
 	public static final double drivetrainDistanceF = 0;
+
+	// DIO
+	
+	public static final int ringLightSwitchC = 9;
+	public static final int ringLightSwitchB = 8;
+	public static final int ringLightSwitchA = 7;
+	
+	//PCM
+	
+	public static final int compressor = 0;
+	public static final int intakeSolenoidA = 0;
+	public static final int intakeSolenoidB = 1;
+	public static final int ringLightSolenoid = 4;
+	public static final int thisSolenoid = 3;	
+	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
+	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;
+	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;	
 }

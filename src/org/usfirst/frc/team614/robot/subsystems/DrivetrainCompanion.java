@@ -2,9 +2,13 @@ package org.usfirst.frc.team614.robot.subsystems;
 
 import org.usfirst.frc.team614.robot.Robot;
 import org.usfirst.frc.team614.robot.RobotMap;
+import org.usfirst.frc.team614.robot.commands.drivetrain.CollisionDetected;
+import org.usfirst.frc.team614.robot.commands.drivetrain.TankDrive;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -24,7 +28,16 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	/* controllers by displaying a form where you can enter new P, I, */
 	/* and D constants and test the mechanism. */
 
-	static final double distanceTolerance = 0.1f;
+    public final double distanceTolerance = 0.1f;
+	public double currWorldLinearAccelX;
+	public double currentJerkX;
+	public double curr_world_linear_accel_y;
+	public double currentJerkY;
+	public double last_world_linear_accel_x;
+	public double last_world_linear_accel_y;
+	public Solenoid thisLight;
+	
+	
 
 	// VictorSP motor controllers
 	// VictorSP leftMotor = new VictorSP(RobotMap.drivetrainLeftMotor);
@@ -33,6 +46,7 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	public DrivetrainCompanion() {
 
 		usingDistancePID = false;
+		thisLight = new Solenoid(RobotMap.thisSolenoid);
 
 		distanceController = new PIDController(RobotMap.drivetrainDistanceP,
 				RobotMap.drivetrainDistanceI, RobotMap.drivetrainDistanceD,
@@ -47,6 +61,21 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 		LiveWindow.addActuator("DriveSystem", "DistanceController",
 				distanceController);
 
+	}
+	public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+    	 setDefaultCommand(new CollisionDetected());
+    }
+	
+	
+	public void runCollisionDetection() {
+	     currWorldLinearAccelX = Robot.navX.getWorldLinearAccelX();
+         currentJerkX = currWorldLinearAccelX - last_world_linear_accel_x;
+         last_world_linear_accel_x = currWorldLinearAccelX;
+         curr_world_linear_accel_y = Robot.navX.getWorldLinearAccelY();
+         currentJerkY = curr_world_linear_accel_y - last_world_linear_accel_y;
+         last_world_linear_accel_y = curr_world_linear_accel_y;
 	}
 
 	public void setUsingDistancePID(boolean set) {
@@ -76,6 +105,5 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 		}
 	}
 
-	public void initDefaultCommand() {
-	}
+	
 }

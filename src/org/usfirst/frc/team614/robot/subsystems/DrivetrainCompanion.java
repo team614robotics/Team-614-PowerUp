@@ -31,10 +31,13 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
     public final double distanceTolerance = 0.1f;
 	public double currWorldLinearAccelX;
 	public double currentJerkX;
-	public double curr_world_linear_accel_y;
+	public double currWorldLinearAccelY;
 	public double currentJerkY;
-	public double last_world_linear_accel_x;
-	public double last_world_linear_accel_y;
+	public double lastWorldLinearAccelX;
+	public double lastWorldLinearAccelY;
+	public double currentJerkZ;
+	public double lastWorldLinearAccelZ;
+	public double currWorldLinearAccelZ;
 	public Solenoid thisLight;
 	
 	
@@ -67,15 +70,18 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
         //setDefaultCommand(new MySpecialCommand());
     	 setDefaultCommand(new CollisionDetected());
     }
-	
+
 	
 	public void runCollisionDetection() {
 	     currWorldLinearAccelX = Robot.navX.getWorldLinearAccelX();
-         currentJerkX = currWorldLinearAccelX - last_world_linear_accel_x;
-         last_world_linear_accel_x = currWorldLinearAccelX;
-         curr_world_linear_accel_y = Robot.navX.getWorldLinearAccelY();
-         currentJerkY = curr_world_linear_accel_y - last_world_linear_accel_y;
-         last_world_linear_accel_y = curr_world_linear_accel_y;
+         currentJerkX = currWorldLinearAccelX - lastWorldLinearAccelX;
+         lastWorldLinearAccelX = currWorldLinearAccelX;
+         currWorldLinearAccelY = Robot.navX.getWorldLinearAccelY();
+         currentJerkY = currWorldLinearAccelY - lastWorldLinearAccelY;
+         currentJerkZ = currWorldLinearAccelZ - lastWorldLinearAccelZ;
+         currWorldLinearAccelZ = Robot.navX.getWorldLinearAccelZ();
+         lastWorldLinearAccelZ = currWorldLinearAccelZ;
+         lastWorldLinearAccelY = currWorldLinearAccelY;
 	}
 
 	public void setUsingDistancePID(boolean set) {
@@ -84,6 +90,7 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 			distanceController.enable();
 		} else {
 			distanceController.disable();
+			
 		}
 	}
 

@@ -2,6 +2,7 @@ package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -44,12 +45,12 @@ public class DeliverFromCenter extends CommandGroup {
     	{
     		addSequential(new RotateToAngle(45, true));
     		addSequential(new DriveForADistance(distance, speed));
-    		addSequential(new RevShooter());
+    		addSequential(new DeliverSwitch());
     	}
     	
     	else
     	{
-    		this.addSequential(new DoNothing());
+    		addSequential(new DoNothing());
     	}
     }
 }

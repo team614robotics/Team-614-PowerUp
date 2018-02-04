@@ -3,6 +3,9 @@ package org.usfirst.frc.team614.robot.commands.autonomous;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
+import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverHighScale;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -35,19 +38,24 @@ public class DeliverFromLeft extends CommandGroup {
     	
     	if (SmartDashboard.getBoolean("L1", false))
     	{
+    		this.addSequential(new DriveForADistance(168, speed));
+			this.addSequential(new RotateToAngle(90, true));
+			this.addSequential(new DeliverSwitch());
+    		
     		if (SmartDashboard.getBoolean("L2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new DriveForADistance(168, speed));
+    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new DriveForADistance(24, speed));
     			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new DriveForADistance(72, speed));
+    			this.addSequential(new IntakePowerCube());
+    			this.addSequential(new RotateToAngle(180, true));
+    			this.addSequential(new DriveForADistance(72, speed));
+    			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new DriveForADistance(120, speed));
+    			this.addSequential(new DeliverHighScale());
     		}
-    		
-    		else
-    		{
-    			this.addSequential(new DriveUntilStopped(speed, 3));
-    		}
-    		
-			this.addSequential(new RevShooter());
     	}
     	
     	else if (SmartDashboard.getBoolean("R1", false))

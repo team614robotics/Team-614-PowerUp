@@ -21,20 +21,6 @@ public class Shooter extends Subsystem {
 	public VictorSP acceleratorRight = new VictorSP(RobotMap.acceleratorRight);
 
 	public void initDefaultCommand() {
-        shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
-		shooterLeft.setSensorPhase(true);
-
-		shooterLeft.configNominalOutputForward(0, RobotMap.kTimeoutMs);
-		shooterLeft.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
-		shooterLeft.configPeakOutputForward(1, RobotMap.kTimeoutMs);
-		shooterLeft.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
-		
-		shooterLeft.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
-		shooterLeft.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
-		shooterLeft.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
-		shooterLeft.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
-
-		shooterLeft.set(ControlMode.Velocity, 0);
 		
 		shooterRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
 		shooterRight.setSensorPhase(true);
@@ -48,8 +34,26 @@ public class Shooter extends Subsystem {
 		shooterRight.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
 		shooterRight.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
 		shooterRight.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
-
+		
 		shooterRight.set(ControlMode.Velocity, 0);
+		
+		
+		
+		  shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
+			shooterLeft.setSensorPhase(true);
+
+			shooterLeft.configNominalOutputForward(0, RobotMap.kTimeoutMs);
+			shooterLeft.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
+			shooterLeft.configPeakOutputForward(1, RobotMap.kTimeoutMs);
+			shooterLeft.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
+			
+			shooterLeft.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
+			shooterLeft.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
+			shooterLeft.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
+			shooterLeft.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
+			
+
+			shooterLeft.set(ControlMode.Follower, 0);
 	}
 
 	public void reset() {
@@ -60,8 +64,12 @@ public class Shooter extends Subsystem {
 		return shooterLeft.getSelectedSensorVelocity(0);
 	}
 
-	public double getError() {
+	public double getErrorLeft() {
 		return shooterLeft.getSelectedSensorVelocity(0) - shooterLeft.getClosedLoopTarget(0);
+	}
+	
+	public double getErrorRight() {
+		return shooterRight.getSelectedSensorVelocity(0) - shooterRight.getClosedLoopTarget(0);
 	}
 
 	public double getSetpoint() {
@@ -69,12 +77,19 @@ public class Shooter extends Subsystem {
 	}
 
 	public void setShooter(double speed) {
+		shooterRight.config_kP(0, SmartDashboard.getNumber("P", 0), RobotMap.kTimeoutMs);
+		shooterRight.config_kI(0, SmartDashboard.getNumber("I", 0), RobotMap.kTimeoutMs);
+		shooterRight.config_kD(0, SmartDashboard.getNumber("D", 0), RobotMap.kTimeoutMs);
+		shooterRight.config_kF(0, SmartDashboard.getNumber("F", 0), RobotMap.kTimeoutMs);
+		
+		shooterRight.set(ControlMode.Velocity, speed);
+
 		shooterLeft.config_kP(0, SmartDashboard.getNumber("P", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kI(0, SmartDashboard.getNumber("I", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kD(0, SmartDashboard.getNumber("D", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kF(0, SmartDashboard.getNumber("F", 0), RobotMap.kTimeoutMs);
-		shooterLeft.set(ControlMode.Velocity, speed);
-		shooterRight.set(ControlMode.Follower, shooterLeft.getDeviceID());
+
+		shooterLeft.set(ControlMode.Follower, RobotMap.shooterRight);
 	}
 
 	public void stop() {

@@ -46,6 +46,7 @@ public class RobotMap {
 	public static final int rightMotorA = 2;
 	public static final int rightMoorB = 3;
 	
+	
 	// Encoders
 	
 	public static final int leftMotorEncoderA = 0;
@@ -63,8 +64,11 @@ public class RobotMap {
 	public static final int ringLightSwitch = 9;
 	
 	public static final int compressor = 0;
+	
 	public static final int intakeSolenoidA = 0;
 	public static final int intakeSolenoidB = 1;
+	public static final int loaderSolenoidA = 2;
+	public static final int loaderSolenoidB = 3;
 	public static final int ringLightSolenoid = 4;
 	
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;

@@ -18,12 +18,16 @@ public class Pneumatics extends Subsystem {
     // here. Call these from Commands.
 
 	public Compressor compressor;
+	public DoubleSolenoid loaderPiston;
 	public DoubleSolenoid intakePiston;
 	public Solenoid intakeRingLight;
+	
 
 	public Pneumatics()
 	{
 		compressor = new Compressor(RobotMap.compressor);
+		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
+		loaderPiston.set(RobotMap.PistonOut);
 		intakePiston = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
 		intakePiston.set(RobotMap.PistonIn);
 		intakeRingLight = new Solenoid(RobotMap.ringLightSolenoid);
@@ -37,6 +41,22 @@ public class Pneumatics extends Subsystem {
 		
     }
 
+    public void extendLoader(){
+    	loaderPiston.set(RobotMap.PistonOut);
+    }
+    
+    public void retractLoader(){
+    	loaderPiston.set(RobotMap.PistonIn);
+    }
+    
+    public DoubleSolenoid.Value getLoaderState(){
+    	return loaderPiston.get();
+    }
+    
+    public void setLoaderState(DoubleSolenoid.Value state){
+    	loaderPiston.set(state);
+    }
+    
 	public void extendIntake() {
 		intakePiston.set(RobotMap.PistonOut);
 	}

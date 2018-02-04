@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -24,7 +25,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 	public RobotDrive drivetrain;
 	public Encoder leftEncoder;
 	public Encoder rightEncoder;
-	
+	public Ultrasonic rangeFinder;
 	private double PIDrotateToAngleRate;
 	private boolean usingTurnPID;
 

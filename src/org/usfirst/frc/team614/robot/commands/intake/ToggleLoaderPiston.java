@@ -9,21 +9,20 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ToggleIntakePiston extends Command {
+public class ToggleLoaderPiston extends Command {
 
-	public ToggleIntakePiston() {
+	public ToggleLoaderPiston() {
 		requires(Robot.pneumatics);
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (timeSinceInitialized() > SmartDashboard.getNumber("Intake Piston Delay", 0.0))
-		{
-			if (Robot.pneumatics.getIntakeState().equals(RobotMap.PistonIn)) {
-				Robot.pneumatics.setIntakeState(RobotMap.PistonOut);
-			} else {
-				Robot.pneumatics.setIntakeState(RobotMap.PistonIn);
-			}
+		if (Robot.pneumatics.getLoaderState().equals(RobotMap.PistonIn)) {
+			Robot.pneumatics.setLoaderState(RobotMap.PistonOut);
+		} else {
+			Robot.pneumatics.setLoaderState(RobotMap.PistonIn);
 		}
 	}
 

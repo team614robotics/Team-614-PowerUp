@@ -1,5 +1,6 @@
 package org.usfirst.frc.team614.robot.subsystems;
 
+import org.usfirst.frc.team614.robot.Robot;
 import org.usfirst.frc.team614.robot.RobotMap;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakeLight;
 
@@ -18,10 +19,14 @@ public class Intake extends Subsystem {
 	
 	public VictorSP intakeLeft = new VictorSP(RobotMap.intakeLeft);
 	public VictorSP intakeRight = new VictorSP(RobotMap.intakeRight);
-	public DigitalInput intakeLimitSwitch;
+	public DigitalInput intakeLimitSwitchA;
+	public DigitalInput intakeLimitSwitchB;
+	public DigitalInput intakeLimitSwitchC;
 	
 	public Intake() {
-		intakeLimitSwitch = new DigitalInput(RobotMap.ringLightSwitch);
+		intakeLimitSwitchA = new DigitalInput(RobotMap.ringLightSwitchA);
+		intakeLimitSwitchB = new DigitalInput(RobotMap.ringLightSwitchB);
+		intakeLimitSwitchC = new DigitalInput(RobotMap.ringLightSwitchC);
 	}
 
 	public void initDefaultCommand() {
@@ -36,5 +41,13 @@ public class Intake extends Subsystem {
 	{
 		intakeLeft.set(speed);
 		intakeRight.set(-speed);
+	}
+	
+	public boolean testRingLights() {
+		if(!Robot.intake.intakeLimitSwitchC.get() && !Robot.intake.intakeLimitSwitchB.get() && !Robot.intake.intakeLimitSwitchA.get()) {
+			return true;
+		}
+		else
+			return false;
 	}
 }

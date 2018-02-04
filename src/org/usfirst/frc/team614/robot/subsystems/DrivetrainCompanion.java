@@ -38,9 +38,6 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	public double currentJerkZ;
 	public double lastWorldLinearAccelZ;
 	public double currWorldLinearAccelZ;
-	public Solenoid thisLight;
-	
-	
 
 	// VictorSP motor controllers
 	// VictorSP leftMotor = new VictorSP(RobotMap.drivetrainLeftMotor);
@@ -49,7 +46,6 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	public DrivetrainCompanion() {
 
 		usingDistancePID = false;
-		thisLight = new Solenoid(RobotMap.thisSolenoid);
 
 		distanceController = new PIDController(RobotMap.drivetrainDistanceP,
 				RobotMap.drivetrainDistanceI, RobotMap.drivetrainDistanceD,

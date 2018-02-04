@@ -26,10 +26,8 @@ public class RevShooter extends Command {
 	protected void execute() {
 		SmartDashboard.putNumber("Shooter Timer", timer.get());
 		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter RPM", 0));
-		SmartDashboard.putNumber("Shooter Error Left",
-				Robot.shooter.getErrorLeft());
-		SmartDashboard.putNumber("Shooter Error Right",
-				Robot.shooter.getErrorRight());
+		SmartDashboard.putNumber("Shooter Error Left", Robot.shooter.getErrorLeft());
+		SmartDashboard.putNumber("Shooter Error Right", Robot.shooter.getErrorRight());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

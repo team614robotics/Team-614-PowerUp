@@ -86,10 +86,15 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Piston Delay", 0);
 		
 		// Use Values for Testing
-		SmartDashboard.putNumber("P", 0.26);
-		SmartDashboard.putNumber("I", 0.0001);
-		SmartDashboard.putNumber("D", 0.4);
-		SmartDashboard.putNumber("F", 0.404);
+		SmartDashboard.putNumber("rightP", 0.26);
+		SmartDashboard.putNumber("rightI", 0.0001);
+		SmartDashboard.putNumber("rightD", 0.4);
+		SmartDashboard.putNumber("rightF", 0.404);
+
+		SmartDashboard.putNumber("leftP", 0.26);
+		SmartDashboard.putNumber("leftI", 0.0001);
+		SmartDashboard.putNumber("leftD", 0.4);
+		SmartDashboard.putNumber("leftF", 0.404);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
 

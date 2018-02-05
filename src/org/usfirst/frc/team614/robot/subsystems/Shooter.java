@@ -35,9 +35,7 @@ public class Shooter extends Subsystem {
 		shooterRight.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
 		shooterRight.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
 		
-		shooterRight.set(ControlMode.Velocity, 0);
-		
-		
+//		shooterRight.set(ControlMode.Velocity, 0);
 		
 		shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
 		shooterLeft.setSensorPhase(true);
@@ -52,8 +50,7 @@ public class Shooter extends Subsystem {
 		shooterLeft.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
 		shooterLeft.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
 		
-
-		shooterLeft.set(ControlMode.Velocity, 0);
+//		shooterLeft.set(ControlMode.Velocity, 0);
 	}
 
 	public void reset() {
@@ -82,14 +79,14 @@ public class Shooter extends Subsystem {
 		shooterRight.config_kD(0, SmartDashboard.getNumber("rightD", 0), RobotMap.kTimeoutMs);
 		shooterRight.config_kF(0, SmartDashboard.getNumber("rightF", 0), RobotMap.kTimeoutMs);
 		
-		shooterRight.set(ControlMode.Velocity, speed);
+		shooterRight.set(ControlMode.Velocity, SmartDashboard.getNumber("Shooter Setpoint Right", 0));
 
 		shooterLeft.config_kP(0, SmartDashboard.getNumber("leftP", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kI(0, SmartDashboard.getNumber("leftI", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kD(0, SmartDashboard.getNumber("leftD", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kF(0, SmartDashboard.getNumber("leftF", 0), RobotMap.kTimeoutMs);
 
-		shooterLeft.set(ControlMode.Velocity, speed);
+		shooterLeft.set(ControlMode.Velocity, SmartDashboard.getNumber("Shooter Setpoint Left", 0));
 	}
 
 	public void stop() {

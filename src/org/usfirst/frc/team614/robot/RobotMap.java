@@ -44,14 +44,9 @@ public class RobotMap {
 	public static final int leftMotorA = 0;
 	public static final int leftMotorB = 1;
 	public static final int rightMotorA = 2;
-	public static final int rightMoorB = 3;
+	public static final int rightMotorB = 3;
 	
-<<<<<<< HEAD
-	
-	// Encoders
-=======
 	// ENCODERS
->>>>>>> origin/talon-pid-test
 	
 	public static final int leftMotorEncoderA = 0;
 	public static final int leftMotorEncoderB = 1;

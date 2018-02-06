@@ -193,15 +193,14 @@ public class Robot extends IterativeRobot {
 				drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
 				drivetrain.rightEncoder.getDistance());
-<<<<<<< HEAD
+		
 		SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
-=======
 		SmartDashboard.putNumber("Shooter Speed",
 				shooter.getSpeed());
-		SmartDashboard.putNumber("Shooter Error",
-				shooter.getError());
-		
->>>>>>> origin/talon-pid-test
+		SmartDashboard.putNumber("Shooter Error Left",
+				shooter.getErrorLeft());
+		SmartDashboard.putNumber("Shooter Error Right",
+				shooter.getErrorRight());
 	}
 
 	/**

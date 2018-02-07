@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.autonomous.DoNothing;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
@@ -107,6 +108,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putBoolean("Accelerometer", false);
 		
 		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
+		
+		SmartDashboard.putNumber("Shooter Setpoint Left", 0);
+		SmartDashboard.putNumber("Shooter Setpoint Right", 0);
 	}
 
 	/**
@@ -199,14 +203,6 @@ public class Robot extends IterativeRobot {
 				drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
 				drivetrain.rightEncoder.getDistance());
-		
-		SmartDashboard.putNumber("Shooter Speed", shooter.getSpeed());
-		SmartDashboard.putNumber("Shooter Speed",
-				shooter.getSpeed());
-		SmartDashboard.putNumber("Shooter Error Left",
-				shooter.getErrorLeft());
-		SmartDashboard.putNumber("Shooter Error Right",
-				shooter.getErrorRight());
 	}
 
 	/**

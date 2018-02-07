@@ -19,6 +19,7 @@ public class Pneumatics extends Subsystem {
 
 	public Compressor compressor;
 	public DoubleSolenoid loaderPiston;
+	public DoubleSolenoid loaderPistonB;
 	public DoubleSolenoid intakePiston;
 	public Solenoid intakeRingLight;
 	
@@ -26,10 +27,12 @@ public class Pneumatics extends Subsystem {
 	public Pneumatics()
 	{
 		compressor = new Compressor(RobotMap.compressor);
-		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
-		loaderPiston.set(RobotMap.PistonOut);
 		intakePiston = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
 		intakePiston.set(RobotMap.PistonIn);
+		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
+		loaderPiston.set(RobotMap.PistonOut);
+		loaderPistonB = new DoubleSolenoid(RobotMap.loaderSolenoidC, RobotMap.loaderSolenoidD);
+		loaderPistonB.set(RobotMap.PistonOut);
 		intakeRingLight = new Solenoid(RobotMap.ringLightSolenoid);
 		
 	}
@@ -40,24 +43,28 @@ public class Pneumatics extends Subsystem {
 		setDefaultCommand(new CompressorControl());
 		
     }
-
-    public void extendLoader(){
+    
+   public void extendLoader(){
     	loaderPiston.set(RobotMap.PistonOut);
+    	loaderPistonB.set(RobotMap.PistonOut);
     }
     
     public void retractLoader(){
     	loaderPiston.set(RobotMap.PistonIn);
+    	loaderPistonB.set(RobotMap.PistonIn);
     }
     
     public DoubleSolenoid.Value getLoaderState(){
     	return loaderPiston.get();
+//    	return loaderPistonB.get();
     }
     
     public void setLoaderState(DoubleSolenoid.Value state){
     	loaderPiston.set(state);
+    	loaderPistonB.set(state);
     }
-    
-	public void extendIntake() {
+	
+    public void extendIntake() {
 		intakePiston.set(RobotMap.PistonOut);
 	}
 

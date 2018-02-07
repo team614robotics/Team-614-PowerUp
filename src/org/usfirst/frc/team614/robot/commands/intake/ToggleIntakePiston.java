@@ -17,13 +17,10 @@ public class ToggleIntakePiston extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (timeSinceInitialized() > SmartDashboard.getNumber("Intake Piston Delay", 0.0))
-		{
-			if (Robot.pneumatics.getIntakeState().equals(RobotMap.PistonIn)) {
-				Robot.pneumatics.setIntakeState(RobotMap.PistonOut);
-			} else {
-				Robot.pneumatics.setIntakeState(RobotMap.PistonIn);
-			}
+		if (Robot.pneumatics.getIntakeState().equals(RobotMap.PistonIn)) {
+			Robot.pneumatics.setIntakeState(RobotMap.PistonOut);
+		} else {
+			Robot.pneumatics.setIntakeState(RobotMap.PistonIn);
 		}
 	}
 
@@ -33,7 +30,7 @@ public class ToggleIntakePiston extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

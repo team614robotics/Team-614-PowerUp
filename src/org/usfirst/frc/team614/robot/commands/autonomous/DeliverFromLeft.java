@@ -45,28 +45,56 @@ public class DeliverFromLeft extends CommandGroup {
     		if (SmartDashboard.getBoolean("L2", false)
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new RotateToAngle(-90, false));
     			this.addSequential(new DriveForADistance(24, speed));
-    			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new RotateToAngle(90, false));
     			this.addSequential(new DriveForADistance(72, speed));
     			this.addSequential(new IntakePowerCube());
-    			this.addSequential(new RotateToAngle(180, true));
+    			this.addSequential(new RotateToAngle(180, false));
     			this.addSequential(new DriveForADistance(72, speed));
-    			this.addSequential(new RotateToAngle(90, true));
+    			this.addSequential(new RotateToAngle(90, false));
     			this.addSequential(new DriveForADistance(120, speed));
+    			this.addSequential(new RotateToAngle(90, false));
     			this.addSequential(new DeliverHighScale());
+    			// Mode 6
+    		}
+   		  else if (SmartDashboard.getBoolean("R2", false)
+    				&& SmartDashboard.getBoolean("Go For Scale", false)) {
+   			addSequential(new RotateToAngle(90, false));
+			addSequential(new DriveForADistance(24, speed));
+			addSequential(new RotateToAngle(90, false));
+			//addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
+			addSequential(new IntakePowerCube());
+			addSequential(new RotateToAngle(-180, false));
+			addSequential(new DriveForADistance(72, speed));
+			addSequential(new RotateToAngle(-90, false));
+			addSequential(new DriveForADistance(59.5, speed));
+			addSequential(new RotateToAngle(-90, false));
+			addSequential(new DriveUntilStopped(speed, 2));
+			addSequential(new RotateToAngle(-90, false));
+			addSequential(new DriveForADistance(59, speed));
+			addSequential(new RotateToAngle(-90, false));
+			addSequential(new DeliverHighScale());
+ 			
+    		}
+    		else {
+    			addSequential(new DoNothing());
+    			//Backup 3
     		}
     	}
     	
     	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		this.addSequential(new DriveForADistance(80, speed));
+    		// One of the modes is to get to R1 so this is subject to change
+    		// Should add Mode 8 and Mode 9
     		
     	}
     	
     	else
     	{
-    		this.addSequential(new DoNothing());
+    		this.addSequential(new DrivePastBaseline());
+    		// Again subject to change
     	}
     }
 }

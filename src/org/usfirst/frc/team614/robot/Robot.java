@@ -104,7 +104,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
-
+        SmartDashboard.putBoolean("Accelerometer", false);
+		
 		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 	}
 

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
+import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
@@ -47,6 +48,7 @@ public class OI {
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 
 	private static final Button revIntake = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+	private static final Button revOutake = new JoystickButton(driverGamepad, Gamepad.button_Y);
 	private static final Button revShooter = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
 	private static final Button toggleIntakePiston = new JoystickButton(driverGamepad, Gamepad.button_A);
 	private static final Button revAccelerator = new JoystickButton(driverGamepad, Gamepad.button_B);
@@ -54,6 +56,7 @@ public class OI {
 	
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
+		revOutake.whileHeld(new RevOutake());
 		revShooter.whileHeld(new RevShooter());
 		revAccelerator.whileHeld(new RevAcceleratorLow());
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());

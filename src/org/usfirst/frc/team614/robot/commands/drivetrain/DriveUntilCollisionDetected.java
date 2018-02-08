@@ -1,6 +1,7 @@
 package org.usfirst.frc.team614.robot.commands.drivetrain;
 
 import org.usfirst.frc.team614.robot.Robot;
+import org.usfirst.frc.team614.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -32,8 +33,14 @@ public class DriveUntilCollisionDetected extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return SmartDashboard.getBoolean("Accelerator", false);
-    }
+    	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkX) > RobotMap.kCollisionThreshold_DeltaG ) ||
+                ( Math.abs(Robot.drivetrainCompanion.currentJerkY) > RobotMap.kCollisionThreshold_DeltaG ) ) {
+              return true;
+           }
+    	else {
+    		  return false;
+    	   }
+     }
 
     // Called once after isFinished returns true
     protected void end() {

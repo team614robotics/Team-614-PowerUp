@@ -61,6 +61,7 @@ startWallToCloseEdge: 140"
 startWallToFarEdge: 196"
 edgeWallToCloseEdge: 85.25"
 startWallToMiddle: 168"
+halfwayBetweenScaleAndSwitch: 32.735"
 
 Scale;
 

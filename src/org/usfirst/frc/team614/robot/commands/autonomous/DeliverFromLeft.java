@@ -40,6 +40,10 @@ public class DeliverFromLeft extends CommandGroup {
     		{
     			this.addSequential(new DriveForADistance(168, speed));
     			this.addSequential(new RotateToAngle(90, true));
+    			/*drive until stopped
+      		   * shoot switch
+      		   * rotate -90
+      		   */
     		}
     		
     		else
@@ -64,12 +68,15 @@ public class DeliverFromLeft extends CommandGroup {
 }
 /*Measurements
 
+startToAutoLine: 120"
+
 Switch;
 
 startWallToCloseEdge: 140"
 startWallToFarEdge: 196"
 edgeWallToCloseEdge: 85.25"
 startWallToMiddle: 168"
+halfwayBetweenScaleAndSwitch: 32.735"
 
 Scale;
 

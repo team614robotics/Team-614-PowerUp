@@ -19,17 +19,20 @@ public class Pneumatics extends Subsystem {
 
 	public Compressor compressor;
 	public DoubleSolenoid loaderPiston;
-	public DoubleSolenoid intakePiston;
+	public DoubleSolenoid intakePistonA;
+	public DoubleSolenoid intakePistonB;
 	public Solenoid intakeRingLight;
 	
 
 	public Pneumatics()
 	{
 		compressor = new Compressor(RobotMap.compressor);
+		intakePistonA = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
+		intakePistonA.set(RobotMap.PistonOut);
+		intakePistonB = new DoubleSolenoid(RobotMap.intakeSolenoidC, RobotMap.intakeSolenoidD);
+		intakePistonB.set(RobotMap.PistonOut);
 		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
-		loaderPiston.set(RobotMap.PistonOut);
-		intakePiston = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
-		intakePiston.set(RobotMap.PistonIn);
+		loaderPiston.set(RobotMap.PistonIn);
 		intakeRingLight = new Solenoid(RobotMap.ringLightSolenoid);
 		
 	}
@@ -40,8 +43,8 @@ public class Pneumatics extends Subsystem {
 		setDefaultCommand(new CompressorControl());
 		
     }
-
-    public void extendLoader(){
+    
+   public void extendLoader(){
     	loaderPiston.set(RobotMap.PistonOut);
     }
     
@@ -56,21 +59,24 @@ public class Pneumatics extends Subsystem {
     public void setLoaderState(DoubleSolenoid.Value state){
     	loaderPiston.set(state);
     }
-    
-	public void extendIntake() {
-		intakePiston.set(RobotMap.PistonOut);
+	
+    public void extendIntake() {
+		intakePistonA.set(RobotMap.PistonOut);
+		intakePistonB.set(RobotMap.PistonOut);
 	}
 
 	public void retractIntake() {
-		intakePiston.set(RobotMap.PistonIn);
+		intakePistonA.set(RobotMap.PistonIn);
+		intakePistonB.set(RobotMap.PistonIn);
 	}
 
 	public DoubleSolenoid.Value getIntakeState() {
-		return intakePiston.get();
+		return intakePistonA.get();
 	}
 
 	public void setIntakeState(DoubleSolenoid.Value state) {
-		intakePiston.set(state);
+		intakePistonA.set(state);
+		intakePistonB.set(state);
 	}
 }
 

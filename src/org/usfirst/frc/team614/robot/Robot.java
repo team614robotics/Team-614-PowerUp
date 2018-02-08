@@ -98,6 +98,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("leftF", 0.404);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
+		SmartDashboard.putBoolean("Go For The Opposite Side", false);
 
 		SmartDashboard.putBoolean("L1", false);
 		SmartDashboard.putBoolean("L2", false);

@@ -43,6 +43,9 @@ public class DeliverFromRight extends CommandGroup {
     		  /*drive until stopped 
     		   * shoot switch
     		   * rotate 90
+    		   * drive past edge of switch
+    		   * rotate -90
+    		   * drive until cube is k
     		   */
     		}
     		

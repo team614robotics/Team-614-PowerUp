@@ -15,8 +15,8 @@ public class Achoo extends Subsystem {
 	public DoubleSolenoid pusherAchoo;
 	
 	public Achoo() {
-		compressorAchoo = new Compressor(RobotMap.compressorAchoo);
-		pusherAchoo = new DoubleSolenoid(RobotMap.achooSolenoidA, RobotMap.achooSolenoidB);
+		compressorAchoo = new Compressor(RobotMap.compressorAchoo);  //creates compressor
+		pusherAchoo = new DoubleSolenoid(RobotMap.achooSolenoidA, RobotMap.achooSolenoidB); //creates double solenoid
 		pusherAchoo.set(RobotMap.achooPistonIn);
 	}
 	
@@ -26,7 +26,6 @@ public class Achoo extends Subsystem {
 	
 	public void retract() {
 		pusherAchoo.set(RobotMap.achooPistonIn);
-	}
 	
 	public DoubleSolenoid.Value getState() {
 		return pusherAchoo.get();

@@ -33,17 +33,17 @@ public class DeliverFromCenter extends CommandGroup {
     	double speed = 0.8;
     	double distance = Math.sqrt(2) * (11.5 / 5);
     	
-    	if (SmartDashboard.getBoolean("L1", false))
+    	if (SmartDashboard.getBoolean("L1", false))  //our team switch is left
     	{
-    		addSequential(new RotateToAngle(-45, true));
-    		addSequential(new DriveForADistance(distance, speed));
+    		addSequential(new RotateToAngle(-45, true));  //turning to switch
+    		addSequential(new DriveForADistance(distance, speed));  //driving to switch
     		addSequential(new SpinTalonMotors());
     	}
     	
-    	else if (SmartDashboard.getBoolean("R1", false))
+    	else if (SmartDashboard.getBoolean("R1", false))  //our team switch is right
     	{
-    		addSequential(new RotateToAngle(45, true));
-    		addSequential(new DriveForADistance(distance, speed));
+    		addSequential(new RotateToAngle(45, true));  //turning to switch
+    		addSequential(new DriveForADistance(distance, speed));  //driving to switch
     		addSequential(new SpinTalonMotors());
     	}
     	

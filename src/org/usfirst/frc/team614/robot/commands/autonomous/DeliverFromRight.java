@@ -33,24 +33,24 @@ public class DeliverFromRight extends CommandGroup {
     	
     	double speed = 0.8;
     	
-    	if (SmartDashboard.getBoolean("R1", false))
+    	if (SmartDashboard.getBoolean("R1", false))  //our team switch is right
     	{
-    		if (SmartDashboard.getBoolean("R2", false)
+    		if (SmartDashboard.getBoolean("R2", false)  //our team scale is right
     				&& SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new DriveForADistance(168, speed));
-    			this.addSequential(new RotateToAngle(-90, true));
+    			this.addSequential(new DriveForADistance(168, speed));  //driving to middle of switch
+    			this.addSequential(new RotateToAngle(-90, true));  //turning to face switch
     		}
     		
     		else
     		{
-    			this.addSequential(new DriveUntilStopped(speed, 3));
+    			this.addSequential(new DriveUntilStopped(speed, 3));  //driving past baseline
     		}
     	
 			this.addSequential(new SpinTalonMotors());
     	}
     	
-    	else if (SmartDashboard.getBoolean("L1", false))
+    	else if (SmartDashboard.getBoolean("L1", false))  //our team switch is left
     	{
     		this.addSequential(new DriveForADistance(80, speed));
     	}

@@ -19,12 +19,12 @@ public class SpinTalonMotors extends Command {
 		Robot.talonsrxmotors.set(SmartDashboard.getNumber("Talon Setpoint", 0));
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	// Make this return false when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return false;
 	}
 
-	// Called once after isFinished returns true
+	// Called once after isFinished returns false
 	protected void end() {
 		Robot.talonsrxmotors.stop();
 	}

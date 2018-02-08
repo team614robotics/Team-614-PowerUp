@@ -17,35 +17,35 @@ public class SpinVerticalShooter extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.flyWheel.victorLeft.set(0);
-		Robot.flyWheel.victorRight.set(0);
+		Robot.flyWheel.victorLeft.set(0);  //sets initial value to 0
+		Robot.flyWheel.victorRight.set(0);  //sets initial value to 0
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.flyWheel.victorLeft.set(SmartDashboard.getNumber("Vertical Shooter Speed", 0.0));
-		Robot.flyWheel.victorLeft.set(-SmartDashboard.getNumber("Vertical Shooter Speed", 0.0));
+		Robot.flyWheel.victorLeft.set(SmartDashboard.getNumber("Vertical Shooter Speed", 0.0));  //sets value to number in the smart dashboard
+		Robot.flyWheel.victorLeft.set(-SmartDashboard.getNumber("Vertical Shooter Speed", 0.0));  //sets value to number in the smart dashboard
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	// Make this return false when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
 		return false;
 	}
 
-	// Called once after isFinished returns true
+	// Called once after isFinished returns false
 	@Override
 	protected void end() {
-		Robot.flyWheel.victorLeft.set(0);
-		Robot.flyWheel.victorRight.set(0);
+		Robot.flyWheel.victorLeft.set(0);  //sets value to 0 when finished
+		Robot.flyWheel.victorRight.set(0);  //sets value to 0 when finished
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.flyWheel.victorLeft.set(0);
-		Robot.flyWheel.victorRight.set(0);
+		Robot.flyWheel.victorLeft.set(0);  //sets value to 0 if interrupted
+		Robot.flyWheel.victorRight.set(0);  //sets value to 0 interrupted
 	}
 }

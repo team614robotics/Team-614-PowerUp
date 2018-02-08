@@ -29,13 +29,13 @@ public class SpinFlyWheel extends Command {
 		Robot.flyWheel.victorRight.set(-SmartDashboard.getNumber("Right Fly Wheel Speed", 0.0));
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	// Make this return false when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
 		return false;
 	}
 
-	// Called once after isFinished returns true
+	// Called once after isFinished returns false
 	@Override
 	protected void end() {
 		Robot.flyWheel.victorLeft.set(0);

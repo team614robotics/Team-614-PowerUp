@@ -43,7 +43,7 @@ public class Intake extends Subsystem {
 		intakeRight.set(-speed);
 	}
 	
-	public boolean testRingLights() {
+	public boolean testForCube() {
 		if(!Robot.intake.intakeLimitSwitchC.get() && !Robot.intake.intakeLimitSwitchB.get() && !Robot.intake.intakeLimitSwitchA.get()) {
 			return true;
 		}

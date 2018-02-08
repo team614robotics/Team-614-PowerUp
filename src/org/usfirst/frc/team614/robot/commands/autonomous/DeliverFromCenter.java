@@ -1,6 +1,8 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
@@ -43,36 +45,32 @@ public class DeliverFromCenter extends CommandGroup {
     		addSequential(new DriveForADistance(distance, speed));
     		addSequential(new DeliverSwitch());
     		if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			addSequential(new RotateToAngle(-45, false));
-    			addSequential(new DriveForADistance(24, speed));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveForADistance(24, speed)); // I actually have no idea if this is the right value or not
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new ToggleIntakePiston());
-    			//addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
-    			addSequential(new RotateToAngle(-90, false));
-    			//addSequential(new DriveUntilCollisionDetected()); <-- Again ill add em
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveUntilStopped(speed, 2));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveForADistance(59, speed));
-    			addSequential(new DeliverHighScale());
+    			   addSequential(new RotateToAngle(135, false));
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new DriveUntilHitCube());
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new IntakePowerCube());
+		           addSequential(new DriveUntilCollisionDetected(-speed));
+		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new DriveForADistance(184, speed));
+		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new DeliverHighScale());
     		}
     		else if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			addSequential(new RotateToAngle(315, false));
-    			addSequential(new DriveForADistance(153.5, speed));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveForADistance(24, speed)); // I actually have no idea if this is the right value or not
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new ToggleIntakePiston());
-    			//addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
-    			addSequential(new RotateToAngle(90, false));
-    			//addSequential(new DriveUntilCollisionDetected()); <-- Again ill add em
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveUntilStopped(speed, 2));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveForADistance(59, speed));
-    			addSequential(new DeliverHighScale());
+    			   addSequential(new RotateToAngle(135, false));
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new DriveUntilHitCube());
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new IntakePowerCube());
+		           addSequential(new DriveUntilCollisionDetected(-speed));
+		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new DriveForADistance(121, speed));
+		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new DriveUntilCollisionDetected(speed));
+		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new DriveForADistance(63, speed));
+		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new DeliverHighScale());
     		}
     		else{
     			addSequential(new DoNothing());
@@ -86,37 +84,33 @@ public class DeliverFromCenter extends CommandGroup {
     		addSequential(new DriveForADistance(distance, speed));
     		addSequential(new DeliverSwitch());
     		if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			addSequential(new RotateToAngle(45, false));
-    			addSequential(new DriveForADistance(153.5, speed));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveForADistance(24, speed)); // I actually have no idea if this is the right value or not
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new ToggleIntakePiston());
-    			//addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
-    			addSequential(new IntakePowerCube());
-    			addSequential(new RotateToAngle(90, false));
-    			//addSequential(new DriveUntilCollisionDetected()); <-- Again ill add em
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveUntilStopped(speed, 2));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveForADistance(59, speed));
-    			addSequential(new DeliverHighScale());
+    			   addSequential(new RotateToAngle(-135, false));
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new DriveUntilHitCube());
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new IntakePowerCube());
+		           addSequential(new DriveUntilCollisionDetected(-speed));
+		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new DriveForADistance(184, speed));
+		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new DeliverHighScale());
+		           
     		}
     		else if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			addSequential(new RotateToAngle(-315, false));
-    			addSequential(new DriveForADistance(24, speed));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveForADistance(24, speed)); // I actually have no idea if this is the right value or not
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new ToggleIntakePiston());
-    			//addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
-    			addSequential(new RotateToAngle(-90, false));
-    			//addSequential(new DriveUntilCollisionDetected()); <-- Again ill add em
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveUntilStopped(speed, 2));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveForADistance(59, speed));
-    			addSequential(new DeliverHighScale());
+    			   addSequential(new RotateToAngle(-135, false));
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new DriveUntilHitCube());
+		           addSequential(new ToggleIntakePiston());
+		           addSequential(new IntakePowerCube());
+		           addSequential(new DriveUntilCollisionDetected(-speed));
+		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new DriveForADistance(121, speed));
+		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new DriveUntilCollisionDetected(speed));
+		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new DriveForADistance(63, speed));
+		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new DeliverHighScale());
     		}
     		else{
     			addSequential(new DoNothing());

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
@@ -39,54 +41,53 @@ public class DeliverFromRight extends CommandGroup {
     	if (SmartDashboard.getBoolean("R1", false))
     	{
 
-			this.addSequential(new DriveForADistance(168, speed));
-			this.addSequential(new RotateToAngle(-90, true));
-			this.addSequential(new DeliverSwitch());
+			addSequential(new DriveForADistance(168, speed));
+			addSequential(new RotateToAngle(-90, true));
+			addSequential(new DeliverSwitch());
     		
-    		if (SmartDashboard.getBoolean("R2", false)
-    				&& SmartDashboard.getBoolean("Go For Scale", false))
+           if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false))
     		{
-    			this.addSequential(new RotateToAngle(90, true));
-    			this.addSequential(new DriveForADistance(24, speed));
-    			this.addSequential(new RotateToAngle(-90, true));
-    			this.addSequential(new DriveForADistance(72, speed));
-    			//addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
-    			this.addSequential(new IntakePowerCube());
-    			this.addSequential(new RotateToAngle(180, true));
-    			this.addSequential(new DriveForADistance(72, speed));
-    			this.addSequential(new RotateToAngle(-90, true));
-    			this.addSequential(new DriveForADistance(120, speed));
-    			this.addSequential(new DeliverHighScale());	
+    			addSequential(new RotateToAngle(90, false));
+    			addSequential(new DriveForADistance(32, speed));
+    			addSequential(new RotateToAngle(-90, false));
+    			addSequential(new ToggleIntakePiston()); 
+    			addSequential(new DriveUntilHitCube()); 
+    			addSequential(new ToggleIntakePiston()); 
+    			addSequential(new IntakePowerCube());
+    			addSequential(new DriveUntilCollisionDetected(-speed));
+    			addSequential(new RotateToAngle(90, false));
+    			addSequential(new DriveForADistance(124, speed));
+    			addSequential(new RotateToAngle(-90, false));
+    			addSequential(new DeliverHighScale());
+    		           
     		}
-    else if (SmartDashboard.getBoolean("R2", false)
-		&& SmartDashboard.getBoolean("Go For Scale", false)) {
-	 addSequential(new RotateToAngle(-90, false));
-     addSequential(new DriveForADistance(24, speed));
-     addSequential(new RotateToAngle(90, false));
-     addSequential(new DriveForADistance(72, speed));
-     //addSequential(new DriveUntilHitCube()); <-- Class isn't added yet; if cubes aren't being exactly place it will kill us
-     addSequential(new IntakePowerCube());
-     addSequential(new RotateToAngle(180, false));
-     addSequential(new DriveForADistance(72, speed));
-     addSequential(new RotateToAngle(90, false));
-     addSequential(new DriveForADistance(59.5, speed));
-     addSequential(new RotateToAngle(90, false));
-     addSequential(new DriveUntilStopped(speed, 2));
-     addSequential(new RotateToAngle(-90, false));
-     addSequential(new DriveForADistance(59, speed));
-     addSequential(new DeliverHighScale());
-	
+       else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
+        	addSequential(new RotateToAngle(90, false));
+   			addSequential(new DriveForADistance(32, speed));
+   			addSequential(new RotateToAngle(-90, false));
+   			addSequential(new ToggleIntakePiston()); 
+   			addSequential(new DriveUntilHitCube()); 
+   			addSequential(new ToggleIntakePiston()); 
+   			addSequential(new IntakePowerCube());
+   			addSequential(new DriveUntilCollisionDetected(-speed));
+   			addSequential(new RotateToAngle(90, false));
+   			addSequential(new DriveForADistance(61, speed));
+   			addSequential(new DriveUntilCollisionDetected(speed));
+   			addSequential(new RotateToAngle(90, false));
+   			addSequential(new DriveForADistance(63, speed));
+   			addSequential(new RotateToAngle(90, false));
+   			addSequential(new DeliverHighScale());	
       }
    }
     	
     	else if (SmartDashboard.getBoolean("L1", false))
     	{
-    		this.addSequential(new DriveForADistance(80, speed));
+    		addSequential(new DriveForADistance(80, speed));
     		// One of the modes is to get to L1 so this is subject to change
     	}
     	else
     	{
-    		this.addSequential(new DrivePastBaseline());
+    		addSequential(new DrivePastBaseline());
     		// Again subject to change
     	}
     }

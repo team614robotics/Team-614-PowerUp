@@ -51,32 +51,32 @@ public class DeliverFromRight extends CommandGroup {
     			addSequential(new DriveForADistance(32, speed));
     			addSequential(new RotateToAngle(-90, false));
     			addSequential(new ToggleIntakePiston()); 
-    			addSequential(new DriveUntilHitCube()); 
+    			addSequential(new DriveUntilHitCube(speed)); 
     			addSequential(new ToggleIntakePiston()); 
     			addSequential(new IntakePowerCube());
     			addSequential(new DriveUntilCollisionDetected(-speed));
     			addSequential(new RotateToAngle(90, false));
     			addSequential(new DriveForADistance(124, speed));
-    			addSequential(new RotateToAngle(-90, false));
+    			addSequential(new RotateToAngle(90, false));
     			addSequential(new DeliverHighScale());
     		           
     		}
-       else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
-        	addSequential(new RotateToAngle(90, false));
-   			addSequential(new DriveForADistance(32, speed));
-   			addSequential(new RotateToAngle(-90, false));
-   			addSequential(new ToggleIntakePiston()); 
-   			addSequential(new DriveUntilHitCube()); 
-   			addSequential(new ToggleIntakePiston()); 
-   			addSequential(new IntakePowerCube());
-   			addSequential(new DriveUntilCollisionDetected(-speed));
-   			addSequential(new RotateToAngle(90, false));
-   			addSequential(new DriveForADistance(61, speed));
-   			addSequential(new DriveUntilCollisionDetected(speed));
-   			addSequential(new RotateToAngle(90, false));
-   			addSequential(new DriveForADistance(63, speed));
-   			addSequential(new RotateToAngle(90, false));
-   			addSequential(new DeliverHighScale());	
+            else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
+        	    addSequential(new RotateToAngle(90, false));
+   			    addSequential(new DriveForADistance(32, speed));
+   			    addSequential(new RotateToAngle(-90, false));
+   			    addSequential(new ToggleIntakePiston()); 
+   			    addSequential(new DriveUntilHitCube(speed)); 
+   			    addSequential(new ToggleIntakePiston()); 
+   			    addSequential(new IntakePowerCube());
+   			    addSequential(new DriveUntilCollisionDetected(-speed));
+   			    addSequential(new RotateToAngle(90, false));
+   			    addSequential(new DriveForADistance(61, speed));
+   			    addSequential(new DriveUntilCollisionDetected(speed));
+   			    addSequential(new RotateToAngle(90, false));
+   			    addSequential(new DriveForADistance(63, speed));
+   			    addSequential(new RotateToAngle(-90, false));
+   			    addSequential(new DeliverHighScale());	
       }
    }
     	
@@ -87,7 +87,7 @@ public class DeliverFromRight extends CommandGroup {
     		addSequential(new DriveForADistance(270, speed));;
     		addSequential(new RotateToAngle(90, false));
     		addSequential(new DriveForADistance(98, speed));
-    		addSequential(new RotateToAngle(90, true));
+    		addSequential(new RotateToAngle(-90, true));
 			addSequential(new DeliverSwitch());
     		// One of the modes is to get to R1 so this is subject to change
     		// Should add Mode 8 and Mode 9
@@ -98,13 +98,13 @@ public class DeliverFromRight extends CommandGroup {
     			addSequential(new DriveForADistance(32, speed));
     			addSequential(new RotateToAngle(90, false));
     			addSequential(new ToggleIntakePiston()); 
-    			addSequential(new DriveUntilHitCube()); 
+    			addSequential(new DriveUntilHitCube(speed));
     			addSequential(new ToggleIntakePiston()); 
     			addSequential(new IntakePowerCube());
     			addSequential(new DriveUntilCollisionDetected(-speed));
     			addSequential(new RotateToAngle(-90, false));
     			addSequential(new DriveForADistance(124, speed));
-    			addSequential(new RotateToAngle(90, false));
+    			addSequential(new RotateToAngle(-90, false));
     			addSequential(new DeliverHighScale());
     			// Mode 6
     		}
@@ -114,7 +114,7 @@ public class DeliverFromRight extends CommandGroup {
 			addSequential(new DriveForADistance(32, speed));
 			addSequential(new RotateToAngle(90, false));
 			addSequential(new ToggleIntakePiston()); 
-			addSequential(new DriveUntilHitCube()); 
+			addSequential(new DriveUntilHitCube(speed)); 
 			addSequential(new ToggleIntakePiston()); 
 			addSequential(new IntakePowerCube());
 			addSequential(new DriveUntilCollisionDetected(-speed));
@@ -123,7 +123,7 @@ public class DeliverFromRight extends CommandGroup {
 			addSequential(new DriveUntilCollisionDetected(speed));
 			addSequential(new RotateToAngle(-90, false));
 			addSequential(new DriveForADistance(63, speed));
-			addSequential(new RotateToAngle(-90, false));
+			addSequential(new RotateToAngle(90, false));
 			addSequential(new DeliverHighScale());
    			
  			

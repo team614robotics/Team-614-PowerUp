@@ -9,11 +9,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DriveUntilHitCube extends Command {
+	double speed;
 
-    public DriveUntilHitCube() {
+    public DriveUntilHitCube(double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -25,7 +27,7 @@ public class DriveUntilHitCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.arcadeDrive(SmartDashboard.getNumber("Drivetrain Target Speed", 0), Robot.drivetrain.getPIDRotateRate());
+    	Robot.drivetrain.arcadeDrive(speed, Robot.drivetrain.getPIDRotateRate());
     }
 
     // Make this return true when this Command no longer needs to run execute()

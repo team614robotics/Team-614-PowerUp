@@ -47,19 +47,19 @@ public class DeliverFromCenter extends CommandGroup {
     		if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
     			   addSequential(new RotateToAngle(135, false));
 		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube());
+		           addSequential(new DriveUntilHitCube(speed));
 		           addSequential(new ToggleIntakePiston());
 		           addSequential(new IntakePowerCube());
 		           addSequential(new DriveUntilCollisionDetected(-speed));
 		           addSequential(new RotateToAngle(-90, false));
 		           addSequential(new DriveForADistance(184, speed));
-		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new RotateToAngle(-90, false));
 		           addSequential(new DeliverHighScale());
     		}
     		else if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
     			   addSequential(new RotateToAngle(135, false));
 		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube());
+		           addSequential(new DriveUntilHitCube(speed));
 		           addSequential(new ToggleIntakePiston());
 		           addSequential(new IntakePowerCube());
 		           addSequential(new DriveUntilCollisionDetected(-speed));
@@ -69,7 +69,7 @@ public class DeliverFromCenter extends CommandGroup {
 		           addSequential(new DriveUntilCollisionDetected(speed));
 		           addSequential(new RotateToAngle(-90, false));
 		           addSequential(new DriveForADistance(63, speed));
-		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new RotateToAngle(90, false));
 		           addSequential(new DeliverHighScale());
     		}
     		else{
@@ -86,20 +86,20 @@ public class DeliverFromCenter extends CommandGroup {
     		if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
     			   addSequential(new RotateToAngle(-135, false));
 		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube());
+		           addSequential(new DriveUntilHitCube(speed));
 		           addSequential(new ToggleIntakePiston());
 		           addSequential(new IntakePowerCube());
 		           addSequential(new DriveUntilCollisionDetected(-speed));
 		           addSequential(new RotateToAngle(90, false));
 		           addSequential(new DriveForADistance(184, speed));
-		           addSequential(new RotateToAngle(-90, false));
+		           addSequential(new RotateToAngle(90, false));
 		           addSequential(new DeliverHighScale());
 		           
     		}
     		else if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
     			   addSequential(new RotateToAngle(-135, false));
 		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube());
+		           addSequential(new DriveUntilHitCube(speed));
 		           addSequential(new ToggleIntakePiston());
 		           addSequential(new IntakePowerCube());
 		           addSequential(new DriveUntilCollisionDetected(-speed));
@@ -109,7 +109,7 @@ public class DeliverFromCenter extends CommandGroup {
 		           addSequential(new DriveUntilCollisionDetected(speed));
 		           addSequential(new RotateToAngle(90, false));
 		           addSequential(new DriveForADistance(63, speed));
-		           addSequential(new RotateToAngle(90, false));
+		           addSequential(new RotateToAngle(-90, false));
 		           addSequential(new DeliverHighScale());
     		}
     		else{

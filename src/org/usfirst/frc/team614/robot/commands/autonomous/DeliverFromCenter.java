@@ -43,79 +43,16 @@ public class DeliverFromCenter extends CommandGroup {
     	{
     		addSequential(new RotateToAngle(-45, false));
     		addSequential(new DriveForADistance(distance, speed));
+    		addSequential(new RotateToAngle(-135, false));
     		addSequential(new DeliverSwitch());
-    		if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			   addSequential(new RotateToAngle(135, false));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube(speed));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new IntakePowerCube());
-		           addSequential(new DriveUntilCollisionDetected(-speed));
-		           addSequential(new RotateToAngle(-90, false));
-		           addSequential(new DriveForADistance(184, speed));
-		           addSequential(new RotateToAngle(-90, false));
-		           addSequential(new DeliverHighScale());
-    		}
-    		else if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			   addSequential(new RotateToAngle(135, false));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube(speed));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new IntakePowerCube());
-		           addSequential(new DriveUntilCollisionDetected(-speed));
-		           addSequential(new RotateToAngle(-90, false));
-		           addSequential(new DriveForADistance(121, speed));
-		           addSequential(new RotateToAngle(90, false));
-		           addSequential(new DriveUntilCollisionDetected(speed));
-		           addSequential(new RotateToAngle(-90, false));
-		           addSequential(new DriveForADistance(63, speed));
-		           addSequential(new RotateToAngle(90, false));
-		           addSequential(new DeliverHighScale());
-    		}
-    		else{
-    			addSequential(new DoNothing());
-    			// Backup 1
-    		}
     	}
     	
     	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		addSequential(new RotateToAngle(45, false));
     		addSequential(new DriveForADistance(distance, speed));
+    		addSequential(new RotateToAngle(135, false));
     		addSequential(new DeliverSwitch());
-    		if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			   addSequential(new RotateToAngle(-135, false));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube(speed));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new IntakePowerCube());
-		           addSequential(new DriveUntilCollisionDetected(-speed));
-		           addSequential(new RotateToAngle(90, false));
-		           addSequential(new DriveForADistance(184, speed));
-		           addSequential(new RotateToAngle(90, false));
-		           addSequential(new DeliverHighScale());
-		           
-    		}
-    		else if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", true)) {
-    			   addSequential(new RotateToAngle(-135, false));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new DriveUntilHitCube(speed));
-		           addSequential(new ToggleIntakePiston());
-		           addSequential(new IntakePowerCube());
-		           addSequential(new DriveUntilCollisionDetected(-speed));
-		           addSequential(new RotateToAngle(90, false));
-		           addSequential(new DriveForADistance(121, speed));
-		           addSequential(new RotateToAngle(-90, false));
-		           addSequential(new DriveUntilCollisionDetected(speed));
-		           addSequential(new RotateToAngle(90, false));
-		           addSequential(new DriveForADistance(63, speed));
-		           addSequential(new RotateToAngle(-90, false));
-		           addSequential(new DeliverHighScale());
-    		}
-    		else{
-    			addSequential(new DoNothing());
-    			// Backup 1
-    		}
     	}
     	
     	else

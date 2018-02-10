@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverFromLeft extends CommandGroup {
+public class DeliverFromRight extends CommandGroup {
 
-    public DeliverFromLeft() {
+    public DeliverFromRight() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -38,34 +38,9 @@ public class DeliverFromLeft extends CommandGroup {
     	
     	double speed = 0.8;
     	
-    	if (SmartDashboard.getBoolean("L1", false))
-    	{
-    		addSequential(new DriveForADistance(168, speed));
-			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverSwitch());
-			
-            //Mode 1
-			
-			/*        (----------------)         *
-			 *        (-----Scale------)         *
-			 *^                                  * 
-			 *-|      [-----Switch-----}         *
-			 * |      [----------------]         *
-			 * ()                                *
-			 * ----------------------------------*
-			 * | Move
-			 * - Rotate
-			 * = Move
-			 * ^ Shoot
-			 *() Robot
-			 * 
-			 * Drives to mid-switch then hit the wall and shoot
-			 */
-    	}
-    	else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
+    	if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
     		addSequential(new DriveForADistance(324, speed));
-			addSequential(new RotateToAngle(-90, false));
+			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveUntilCollisionDetected(speed));
 			addSequential(new DeliverSwitch());
 			
@@ -87,12 +62,38 @@ public class DeliverFromLeft extends CommandGroup {
 			 * Drives to mid-field then hit the wall and shoot
 			 */
 			
-		}
-    	else if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false) && SmartDashboard.getBoolean("Go For Opposite Side", false)) {
-    		addSequential(new DriveForADistance(261.47, speed));
+		}   	
+    	else if (SmartDashboard.getBoolean("R1", false))
+    	{
+    		addSequential(new DriveForADistance(168, speed));
 			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveUntilCollisionDetected(speed));
+			addSequential(new DeliverSwitch());
+			
+            //Mode 1
+			
+			/*        (----------------)         *
+			 *        (-----Scale------)         *
+			 *^                                  * 
+			 *-|      [-----Switch-----}         *
+			 * |      [----------------]         *
+			 * ()                                *
+			 * ----------------------------------*
+			 * | Move
+			 * - Rotate
+			 * = Move
+			 * ^ Shoot
+			 *() Robot
+			 * 
+			 * Drives to mid-switch then hit the wall and shoot
+			 */
+    	}
+    	
+    	else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false) && SmartDashboard.getBoolean("Go For Opposite Side", false)) {
+    		addSequential(new DriveForADistance(261.47, speed));
 			addSequential(new RotateToAngle(-90, false));
+			addSequential(new DriveUntilCollisionDetected(speed));
+			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveForADistance(65.47, speed));
 			addSequential(new DeliverSwitch());
 			

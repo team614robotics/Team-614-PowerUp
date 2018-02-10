@@ -40,103 +40,82 @@ public class DeliverFromRight extends CommandGroup {
     	
     	if (SmartDashboard.getBoolean("R1", false))
     	{
-
-			addSequential(new DriveForADistance(168, speed));
-			addSequential(new RotateToAngle(-90, true));
-			addSequential(new DeliverSwitch());
-    		
-           if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false))
-    		{
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveForADistance(32, speed));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new ToggleIntakePiston()); 
-    			addSequential(new DriveUntilHitCube(speed)); 
-    			addSequential(new ToggleIntakePiston()); 
-    			addSequential(new IntakePowerCube());
-    			addSequential(new DriveUntilCollisionDetected(-speed));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DriveForADistance(124, speed));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new DeliverHighScale());
-    		           
-    		}
-            else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
-        	    addSequential(new RotateToAngle(90, false));
-   			    addSequential(new DriveForADistance(32, speed));
-   			    addSequential(new RotateToAngle(-90, false));
-   			    addSequential(new ToggleIntakePiston()); 
-   			    addSequential(new DriveUntilHitCube(speed)); 
-   			    addSequential(new ToggleIntakePiston()); 
-   			    addSequential(new IntakePowerCube());
-   			    addSequential(new DriveUntilCollisionDetected(-speed));
-   			    addSequential(new RotateToAngle(90, false));
-   			    addSequential(new DriveForADistance(61, speed));
-   			    addSequential(new DriveUntilCollisionDetected(speed));
-   			    addSequential(new RotateToAngle(90, false));
-   			    addSequential(new DriveForADistance(63, speed));
-   			    addSequential(new RotateToAngle(-90, false));
-   			    addSequential(new DeliverHighScale());	
-      }
-   }
-    	
-    	else if (SmartDashboard.getBoolean("L1", false) && SmartDashboard.getBoolean("Go For The Opposite Side", false))
-    	{
-    		addSequential(new DriveForADistance(70, speed));
-    		addSequential(new RotateToAngle(-90, false));
-    		addSequential(new DriveForADistance(270, speed));;
-    		addSequential(new RotateToAngle(90, false));
-    		addSequential(new DriveForADistance(98, speed));
-    		addSequential(new RotateToAngle(-90, true));
-			addSequential(new DeliverSwitch());
-    		// One of the modes is to get to R1 so this is subject to change
-    		// Should add Mode 8 and Mode 9
-			if (SmartDashboard.getBoolean("L2", false)
-    				&& SmartDashboard.getBoolean("Go For Scale", false))
-    		{
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveForADistance(32, speed));
-    			addSequential(new RotateToAngle(90, false));
-    			addSequential(new ToggleIntakePiston()); 
-    			addSequential(new DriveUntilHitCube(speed));
-    			addSequential(new ToggleIntakePiston()); 
-    			addSequential(new IntakePowerCube());
-    			addSequential(new DriveUntilCollisionDetected(-speed));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DriveForADistance(124, speed));
-    			addSequential(new RotateToAngle(-90, false));
-    			addSequential(new DeliverHighScale());
-    			// Mode 6
-    		}
-   		   else if (SmartDashboard.getBoolean("R2", false)
-    				&& SmartDashboard.getBoolean("Go For Scale", false)) {
-   			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveForADistance(32, speed));
+    		addSequential(new DriveForADistance(168, speed));
 			addSequential(new RotateToAngle(90, false));
-			addSequential(new ToggleIntakePiston()); 
-			addSequential(new DriveUntilHitCube(speed)); 
-			addSequential(new ToggleIntakePiston()); 
-			addSequential(new IntakePowerCube());
-			addSequential(new DriveUntilCollisionDetected(-speed));
-			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveForADistance(61, speed));
 			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveForADistance(63, speed));
-			addSequential(new RotateToAngle(90, false));
-			addSequential(new DeliverHighScale());
-   			
- 			
-    		}
-    		else {
-    			addSequential(new DoNothing());
-    			//Backup 3
-    		}
+			addSequential(new DeliverSwitch());
+			
+            //Mode 1
+			
+			/*        (----------------)         *
+			 *        (-----Scale------)         *
+			 *^                                  * 
+			 *-|      [-----Switch-----}         *
+			 * |      [----------------]         *
+			 * ()                                *
+			 * ----------------------------------*
+			 * | Move
+			 * - Rotate
+			 * = Move
+			 * ^ Shoot
+			 *() Robot
+			 * 
+			 * Drives to mid-switch then hit the wall and shoot
+			 */
     	}
-    	else
-    	{
+    	else if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
+    		addSequential(new DriveForADistance(324, speed));
+			addSequential(new RotateToAngle(90, false));
+			addSequential(new DriveUntilCollisionDetected(speed));
+			addSequential(new DeliverSwitch());
+			
+			//Mode 2
+			
+			/*^       (----------------)         *
+			 *-|      (-----Scale------)         *
+			 * |                                 * 
+			 * |      [-----Switch-----}         *
+			 * |      [----------------]         *
+			 * ()                                *
+			 * ----------------------------------*
+			 * | Move
+			 * - Rotate
+			 * = Move
+			 * ^ Shoot
+			 *() Robot
+			 * 
+			 * Drives to mid-field then hit the wall and shoot
+			 */
+			
+		}
+    	else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false) && SmartDashboard.getBoolean("Go For Opposite Side", false)) {
+    		addSequential(new DriveForADistance(261.47, speed));
+			addSequential(new RotateToAngle(-90, false));
+			addSequential(new DriveUntilCollisionDetected(speed));
+			addSequential(new RotateToAngle(90, false));
+			addSequential(new DriveForADistance(65.47, speed));
+			addSequential(new DeliverSwitch());
+			
+			//Mode 2
+			                                    
+			/*                                  ^
+			 *        (-----Scale------)        |*
+			 * |-================================* 
+			 * |      [-----Switch-----}         *
+			 * |      [----------------]         *
+			 * ()                                *
+			 * ----------------------------------*
+			 * 
+			 * | Move
+			 * - Rotate
+			 * = Move
+			 * ^ Shoot
+			 * () Robot
+			 */
+			
+		}
+    	else{
     		addSequential(new DrivePastBaseline());
-    		// Again subject to change
     	}
     }
 }

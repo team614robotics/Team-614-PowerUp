@@ -14,6 +14,7 @@ public class RevAcceleratorHigh extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
+    	setTimeout(2);
     }
 
     // Called just before this Command runs the first time
@@ -30,7 +31,7 @@ public class RevAcceleratorHigh extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

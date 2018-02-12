@@ -16,9 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverFromRight extends CommandGroup {
+public class DeliverFromRightScale extends CommandGroup {
 
-    public DeliverFromRight() {
+    public DeliverFromRightScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

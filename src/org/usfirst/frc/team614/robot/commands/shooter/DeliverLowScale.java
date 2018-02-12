@@ -1,6 +1,8 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
+import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -29,8 +31,10 @@ public class DeliverLowScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
+    	addParallel(new ToggleLoaderPiston());
     	addParallel(new RevShooterHigh());
     	addParallel(new RevAcceleratorLow());
+    	addParallel(new ToggleLoaderPiston());
     }
 
 	

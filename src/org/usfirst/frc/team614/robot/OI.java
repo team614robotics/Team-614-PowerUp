@@ -48,10 +48,10 @@ public class OI {
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 
 	private static final Button revIntake = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
-	private static final Button revOutake = new JoystickButton(driverGamepad, Gamepad.button_Y);
-	private static final Button revShooter = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
+	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_Y);
+	private static final Button revShooter = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
 	private static final Button toggleIntakePiston = new JoystickButton(driverGamepad, Gamepad.button_A);
-	private static final Button revAccelerator = new JoystickButton(driverGamepad, Gamepad.button_B);
+	private static final Button revAccelerator = new JoystickButton(operatorGamepad, Gamepad.button_B);
 	private static final Button toggleLoaderPiston = new JoystickButton(driverGamepad, Gamepad.button_X);
 
 	public OI() {

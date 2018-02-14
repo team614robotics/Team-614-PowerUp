@@ -86,7 +86,7 @@ public class Shooter extends Subsystem {
 		shooterLeft.config_kD(0, SmartDashboard.getNumber("leftD", 0), RobotMap.kTimeoutMs);
 		shooterLeft.config_kF(0, SmartDashboard.getNumber("leftF", 0), RobotMap.kTimeoutMs);
 
-		shooterLeft.set(ControlMode.Velocity, SmartDashboard.getNumber("Shooter Setpoint Left", 0));
+		shooterLeft.set(ControlMode.Velocity, -SmartDashboard.getNumber("Shooter Setpoint Left", 0));
 	}
 
 	public void stop() {
@@ -96,6 +96,6 @@ public class Shooter extends Subsystem {
 	
 	public void setAccelerator(double speed) {
 		acceleratorLeft.set(speed);
-		acceleratorRight.set(-speed);
+		acceleratorRight.set(speed);
 	}
 }

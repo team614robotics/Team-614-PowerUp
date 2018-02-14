@@ -24,8 +24,8 @@ public class RobotMap {
 	public static final int shooterLeft = 2;
 	public static final int shooterRight = 3;
 	
-	public static final int acceleratorLeft = 4; // yellow
-	public static final int acceleratorRight = 5;
+	public static final int acceleratorLeft = 6; // yellow
+	public static final int acceleratorRight = 7;
 	
 	// TALONSRXMOTORS CONSTANTS
 	
@@ -38,8 +38,8 @@ public class RobotMap {
 	
 	// PWM
 	
-	public static final int intakeLeft = 6; // white
-	public static final int intakeRight = 7;
+	public static final int intakeLeft = 4; // white
+	public static final int intakeRight = 5;
 	
 	public static final int leftMotorA = 0; // blue
 	public static final int leftMotorB = 1;
@@ -80,11 +80,11 @@ public class RobotMap {
 	
 	public static final int intakeSolenoidA = 4;
 	public static final int intakeSolenoidB = 5;
-	public static final int loaderSolenoidA = 6;
-	public static final int loaderSolenoidB = 7;
+	public static final int loaderSolenoidA = 1;
+	public static final int loaderSolenoidB = 2;
 //	public static final int loaderSolenoidC = 4;
 //	public static final int loaderSolenoidD = 5;
-	public static final int ringLightSolenoid = 8;
+	public static final int ringLightSolenoid = 0;
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;

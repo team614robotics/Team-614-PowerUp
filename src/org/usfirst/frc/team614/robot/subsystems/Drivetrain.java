@@ -32,13 +32,16 @@ public class Drivetrain extends Subsystem implements PIDOutput {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	public VictorSP leftMotorA = new VictorSP(RobotMap.leftMotorA);
-	public VictorSP rightMotorA = new VictorSP(RobotMap.leftMotorB);
+	public VictorSP leftMotorB = new VictorSP(RobotMap.leftMotorB);
+	public VictorSP rightMotorA = new VictorSP(RobotMap.rightMotorA);
+	public VictorSP rightMotorB = new VictorSP(RobotMap.rightMotorB);
+	
 	static final double turnTolerance = 0.1f;
 	
 	public Drivetrain()
 	{
 		usingTurnPID = false;
-		drivetrain = new RobotDrive(leftMotorA, rightMotorA);
+		drivetrain = new RobotDrive(leftMotorA, leftMotorB, rightMotorA, rightMotorB);
 		leftEncoder = new Encoder(RobotMap.leftMotorEncoderA, RobotMap.leftMotorEncoderB, false, Encoder.EncodingType.k4X);
 		rightEncoder = new Encoder(RobotMap.rightMotorEncoderA, RobotMap.rightMotorEncoderB, false, Encoder.EncodingType.k4X);
 	

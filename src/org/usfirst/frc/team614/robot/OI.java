@@ -11,7 +11,7 @@ import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
-/** 
+/**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
@@ -53,7 +53,7 @@ public class OI {
 	private static final Button toggleIntakePiston = new JoystickButton(driverGamepad, Gamepad.button_A);
 	private static final Button revAccelerator = new JoystickButton(driverGamepad, Gamepad.button_B);
 	private static final Button toggleLoaderPiston = new JoystickButton(driverGamepad, Gamepad.button_X);
-	
+
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
 		revOutake.whileHeld(new RevOutake());

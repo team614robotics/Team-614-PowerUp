@@ -19,22 +19,21 @@ public class Pneumatics extends Subsystem {
 
 	public Compressor compressor;
 	public DoubleSolenoid loaderPiston;
-	public DoubleSolenoid intakePistonA;
-	public DoubleSolenoid intakePistonB;
+	public DoubleSolenoid intakePiston;
+//	public DoubleSolenoid intakePistonB;
 	public Solenoid intakeRingLight;
 	
 
 	public Pneumatics()
 	{
 		compressor = new Compressor(RobotMap.compressor);
-		intakePistonA = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
-		intakePistonA.set(RobotMap.PistonOut);
-		intakePistonB = new DoubleSolenoid(RobotMap.intakeSolenoidC, RobotMap.intakeSolenoidD);
-		intakePistonB.set(RobotMap.PistonOut);
+		intakePiston = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
+		intakePiston.set(RobotMap.PistonIn);
+//		intakePistonB = new DoubleSolenoid(RobotMap.intakeSolenoidC, RobotMap.intakeSolenoidD);
+//		intakePistonB.set(RobotMap.PistonOut);
 		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
 		loaderPiston.set(RobotMap.PistonIn);
 		intakeRingLight = new Solenoid(RobotMap.ringLightSolenoid);
-		
 	}
 
     public void initDefaultCommand() {
@@ -61,22 +60,22 @@ public class Pneumatics extends Subsystem {
     }
 	
     public void extendIntake() {
-		intakePistonA.set(RobotMap.PistonOut);
-		intakePistonB.set(RobotMap.PistonOut);
+		intakePiston.set(RobotMap.PistonOut);
+//		intakePistonB.set(RobotMap.PistonOut);
 	}
 
 	public void retractIntake() {
-		intakePistonA.set(RobotMap.PistonIn);
-		intakePistonB.set(RobotMap.PistonIn);
+		intakePiston.set(RobotMap.PistonIn);
+//		intakePistonB.set(RobotMap.PistonIn);
 	}
 
 	public DoubleSolenoid.Value getIntakeState() {
-		return intakePistonA.get();
+		return intakePiston.get();
 	}
 
 	public void setIntakeState(DoubleSolenoid.Value state) {
-		intakePistonA.set(state);
-		intakePistonB.set(state);
+		intakePiston.set(state);
+//		intakePistonB.set(state);
 	}
 }
 

@@ -70,21 +70,21 @@ public class RobotMap {
 
 	// DIO
 	
-	public static final int ringLightSwitchC = 9;
-	public static final int ringLightSwitchB = 8;
 	public static final int ringLightSwitchA = 7;
+	public static final int ringLightSwitchB = 8;
+	public static final int ringLightSwitchC = 9;
 	
 	//PCM
 	
 	public static final int compressor = 0;
 	
-	public static final int intakeSolenoidA = 0;
-	public static final int intakeSolenoidB = 1;
-	public static final int loaderSolenoidA = 2;
-	public static final int loaderSolenoidB = 3;
-	public static final int loaderSolenoidC = 4;
-	public static final int loaderSolenoidD = 5;
-	public static final int ringLightSolenoid = 6;
+	public static final int intakeSolenoidA = 4;
+	public static final int intakeSolenoidB = 5;
+	public static final int loaderSolenoidA = 6;
+	public static final int loaderSolenoidB = 7;
+//	public static final int loaderSolenoidC = 4;
+//	public static final int loaderSolenoidD = 5;
+	public static final int ringLightSolenoid = 8;
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;

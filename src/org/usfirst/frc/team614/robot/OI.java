@@ -8,6 +8,8 @@ import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScale;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
@@ -47,19 +49,23 @@ public class OI {
 	public static final Gamepad driverGamepad = new Gamepad(0);
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 
-	private static final Button revIntake = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
-	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_Y);
-	private static final Button revShooter = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
-	private static final Button toggleIntakePiston = new JoystickButton(driverGamepad, Gamepad.button_A);
-	private static final Button revAccelerator = new JoystickButton(operatorGamepad, Gamepad.button_B);
-	private static final Button toggleLoaderPiston = new JoystickButton(driverGamepad, Gamepad.button_X);
+	private static final Button revIntake = new JoystickButton(operatorGamepad, Gamepad.button_A);
+	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_B);
+	
+	private static final Button toggleIntakePiston = new JoystickButton(operatorGamepad, Gamepad.button_X);
+	private static final Button toggleLoaderPiston = new JoystickButton(operatorGamepad, Gamepad.button_Y);
+	
+	private static final Button deliverScale = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
+	private static final Button deliverSwitch = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
 		revOutake.whileHeld(new RevOutake());
-		revShooter.whileHeld(new RevShooter());
-		revAccelerator.whileHeld(new RevAcceleratorLow());
+		
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
 		toggleLoaderPiston.whenPressed(new ToggleLoaderPiston());
+		
+		deliverScale.whileHeld(new DeliverScale());
+		deliverSwitch.whileHeld(new DeliverSwitch());
 	}
 }

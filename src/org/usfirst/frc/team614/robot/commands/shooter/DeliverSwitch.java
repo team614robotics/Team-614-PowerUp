@@ -31,10 +31,8 @@ public class DeliverSwitch extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		addParallel(new ToggleLoaderPiston());
 		addParallel(new RevShooterLow());
 		addParallel(new RevAcceleratorHigh());
-		addParallel(new ToggleLoaderPiston());
 	}
 
 }

@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  * 
  *This is for shooting when the scale is already occupied
- *by another team. (Our side of the scale is higher than their side)
+ *by our alliance. (Our side of the scale is lower than their side)
  *
  */
-public class DeliverHighScale extends CommandGroup {
+public class DeliverScale extends CommandGroup {
 
-    public DeliverHighScale() {
+    public DeliverScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -31,9 +31,10 @@ public class DeliverHighScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addParallel(new ToggleLoaderPiston());
     	addParallel(new RevShooterHigh());
-    	addParallel(new RevAcceleratorHigh());
-    	addParallel(new ToggleLoaderPiston());
+    	addParallel(new RevAcceleratorLow());
     }
-}
+
+	
+		// TODO Auto-generated method stub
+}    

@@ -16,7 +16,6 @@ public class RevShooterHigh extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
-		setTimeout(SmartDashboard.getNumber("Shooter High Timeout", 0));
 	}
 
 	protected void initialize() {
@@ -25,12 +24,12 @@ public class RevShooterHigh extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter High RPM", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter High Setpoint", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true

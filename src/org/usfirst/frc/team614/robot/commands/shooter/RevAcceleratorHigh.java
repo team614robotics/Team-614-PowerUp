@@ -10,38 +10,35 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class RevAcceleratorHigh extends Command {
 
-    public RevAcceleratorHigh() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.shooter);
-    	setTimeout(2);
-    }
+	public RevAcceleratorHigh() {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(Robot.shooter);
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	Robot.shooter.setAccelerator(0);
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Robot.shooter.setAccelerator(0);
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	if (this.timeSinceInitialized() > SmartDashboard.getNumber("High Accelerator Intialize Time", 0)) {    		
-    	    Robot.shooter.setAccelerator(SmartDashboard.getNumber("High Accelerator Speed", 0));
-    	}
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		Robot.shooter.setAccelerator(SmartDashboard.getNumber("High Accelerator Speed", 0));
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return isTimedOut();
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		return false;
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.shooter.setAccelerator(0);
-    }
+	// Called once after isFinished returns true
+	protected void end() {
+		Robot.shooter.setAccelerator(0);
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	Robot.shooter.setAccelerator(0);
-    }
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		Robot.shooter.setAccelerator(0);
+	}
 }

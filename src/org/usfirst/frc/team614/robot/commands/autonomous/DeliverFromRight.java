@@ -6,7 +6,6 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverHighScale;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
@@ -40,9 +39,11 @@ public class DeliverFromRight extends CommandGroup {
     	
     	if (SmartDashboard.getBoolean("R1", false))
     	{
-    		addSequential(new DriveForADistance(168, speed));
+    		addSequential(new DriveForADistance(261.47, speed));
+			addSequential(new RotateToAngle(-90, false));
+			
 			addSequential(new RotateToAngle(90, false));
-			addSequential(new DriveUntilCollisionDetected(speed));
+			addSequential(new DriveForADistance(65.47, speed));
 			addSequential(new DeliverSwitch());
 			
             //Mode 1

@@ -82,9 +82,8 @@ public class RobotMap {
 	public static final int intakeSolenoidB = 5;
 	public static final int loaderSolenoidA = 1;
 	public static final int loaderSolenoidB = 2;
-//	public static final int loaderSolenoidC = 4;
-//	public static final int loaderSolenoidD = 5;
 	public static final int ringLightSolenoid = 0;
+	
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;

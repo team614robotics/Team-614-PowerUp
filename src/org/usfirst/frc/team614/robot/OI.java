@@ -7,6 +7,7 @@ import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRight;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
@@ -65,6 +66,10 @@ public class OI {
 	
 	private static final Button deliverScale = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
 	private static final Button deliverSwitch = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
+	
+
+	private static final Button deliverScales = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
+	private static final Button deliverSwitchs = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -75,8 +80,8 @@ public class OI {
 		
 		deliverScale.whileHeld(new RevShooterHigh());
 		deliverSwitch.whileHeld(new RevShooterLow());
-//		
-//		deliverScale.whileHeld(new DriveForADistance(40, 0.5));
-//		deliverSwitch.whileHeld(new RotateToAngle(90, false));
+		
+		deliverScales.whenPressed(new DriveUntilCollisionDetected(0.2));
+		deliverSwitchs.whenPressed(new RotateToAngle(90, false));
 	}
 }

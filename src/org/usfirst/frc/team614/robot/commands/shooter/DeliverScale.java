@@ -31,8 +31,9 @@ public class DeliverScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addParallel(new RevShooterHigh());
-    	addParallel(new RevAcceleratorLow());
+    	addParallel(new RevShooterUntilTimeoutHigh());
+    	addParallel(new RevAcceleratorUntilTimeoutLow());
+    	addParallel(new RevOutakeUntilTimeout());
     }
 
 	

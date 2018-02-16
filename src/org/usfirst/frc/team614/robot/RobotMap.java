@@ -56,7 +56,7 @@ public class RobotMap {
 	// DRIVETRAIN CONSTANTS
 	
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
-	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 250.0;
+	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 220.0;
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	public static final double kCollisionThreshold_DeltaG = 0.1f;
 	public static final double drivetrainRotationP = 0.1;

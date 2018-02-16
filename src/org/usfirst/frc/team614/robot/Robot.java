@@ -74,7 +74,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Shooter Low RPM", 0);
 		SmartDashboard.putNumber("Shooter High RPM", 0);
 		SmartDashboard.putNumber("Shooter RPM", 0);
-		SmartDashboard.putNumber("Intake Speed", 0);
+		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("High Accelerator Speed", 0);
 		SmartDashboard.putNumber("Low Accelerator Speed", 0);
 		SmartDashboard.putNumber("High Accelerator Intialize Time", 0);
@@ -110,8 +110,8 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 		
-		SmartDashboard.putNumber("Shooter Setpoint Left", 0);
-		SmartDashboard.putNumber("Shooter Setpoint Right", 0);
+		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
+		SmartDashboard.putNumber("Shooter Low Setpoint", 6000);
 	}
 
 	/**

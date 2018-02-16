@@ -12,10 +12,14 @@ import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScale;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterHigh;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterLow;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -69,10 +73,10 @@ public class OI {
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
 		toggleLoaderPiston.whenPressed(new ToggleLoaderPiston());
 		
-		deliverScale.whileHeld(new DeliverScaleAuto());
-		deliverSwitch.whileHeld(new DeliverSwitchAuto());
-		
-		deliverScale.whileHeld(new DriveForADistance(40, 0.5));
-		deliverSwitch.whileHeld(new RotateToAngle(90, false));
+		deliverScale.whileHeld(new RevShooterHigh());
+		deliverSwitch.whileHeld(new RevShooterLow());
+//		
+//		deliverScale.whileHeld(new DriveForADistance(40, 0.5));
+//		deliverSwitch.whileHeld(new RotateToAngle(90, false));
 	}
 }

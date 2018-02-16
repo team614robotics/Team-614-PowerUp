@@ -35,7 +35,7 @@ public class DriveForADistance extends Command
 
         Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
 //        Robot.drivetrain.getDistanceController().setSetpoint(SmartDashboard.getNumber("Drivetrain Target Distance", 0));
-        Robot.drivetrain.getDistanceController().setSetpoint(distance);
+        Robot.drivetrain.getDistanceController().setSetpoint(distance / 1.18);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

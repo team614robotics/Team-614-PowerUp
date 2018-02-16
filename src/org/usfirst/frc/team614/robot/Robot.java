@@ -202,8 +202,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance",
 				drivetrain.leftEncoder.getDistance());
-		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
-				drivetrain.rightEncoder.getDistance());
+//		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
+//				drivetrain.rightEncoder.getDistance());
 	}
 
 	/**

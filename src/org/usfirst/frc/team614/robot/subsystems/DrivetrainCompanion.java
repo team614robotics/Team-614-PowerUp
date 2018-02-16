@@ -46,7 +46,7 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 
 		distanceController = new PIDController(RobotMap.drivetrainDistanceP,
 				RobotMap.drivetrainDistanceI, RobotMap.drivetrainDistanceD,
-				RobotMap.drivetrainDistanceF, Robot.drivetrain.rightEncoder,
+				RobotMap.drivetrainDistanceF, Robot.drivetrain.leftEncoder,
 				this);
 		distanceController.setOutputRange(-1.0, 1.0);
 		distanceController.setAbsoluteTolerance(distanceTolerance);

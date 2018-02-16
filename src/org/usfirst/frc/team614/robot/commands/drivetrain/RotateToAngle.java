@@ -55,8 +55,8 @@ public class RotateToAngle extends Command {
 		if (this.timeSinceInitialized() > .5) {
 			// PID stuff is done, robot has been at target angle for a short
 			// time
-			if (Robot.drivetrain.rightEncoder.getRate() < 10.0
-					&& Robot.drivetrain.rightEncoder.getRate() > -10.0) {
+			if (Robot.drivetrain.leftEncoder.getRate() < 10.0
+					&& Robot.drivetrain.leftEncoder.getRate() > -10.0) {
 				return true;
 			}
 		}

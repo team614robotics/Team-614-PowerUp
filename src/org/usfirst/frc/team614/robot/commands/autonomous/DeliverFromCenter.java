@@ -41,20 +41,20 @@ public class DeliverFromCenter extends CommandGroup {
     	if (SmartDashboard.getBoolean("L1", false))
     	{
     		addSequential(new RotateToAngle(-45, false));
-    		addSequential(new DriveForADistance(distance, speed));
+    		addSequential(new DriveForADistance(157, speed));
     		addSequential(new DriveForADistance(5, -speed));
     		addSequential(new RotateToAngle(-135, false));
-    		addSequential(new DriveForADistance(3.53553390593, -speed));
+    		addSequential(new DriveUntilCollisionDetected(-speed));
     		addSequential(new DeliverSwitch());
     	}
     	
     	else if (SmartDashboard.getBoolean("R1", false))
     	{
     		addSequential(new RotateToAngle(45, false));
-    		addSequential(new DriveForADistance(distance, speed));
+    		addSequential(new DriveForADistance(157, speed));
     		addSequential(new DriveForADistance(5, -speed));
     		addSequential(new RotateToAngle(135, false));
-    		addSequential(new DriveForADistance(3.53553390593, -speed));
+    		addSequential(new DriveUntilCollisionDetected(-speed));
     		addSequential(new DeliverSwitch());
     	}
     	

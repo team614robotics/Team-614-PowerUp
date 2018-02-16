@@ -2,6 +2,7 @@ package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetectedZ;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
@@ -94,9 +95,9 @@ public class DeliverFromRight extends CommandGroup {
 			addSequential(new DriveUntilCollisionDetected(speed));
 			addSequential(new DriveForADistance(-5, speed));
 			addSequential(new RotateToAngle(90, false));
-			addSequential(new DriveForADistance(65.47, speed));
+			addSequential(new DriveUntilCollisionDetectedZ(speed));
 			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveForADistance(5, speed));
+			addSequential(new DriveUntilCollisionDetected(speed));
 			addSequential(new DeliverScale());
 			
 			//Mode 2

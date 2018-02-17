@@ -83,7 +83,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);
 		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
-		
+		SmartDashboard.putNumber("Shooter High Setpoint", 0);
+		SmartDashboard.putNumber("Shooter Low Setpoint", 0);
 		SmartDashboard.putNumber("Intake Piston Delay", 0);
 		
 		// Use Values for Testing

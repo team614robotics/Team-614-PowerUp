@@ -25,11 +25,11 @@ public class CollisionDetected extends Command {
     protected void initialize() {
     	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkX) > RobotMap.kCollisionThreshold_DeltaG ) ||
                 ( Math.abs(Robot.drivetrainCompanion.currentJerkY) > RobotMap.kCollisionThreshold_DeltaG ) ) {
-              setTimeout(2147483647);
-              SmartDashboard.putBoolean("Accelerometer", false);
+              setTimeout(1);
+              SmartDashboard.putBoolean("Accelerometer", true);
            }
     	else {
-    		SmartDashboard.putBoolean("Accelerometer", true);
+    		SmartDashboard.putBoolean("Accelerometer", false);
     		setTimeout(0);
     	}
     }

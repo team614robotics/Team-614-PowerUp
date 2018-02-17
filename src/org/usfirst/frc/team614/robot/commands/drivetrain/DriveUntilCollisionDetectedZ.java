@@ -28,17 +28,22 @@ public class DriveUntilCollisionDetectedZ extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.arcadeDrive(speed, Robot.drivetrain.getPIDRotateRate());
+    	Robot.drivetrain.arcadeDrive(speed, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkZ) > RobotMap.kCollisionThreshold_DeltaG )) {
+    		if(this.timeSinceInitialized() > .2) {
               return true;
-           }
-    	else {
-    		  return false;
-    	   }
+    		}
+    		else{
+        		return false;	
+        	}
+    	}
+    	else   {
+		   return false;
+    	}
      }
 
     // Called once after isFinished returns true

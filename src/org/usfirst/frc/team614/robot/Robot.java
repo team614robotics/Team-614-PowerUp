@@ -70,6 +70,8 @@ public class Robot extends IterativeRobot {
 		
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate",
+				0);
 
 		SmartDashboard.putNumber("Shooter Low RPM", 0);
 		SmartDashboard.putNumber("Shooter High RPM", 0);
@@ -203,6 +205,8 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance",
 				drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate",
+				drivetrain.leftEncoder.getRate());
 //		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
 //				drivetrain.rightEncoder.getDistance());
 	}

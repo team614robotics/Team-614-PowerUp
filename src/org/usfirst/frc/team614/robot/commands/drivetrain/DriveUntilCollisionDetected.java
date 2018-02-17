@@ -35,7 +35,12 @@ public class DriveUntilCollisionDetected extends Command {
     protected boolean isFinished() {
     	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkX) > RobotMap.kCollisionThreshold_DeltaG ) ||
                 ( Math.abs(Robot.drivetrainCompanion.currentJerkY) > RobotMap.kCollisionThreshold_DeltaG ) ) {
-              return true;
+    		if(this.timeSinceInitialized() > .2) {
+                return true;
+      		}
+      		else{
+          		return false;	
+          	}
            }
     	else {
     		  return false;

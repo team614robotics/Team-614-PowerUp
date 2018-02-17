@@ -16,12 +16,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Shooter extends Subsystem {
 	public TalonSRX shooterLeft = new TalonSRX(RobotMap.shooterLeft);
 	public TalonSRX shooterRight = new TalonSRX(RobotMap.shooterRight);
-	
+
 	public VictorSP acceleratorLeft = new VictorSP(RobotMap.acceleratorLeft);
 	public VictorSP acceleratorRight = new VictorSP(RobotMap.acceleratorRight);
 
 	public void initDefaultCommand() {
-		
 		shooterRight.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
 		shooterRight.setSensorPhase(true);
 
@@ -29,14 +28,14 @@ public class Shooter extends Subsystem {
 		shooterRight.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
 		shooterRight.configPeakOutputForward(1, RobotMap.kTimeoutMs);
 		shooterRight.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
-		
-		shooterRight.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
-		shooterRight.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
-		shooterRight.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
-		shooterRight.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
-		
-//		shooterRight.set(ControlMode.Velocity, 0);
-		
+
+		shooterRight.config_kP(0, RobotMap.shooterRightP, RobotMap.kTimeoutMs);
+		shooterRight.config_kI(0, RobotMap.shooterRightI, RobotMap.kTimeoutMs);
+		shooterRight.config_kD(0, RobotMap.shooterRightD, RobotMap.kTimeoutMs);
+		shooterRight.config_kF(0, RobotMap.shooterRightF, RobotMap.kTimeoutMs);
+
+		shooterRight.set(ControlMode.Velocity, 0);
+
 		shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, RobotMap.kTimeoutMs);
 		shooterLeft.setSensorPhase(true);
 
@@ -44,17 +43,17 @@ public class Shooter extends Subsystem {
 		shooterLeft.configNominalOutputReverse(0, RobotMap.kTimeoutMs);
 		shooterLeft.configPeakOutputForward(1, RobotMap.kTimeoutMs);
 		shooterLeft.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
-		
-		shooterLeft.config_kP(0, RobotMap.talonP, RobotMap.kTimeoutMs);
-		shooterLeft.config_kI(0, RobotMap.talonI, RobotMap.kTimeoutMs);
-		shooterLeft.config_kD(0, RobotMap.talonD, RobotMap.kTimeoutMs);
-		shooterLeft.config_kF(0, RobotMap.talonF, RobotMap.kTimeoutMs);
-		
-//		shooterLeft.set(ControlMode.Velocity, 0);
+
+		shooterLeft.config_kP(0, RobotMap.shooterLeftP, RobotMap.kTimeoutMs);
+		shooterLeft.config_kI(0, RobotMap.shooterLeftI, RobotMap.kTimeoutMs);
+		shooterLeft.config_kD(0, RobotMap.shooterLeftD, RobotMap.kTimeoutMs);
+		shooterLeft.config_kF(0, RobotMap.shooterLeftF, RobotMap.kTimeoutMs);
+
+		shooterLeft.set(ControlMode.Velocity, 0);
 	}
 
 	public void reset() {
-		
+
 	}
 
 	public double getSpeed() {
@@ -64,7 +63,7 @@ public class Shooter extends Subsystem {
 	public double getErrorLeft() {
 		return shooterLeft.getSelectedSensorVelocity(0) - shooterLeft.getClosedLoopTarget(0);
 	}
-	
+
 	public double getErrorRight() {
 		return shooterRight.getSelectedSensorVelocity(0) - shooterRight.getClosedLoopTarget(0);
 	}
@@ -74,19 +73,13 @@ public class Shooter extends Subsystem {
 	}
 
 	public void setShooter(double speed) {
-		shooterRight.config_kP(0, SmartDashboard.getNumber("rightP", 0), RobotMap.kTimeoutMs);
-		shooterRight.config_kI(0, SmartDashboard.getNumber("rightI", 0), RobotMap.kTimeoutMs);
-		shooterRight.config_kD(0, SmartDashboard.getNumber("rightD", 0), RobotMap.kTimeoutMs);
-		shooterRight.config_kF(0, SmartDashboard.getNumber("rightF", 0), RobotMap.kTimeoutMs);
-		
 		shooterRight.set(ControlMode.Velocity, speed);
-
-		shooterLeft.config_kP(0, SmartDashboard.getNumber("leftP", 0), RobotMap.kTimeoutMs);
-		shooterLeft.config_kI(0, SmartDashboard.getNumber("leftI", 0), RobotMap.kTimeoutMs);
-		shooterLeft.config_kD(0, SmartDashboard.getNumber("leftD", 0), RobotMap.kTimeoutMs);
-		shooterLeft.config_kF(0, SmartDashboard.getNumber("leftF", 0), RobotMap.kTimeoutMs);
-
 		shooterLeft.set(ControlMode.Velocity, -speed);
+	}
+
+	public void setAccelerator(double speed) {
+		acceleratorLeft.set(speed);
+		acceleratorRight.set(speed);
 	}
 
 	public void stop() {
@@ -94,10 +87,5 @@ public class Shooter extends Subsystem {
 		shooterRight.neutralOutput();
 		acceleratorLeft.set(0);
 		acceleratorRight.set(0);
-	}
-	
-	public void setAccelerator(double speed) {
-		acceleratorLeft.set(speed);
-		acceleratorRight.set(speed);
 	}
 }

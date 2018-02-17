@@ -37,13 +37,15 @@ public class RotateToAngle extends Command {
 		if (useAbsoluteAngle) {
 			Robot.drivetrain.getTurnController().setSetpoint(angle % 360);
 		} else { // relative angle
-			Robot.drivetrain.getTurnController().setSetpoint((Robot.navX.getYaw() + angle));// % 360);
+			Robot.drivetrain.getTurnController().setSetpoint(
+					(Robot.navX.getYaw() + angle));// % 360);
 		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.arcadeDrive(0.0, .7 * Robot.drivetrain.getPIDRotateRate());
+		Robot.drivetrain.arcadeDrive(0.0,
+				.7 * Robot.drivetrain.getPIDRotateRate());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -53,7 +55,8 @@ public class RotateToAngle extends Command {
 		if (this.timeSinceInitialized() > .5) {
 			// PID stuff is done, robot has been at target angle for a short
 			// time
-			if (Robot.drivetrain.leftEncoder.getRate() < 10.0 && Robot.drivetrain.leftEncoder.getRate() > -10.0) {
+			if (Robot.drivetrain.leftEncoder.getRate() < 10.0
+					&& Robot.drivetrain.leftEncoder.getRate() > -10.0) {
 				return true;
 			}
 		}

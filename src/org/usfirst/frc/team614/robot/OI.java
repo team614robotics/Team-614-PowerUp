@@ -67,9 +67,8 @@ public class OI {
 	private static final Button deliverScale = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
 	private static final Button deliverSwitch = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	
-
-	private static final Button deliverScales = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
-	private static final Button deliverSwitchs = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+	private static final Button auto1 = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
+	private static final Button auto2 = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -81,7 +80,7 @@ public class OI {
 		deliverScale.whileHeld(new RevShooterHigh());
 		deliverSwitch.whileHeld(new RevShooterLow());
 		
-		deliverScales.whenPressed(new DriveUntilCollisionDetected(0.2));
-		deliverSwitchs.whenPressed(new RotateToAngle(90, false));
+		auto1.whenPressed(new DriveForADistance(100, 0.5));
+		auto2.whenPressed(new RotateToAngle(90, false));
 	}
 }

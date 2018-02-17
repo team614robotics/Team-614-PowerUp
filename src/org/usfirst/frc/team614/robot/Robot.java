@@ -35,7 +35,6 @@ public class Robot extends IterativeRobot {
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static Intake intake;
 	public static Pneumatics pneumatics;
-	
 
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -44,16 +43,15 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
 		try {
 			navX = new AHRS(SPI.Port.kMXP, (byte) 200);
 		} catch (RuntimeException ex) {
-			DriverStation.reportError(
-					"Error instantiating navX MXP:  " + ex.getMessage(), true);
+			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 
 		drivetrain = new Drivetrain();
@@ -67,35 +65,36 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
-		
+
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 
-		SmartDashboard.putNumber("Shooter Low RPM", 0);
-		SmartDashboard.putNumber("Shooter High RPM", 0);
-		SmartDashboard.putNumber("Shooter RPM", 0);
+		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
+		SmartDashboard.putNumber("Shooter Low Setpoint", 6000);
 		SmartDashboard.putNumber("Intake Speed", 0.5);
-		SmartDashboard.putNumber("High Accelerator Speed", 0);
-		SmartDashboard.putNumber("Low Accelerator Speed", 0);
+		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
+		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
+		
 		SmartDashboard.putNumber("High Accelerator Intialize Time", 0);
 		SmartDashboard.putNumber("Low Accelerator Intialize Time", 0);
 
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);
 		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
-		
-		SmartDashboard.putNumber("Intake Piston Delay", 0);
-		
-		// Use Values for Testing
-		SmartDashboard.putNumber("rightP", 0.16);
-		SmartDashboard.putNumber("rightI", 0.001);
-		SmartDashboard.putNumber("rightD", 0.001);
-		SmartDashboard.putNumber("rightF", 0.154);
 
-		SmartDashboard.putNumber("leftP", 0.26);
-		SmartDashboard.putNumber("leftI", 0.0006);
-		SmartDashboard.putNumber("leftD", 0.001);
-		SmartDashboard.putNumber("leftF", 0.154);
+		SmartDashboard.putNumber("Intake Piston Delay", 0);
+
+		// Use Values for Testing
+		 SmartDashboard.putNumber("rightP", 0.16);
+		 SmartDashboard.putNumber("rightI", 0.001);
+		 SmartDashboard.putNumber("rightD", 0.001);
+		 SmartDashboard.putNumber("rightF", 0.154);
+		
+		 SmartDashboard.putNumber("leftP", 0.26);
+		 SmartDashboard.putNumber("leftI", 0.0006);
+		 SmartDashboard.putNumber("leftD", 0.001);
+		 SmartDashboard.putNumber("leftF", 0.154);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
 		SmartDashboard.putBoolean("Go For The Opposite Side", false);
@@ -106,25 +105,22 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
-        SmartDashboard.putBoolean("Accelerometer", false);
 		
+		SmartDashboard.putBoolean("Accelerometer", false);
+
 		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
-		
-		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
-		SmartDashboard.putNumber("Shooter Low Setpoint", 6000);
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
+	 * This function is called once each time the robot enters Disabled mode. You
+	 * can use it to reset any subsystem information you want to clear when the
+	 * robot is disabled.
 	 */
 	@Override
 	public void disabledInit() {
 		// resets NavX and disables the PID controller.
 		Robot.navX.reset();
 		drivetrain.reset();
-
 	}
 
 	@Override
@@ -134,14 +130,14 @@ public class Robot extends IterativeRobot {
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
-	 * between different autonomous modes using the dashboard. The sendable
-	 * chooser code works with the Java SmartDashboard. If you prefer the
-	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-	 * getString code to get the auto name from the text box below the Gyro
+	 * between different autonomous modes using the dashboard. The sendable chooser
+	 * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
+	 * remove all of the chooser code and uncomment the getString code to get the
+	 * auto name from the text box below the Gyro
 	 *
 	 * You can add additional auto modes by adding additional commands to the
-	 * chooser code above (like the commented example) or additional comparisons
-	 * to the switch structure below with additional strings & commands.
+	 * chooser code above (like the commented example) or additional comparisons to
+	 * the switch structure below with additional strings & commands.
 	 */
 	@Override
 	public void autonomousInit() {
@@ -160,10 +156,10 @@ public class Robot extends IterativeRobot {
 
 		autonomousCommand = chooser.getSelected();
 		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new SpinFlyWheel(); break; }
+		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
+		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
+		 * SpinFlyWheel(); break; }
 		 */
 
 		// schedule the autonomous command (example)
@@ -184,7 +180,7 @@ public class Robot extends IterativeRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-		
+
 		Robot.navX.reset();
 		drivetrain.reset();
 		// this line or comment it out.
@@ -200,10 +196,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		SmartDashboard.putNumber("Drivetrain Left Encoder Distance",
-				drivetrain.leftEncoder.getDistance());
-//		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
-//				drivetrain.rightEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
 	}
 
 	/**

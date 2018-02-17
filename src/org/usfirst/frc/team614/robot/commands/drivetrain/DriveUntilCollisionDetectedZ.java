@@ -28,7 +28,7 @@ public class DriveUntilCollisionDetectedZ extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.arcadeDrive(speed, Robot.drivetrain.getPIDRotateRate());
+    	Robot.drivetrain.arcadeDrive(speed, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,7 +36,7 @@ public class DriveUntilCollisionDetectedZ extends Command {
     	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkZ) > RobotMap.kCollisionThreshold_DeltaG )) {
               return true;
            }
-    	else {
+    	else{
     		  return false;
     	   }
      }

@@ -21,9 +21,6 @@ public class DriveUntilCollisionDetected extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        Robot.drivetrain.setUsingTurnPID(true);
-    	
-    	Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -35,28 +32,24 @@ public class DriveUntilCollisionDetected extends Command {
     protected boolean isFinished() {
     	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkX) > RobotMap.kCollisionThreshold_DeltaG ) ||
                 ( Math.abs(Robot.drivetrainCompanion.currentJerkY) > RobotMap.kCollisionThreshold_DeltaG ) ) {
-    		if(this.timeSinceInitialized() > .2) {
-                return true;
-      		}
-      		else{
-          		return false;	
-          	}
+    		if(this.timeSinceInitialized() > .2)
+              return true;
+    		else
+    		  return false;
            }
     	else {
-    		  return false;
-    	   }
+    		return false;
+    	}
      }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
     }
 }

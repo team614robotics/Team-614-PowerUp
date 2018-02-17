@@ -12,7 +12,9 @@ import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScale;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
@@ -69,8 +71,8 @@ public class OI {
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
 		toggleLoaderPiston.whenPressed(new ToggleLoaderPiston());
 		
-		deliverScale.whileHeld(new DeliverScaleAuto());
-		deliverSwitch.whileHeld(new DeliverSwitchAuto());
+		deliverScale.whileHeld(new DeliverScale());
+		deliverSwitch.whileHeld(new DeliverSwitch());
 		
 		deliverScale.whileHeld(new DriveForADistance(40, 0.5));
 		deliverSwitch.whileHeld(new RotateToAngle(90, false));

@@ -34,11 +34,23 @@ public class DriveUntilCollisionDetectedZ extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkZ) > RobotMap.kCollisionThreshold_DeltaG )) {
+    		if(this.timeSinceInitialized() > .2) {
               return true;
+<<<<<<< HEAD
            }
     	else{
     		  return false;
     	   }
+=======
+    		}
+    		else{
+        		return false;	
+        	}
+    	}
+    	else   {
+		   return false;
+    	}
+>>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
      }
 
     // Called once after isFinished returns true

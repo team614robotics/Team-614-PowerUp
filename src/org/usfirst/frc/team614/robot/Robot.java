@@ -68,7 +68,12 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
+<<<<<<< HEAD
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
+=======
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate",
+				0);
+>>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
 
 		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
 		SmartDashboard.putNumber("Shooter Low Setpoint", 6000);
@@ -82,7 +87,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);
 		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
+<<<<<<< HEAD
 
+=======
+		SmartDashboard.putNumber("Shooter High Setpoint", 0);
+		SmartDashboard.putNumber("Shooter Low Setpoint", 0);
+>>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
 		SmartDashboard.putNumber("Intake Piston Delay", 0);
 
 		// Use Values for Testing
@@ -196,8 +206,17 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
+<<<<<<< HEAD
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
+=======
+		SmartDashboard.putNumber("Drivetrain Left Encoder Distance",
+				drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate",
+				drivetrain.leftEncoder.getRate());
+//		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
+//				drivetrain.rightEncoder.getDistance());
+>>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
 	}
 
 	/**

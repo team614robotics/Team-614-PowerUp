@@ -62,7 +62,11 @@ public class DriveForADistance extends Command
 //    	}	
 //		return false; 
 //		 only tests right side... we're driving straight, so who cares.
+<<<<<<< HEAD
 		if (SmartDashboard.getNumber("Drivetrain Left Encoder Distance", 0) > distance * 1.18) {
+=======
+		if (SmartDashboard.getNumber("Drivetrain left Encoder Distance (inches)", 0) > distance * 1.18) {
+>>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
 			return true;
 		}
 		return false;

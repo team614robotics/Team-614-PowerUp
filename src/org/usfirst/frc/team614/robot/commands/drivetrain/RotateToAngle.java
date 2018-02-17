@@ -45,7 +45,7 @@ public class RotateToAngle extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		Robot.drivetrain.arcadeDrive(0.0,
-				.7 * Robot.drivetrain.getPIDRotateRate());
+				Robot.drivetrain.getPIDRotateRate());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

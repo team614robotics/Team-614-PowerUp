@@ -68,43 +68,33 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
-<<<<<<< HEAD
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
-=======
-		SmartDashboard.putNumber("Drivetrain Left Encoder Rate",
-				0);
->>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 
 		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
 		SmartDashboard.putNumber("Shooter Low Setpoint", 6000);
 		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
-		
+
 		SmartDashboard.putNumber("High Accelerator Intialize Time", 0);
 		SmartDashboard.putNumber("Low Accelerator Intialize Time", 0);
 
 		SmartDashboard.putNumber("Shooter High Timeout", 0);
 		SmartDashboard.putNumber("Shooter Low Timeout", 0);
 		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
-<<<<<<< HEAD
-
-=======
-		SmartDashboard.putNumber("Shooter High Setpoint", 0);
-		SmartDashboard.putNumber("Shooter Low Setpoint", 0);
->>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
 		SmartDashboard.putNumber("Intake Piston Delay", 0);
 
 		// Use Values for Testing
-		 SmartDashboard.putNumber("rightP", 0.16);
-		 SmartDashboard.putNumber("rightI", 0.001);
-		 SmartDashboard.putNumber("rightD", 0.001);
-		 SmartDashboard.putNumber("rightF", 0.154);
-		
-		 SmartDashboard.putNumber("leftP", 0.26);
-		 SmartDashboard.putNumber("leftI", 0.0006);
-		 SmartDashboard.putNumber("leftD", 0.001);
-		 SmartDashboard.putNumber("leftF", 0.154);
+		SmartDashboard.putNumber("rightP", 0.16);
+		SmartDashboard.putNumber("rightI", 0.001);
+		SmartDashboard.putNumber("rightD", 0.001);
+		SmartDashboard.putNumber("rightF", 0.154);
+
+		SmartDashboard.putNumber("leftP", 0.26);
+		SmartDashboard.putNumber("leftI", 0.0006);
+		SmartDashboard.putNumber("leftD", 0.001);
+		SmartDashboard.putNumber("leftF", 0.154);
 
 		SmartDashboard.putBoolean("Go For Scale", false);
 		SmartDashboard.putBoolean("Go For The Opposite Side", false);
@@ -115,7 +105,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
-		
+
 		SmartDashboard.putBoolean("Accelerometer", false);
 
 		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
@@ -205,18 +195,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-
-<<<<<<< HEAD
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
-=======
-		SmartDashboard.putNumber("Drivetrain Left Encoder Distance",
-				drivetrain.leftEncoder.getDistance());
-		SmartDashboard.putNumber("Drivetrain Left Encoder Rate",
-				drivetrain.leftEncoder.getRate());
-//		SmartDashboard.putNumber("Drivetrain Right Encoder Distance",
-//				drivetrain.rightEncoder.getDistance());
->>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
 	}
 
 	/**

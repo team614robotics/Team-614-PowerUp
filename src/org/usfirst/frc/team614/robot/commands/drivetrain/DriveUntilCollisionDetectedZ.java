@@ -12,57 +12,46 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveUntilCollisionDetectedZ extends Command {
 	double speed;
 
-    public DriveUntilCollisionDetectedZ(double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.drivetrain);
-    	this.speed = speed;
-    }
+	public DriveUntilCollisionDetectedZ(double speed) {
+		// Use requires() here to declare subsystem dependencies
+		// eg. requires(chassis);
+		requires(Robot.drivetrain);
+		this.speed = speed;
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-        Robot.drivetrain.setUsingTurnPID(true);
-    	
-    	Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		Robot.drivetrain.setUsingTurnPID(true);
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	Robot.drivetrain.arcadeDrive(speed, 0);
-    }
+		Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if ( ( Math.abs(Robot.drivetrainCompanion.currentJerkZ) > RobotMap.kCollisionThreshold_DeltaG )) {
-    		if(this.timeSinceInitialized() > .2) {
-              return true;
-<<<<<<< HEAD
-           }
-    	else{
-    		  return false;
-    	   }
-=======
-    		}
-    		else{
-        		return false;	
-        	}
-    	}
-    	else   {
-		   return false;
-    	}
->>>>>>> 0f511ea3dfcb62091a046c8d5c1ae4b1aa030acf
-     }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		Robot.drivetrain.arcadeDrive(speed, 0);
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    	Robot.drivetrain.setUsingTurnPID(false);
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		if ((Math.abs(Robot.drivetrainCompanion.currentJerkZ) > RobotMap.kCollisionThreshold_DeltaG)) {
+			if (this.timeSinceInitialized() > .2) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end() {
+		Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
-    }
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	Robot.drivetrain.setUsingTurnPID(false);
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
-    }
+	}
 }

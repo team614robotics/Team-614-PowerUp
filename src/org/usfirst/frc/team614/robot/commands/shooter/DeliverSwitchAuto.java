@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  * or twice
  *
  */
-public class DeliverSwitch extends CommandGroup {
+public class DeliverSwitchAuto extends CommandGroup {
 
-	public DeliverSwitch() {
+	public DeliverSwitchAuto() {
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
@@ -31,8 +31,9 @@ public class DeliverSwitch extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		addParallel(new RevShooterLow());
-		addParallel(new RevAcceleratorLow());
+		addParallel(new RevShooterUntilTimeoutLow());
+		addParallel(new RevAcceleratorUntilTimeoutLow());
+		addParallel(new RevOutakeUntilTimeout());
 	}
 
 }

@@ -6,7 +6,7 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston; 
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -41,7 +41,7 @@ public class DeliverFromRightScale extends CommandGroup {
     		addSequential(new DriveForADistance(324, speed));
 			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverSwitch());
+			addSequential(new DeliverSwitchAuto());
 			
 			//Mode 2
 			
@@ -67,7 +67,7 @@ public class DeliverFromRightScale extends CommandGroup {
     		addSequential(new DriveForADistance(168, speed));
 			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverSwitch());
+			addSequential(new DeliverSwitchAuto());
 			
             //Mode 1
 			
@@ -94,7 +94,7 @@ public class DeliverFromRightScale extends CommandGroup {
 			addSequential(new DriveUntilCollisionDetected(speed));
 			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveForADistance(65.47, speed));
-			addSequential(new DeliverSwitch());
+			addSequential(new DeliverSwitchAuto());
 			
 			//Mode 2
 			                                    

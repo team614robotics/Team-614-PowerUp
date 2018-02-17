@@ -7,8 +7,8 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverScale;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -44,7 +44,7 @@ public class DeliverFromLeft extends CommandGroup {
     		addSequential(new DriveForADistance(168, speed));
 			addSequential(new RotateToAngle(-90, false));
 			addSequential(new DriveUntilCollisionDetected(-speed));
-			addSequential(new DeliverSwitch());
+			addSequential(new DeliverSwitchAuto());
 			
             //Mode 1
 			
@@ -68,7 +68,7 @@ public class DeliverFromLeft extends CommandGroup {
     		addSequential(new DriveUntilCollisionDetectedZ(speed));
 			addSequential(new RotateToAngle(-90, false));
 			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverScale());
+			addSequential(new DeliverScaleAuto());
 			
 			//Mode 2
 			
@@ -98,7 +98,7 @@ public class DeliverFromLeft extends CommandGroup {
 			addSequential(new DriveUntilCollisionDetectedZ(speed));
 			addSequential(new RotateToAngle(90, false));
 			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverScale());
+			addSequential(new DeliverScaleAuto());
 			
 			//Mode 2
 			                                    

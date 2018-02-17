@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *by our alliance. (Our side of the scale is lower than their side)
  *
  */
-public class DeliverScale extends CommandGroup {
+public class DeliverScaleAuto extends CommandGroup {
 
-    public DeliverScale() {
+    public DeliverScaleAuto() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -31,8 +31,9 @@ public class DeliverScale extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addParallel(new RevShooterHigh());
-    	addParallel(new RevAcceleratorLow());
+    	addParallel(new RevShooterUntilTimeoutHigh());
+    	addParallel(new RevAcceleratorUntilTimeoutLow());
+    	addParallel(new RevOutakeUntilTimeout());
     }
 
 	

@@ -10,6 +10,8 @@ import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterUntilTimeoutHigh;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterUntilTimeoutLow;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -37,89 +39,48 @@ public class DeliverFromLeft extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	double speed = 0.8;
+        double speed = 0.8;
     	
-    	if (SmartDashboard.getBoolean("L1", false))
+    	if(SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) 
     	{
-    		addSequential(new DriveForADistance(168, speed));
-			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveUntilCollisionDetected(-speed));
-			addSequential(new DeliverSwitchAuto());
-			
-            //Mode 1
-			
-			/*        (----------------)         *
-			 *        (-----Scale------)         *
-			 *^                                  * 
-			 *-|      [-----Switch-----}         *
-			 * |      [----------------]         *
-			 * ()                                *
-			 * ----------------------------------*
-			 * | Move
-			 * - Rotate
-			 * = Move
-			 * ^ Shoot
-			 *() Robot
-			 * 
-			 * Drives to mid-switch then hit the wall and shoot
-			 */
+    		    addSequential(new DriveForADistance(250, 1)); //Proportional Value
+    	        addParallel(new RotateToAngle(-90, false));
+		        addParallel(new RevShooterUntilTimeoutHigh());
+		        // Code we tested today exactly
+		        
+		        //This worked fine so for now not going to add a value
     	}
-    	else if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
-    		addSequential(new DriveUntilCollisionDetectedZ(speed));
-			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverScaleAuto());
-			
-			//Mode 2
-			
-			/*^       (----------------)         *
-			 *-|      (-----Scale------)         *
-			 * |                                 * 
-			 * |      [-----Switch-----}         *
-			 * |      [----------------]         *
-			 * ()                                *
-			 * ----------------------------------*
-			 * | Move
-			 * - Rotate
-			 * = Move
-			 * ^ Shoot
-			 *() Robot
-			 * 
-			 * Drives to mid-field then hit the wall and shoot
-			 */
-			
-		}
-    	else if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false) && SmartDashboard.getBoolean("Go For Opposite Side", false)) {
-    		addSequential(new DriveForADistance(261.47, speed));
-			addSequential(new RotateToAngle(90, false));
-			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DriveForADistance(-5, speed));
-			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveUntilCollisionDetectedZ(speed));
-			addSequential(new RotateToAngle(90, false));
-			addSequential(new DriveUntilCollisionDetected(speed));
-			addSequential(new DeliverScaleAuto());
-			
-			//Mode 2
-			                                    
-			/*                                  ^
-			 *        (-----Scale------)        |*
-			 * |-================================* 
-			 * |      [-----Switch-----}         *
-			 * |      [----------------]         *
-			 * ()                                *
-			 * ----------------------------------*
-			 * 
-			 * | Move
-			 * - Rotate
-			 * = Move
-			 * ^ Shoot
-			 * () Robot
-			 */
-			
-		}
-    	else{
+    	else if(SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
+    		// Actual Values in Order   
+    		// addSequential(new DriveForADistance(261.47, speed)); 
+    		// addSequential(new DriveForADistance(63.53, speed));
+    		
+    		    addSequential(new DriveForADistance(201.75, speed)); // Proportional Value   
+			    addSequential(new RotateToAngle(-90, false));
+			    addSequential(new DriveForADistance(290, speed)); // Distances is probably messed up so no proportional value
+			    addSequential(new RotateToAngle(90, false));
+			    addSequential(new DriveForADistance(48.25, speed)); // Proportional Value
+			    addParallel(new RotateToAngle(-90, false));
+			    addParallel(new RevShooterUntilTimeoutHigh());
+			    
+    	}	
+    	else if(SmartDashboard.getBoolean("L1", false)){
+    		// Actual Values
+    		// addSequential(new DriveForADistance(157, speed)); 
+    		
+    		    addSequential(new DriveForADistance(129.62, speed)); //Proportional Value
+    		    addSequential(new RotateToAngle(-90, false));
+    		    addSequential(new DriveUntilCollisionDetected(-speed));
+    		    addSequential(new RevShooterUntilTimeoutLow());
+    		    // This is to test if collision detection works compared to the unreliable DriveForADistance
+    		    // again main priority is the scale
+    		    
+    		    // This is sequential because DriveUntilCollisionDetected might not work, once we know it 
+    		    // works we will put it in parallel
+    	}
+    	else {
     		addSequential(new DrivePastBaseline());
+    		// This shouldn't ever happen, last case scenario (we don't read FMS values)
     	}
     }
 }

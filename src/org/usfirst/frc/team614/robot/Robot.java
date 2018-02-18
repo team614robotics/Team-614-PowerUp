@@ -10,7 +10,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromCenter;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeftScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRight;
+import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRightScale;
 import org.usfirst.frc.team614.robot.commands.autonomous.DoNothing;
+import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
@@ -62,7 +68,13 @@ public class Robot extends IterativeRobot {
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
 
-		chooser.addDefault("Default Auto", new DoNothing());
+		chooser.addDefault("Drive Past Baseline", new DrivePastBaseline());
+		chooser.addObject("Deliver From Center", new DeliverFromCenter());
+		chooser.addObject("Deliver From Left", new DeliverFromLeft());
+		chooser.addObject("Deliver From Right", new DeliverFromRight());
+		chooser.addObject("Deliver From Left Scale", new DeliverFromLeftScale());
+		chooser.addObject("Deliver From Right Scale", new DeliverFromRightScale());
+		chooser.addObject("Do Nothing", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
 

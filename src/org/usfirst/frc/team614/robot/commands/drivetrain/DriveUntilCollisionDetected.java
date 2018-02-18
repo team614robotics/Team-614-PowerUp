@@ -22,13 +22,13 @@ public class DriveUntilCollisionDetected extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		Robot.drivetrain.setUsingTurnPID(true);
+
 		Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.arcadeDrive(speed, Robot.drivetrain.getPIDRotateRate());
-		Robot.drivetrainCompanion.runCollisionDetection();
+		Robot.drivetrain.arcadeDrive(speed, 0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -44,11 +44,5 @@ public class DriveUntilCollisionDetected extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.drivetrain.setUsingTurnPID(false);
-		Robot.drivetrain.stop();
-	}
-	
-	protected void interrupted() {
-		Robot.drivetrain.setUsingTurnPID(false);
-		Robot.drivetrain.stop();
 	}
 }

@@ -16,7 +16,7 @@ public class RevShooterUntilTimeoutLow extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
-		setTimeout(2);
+		setTimeout(2.3);
 	}
 
 	protected void initialize() {

@@ -11,7 +11,7 @@ public class RevOutakeUntilTimeout extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
-		setTimeout(2.0);
+		setTimeout(2.3);
 	}
 
 	// Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class RevOutakeUntilTimeout extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		if (this.timeSinceInitialized() > 1.7) {    		
+		if (this.timeSinceInitialized() > 2) {    		
     	    Robot.intake.set(SmartDashboard.getNumber("Intake Speed", 0));
     	}
 	}

@@ -64,11 +64,19 @@ public class RobotMap {
 	
 	// DRIVETRAIN CONSTANTS
 	
+<<<<<<< HEAD
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 4;
 	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 220.0;
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	public static final double kCollisionThreshold_DeltaG = 0.1f;
 	public static final double drivetrainRotationP = 0.;
+=======
+	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
+	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 220.0;
+	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
+	public static final double kCollisionThreshold_DeltaG = 0.6f;
+	public static final double drivetrainRotationP = 0.1;
+>>>>>>> parent of 5d14542... presave-post-saturday-testing
 	public static final double drivetrainRotationI = 0;
 	public static final double drivetrainRotationD = 0.12;
 	public static final double drivetrainRotationF = 0;

@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc.team614.robot.commands.autonomous.DoNothing;
-import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
@@ -62,43 +61,22 @@ public class Robot extends IterativeRobot {
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
-		
+
 		chooser.addDefault("Default Auto", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
-		SmartDashboard.putNumber("Drivetrain Right Encoder Distance", 0);
-		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 
 		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
-		SmartDashboard.putNumber("Shooter Low Setpoint", 6000);
+		SmartDashboard.putNumber("Shooter Low Setpoint", 3000);
 		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
 
-		SmartDashboard.putNumber("High Accelerator Intialize Time", 0);
-		SmartDashboard.putNumber("Low Accelerator Intialize Time", 0);
-
-		SmartDashboard.putNumber("Shooter High Timeout", 0);
-		SmartDashboard.putNumber("Shooter Low Timeout", 0);
-		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
-		SmartDashboard.putNumber("Intake Piston Delay", 0);
-
-		// Use Values for Testing
-		SmartDashboard.putNumber("rightP", 0.16);
-		SmartDashboard.putNumber("rightI", 0.001);
-		SmartDashboard.putNumber("rightD", 0.001);
-		SmartDashboard.putNumber("rightF", 0.154);
-
-		SmartDashboard.putNumber("leftP", 0.26);
-		SmartDashboard.putNumber("leftI", 0.0006);
-		SmartDashboard.putNumber("leftD", 0.001);
-		SmartDashboard.putNumber("leftF", 0.154);
-
 		SmartDashboard.putBoolean("Go For Scale", false);
-		SmartDashboard.putBoolean("Go For The Opposite Side", false);
+		SmartDashboard.putBoolean("Go For Opposite Side", false);
 
 		SmartDashboard.putBoolean("L1", false);
 		SmartDashboard.putBoolean("L2", false);
@@ -106,10 +84,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
 		SmartDashboard.putBoolean("R1", false);
-
-		SmartDashboard.putBoolean("Accelerometer", false);
-
-		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 	}
 
 	/**
@@ -119,8 +93,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		// resets NavX and disables the PID controller.
 		Robot.navX.reset();
+		drivetrain.setUsingTurnPID(false);
+		drivetrain.setUsingDistancePID(false);
 		drivetrain.reset();
 	}
 
@@ -145,7 +120,9 @@ public class Robot extends IterativeRobot {
 		// resets NavX and disables the PID controller.
 		Robot.navX.reset();
 		drivetrain.reset();
-
+    	drivetrain.setUsingTurnPID(false);
+    	drivetrain.setUsingDistancePID(false);
+    	
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
@@ -181,13 +158,13 @@ public class Robot extends IterativeRobot {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
-
-		Robot.navX.reset();
-		drivetrain.reset();
-		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 
+		Robot.navX.reset();
+		drivetrain.reset();
+		drivetrain.setUsingTurnPID(false);
+		drivetrain.setUsingDistancePID(false);
 	}
 
 	/**

@@ -10,9 +10,9 @@ public class SixWheelDrive extends RobotDrive {
 	private double driveStall = 0.1; // What percent power before the drivetrain
 										// can move
 	private boolean squaredInputs;
-	
+
 	private final boolean USE_SAFETY = false;
-	
+
 	public SixWheelDrive(int leftMotorChannel, int rightMotorChannel, boolean squaredInputs) {
 		super(leftMotorChannel, rightMotorChannel);
 		this.setSafetyEnabled(USE_SAFETY);
@@ -63,45 +63,47 @@ public class SixWheelDrive extends RobotDrive {
 			lPower += overPower * (-1.0 - rPower);
 			rPower = -1.0;
 		}
-		
+
 		lPower = correctDriveStall(lPower);
 		rPower = correctDriveStall(rPower);
 		setLeftRightMotorOutputs(lPower, rPower);
 	}
-	
+
 	/**
 	 * Drives the robot using a move value and a rotation value
 	 */
 	public void arcadeDrive(double move, double rotate) {
 		super.arcadeDrive(move, rotate, squaredInputs);
 	}
-	
+
 	/**
 	 * Drives the robot using a left side value and a right side value
 	 */
 	public void tankDrive(double left, double right) {
 		super.tankDrive(left, right, squaredInputs);
 	}
-	
+
 	/**
 	 * Returns if the inputs for the drivetrain is squared
+	 * 
 	 * @return
 	 */
 	public boolean isSquaredInputs() {
 		return squaredInputs;
 	}
-	
+
 	/**
 	 * Sets whether the robot should be squaring its drivetrain inputs
+	 * 
 	 * @param squaredInputs
 	 */
 	public void setSquaredInputs(boolean squaredInputs) {
 		this.squaredInputs = squaredInputs;
 	}
-	
+
 	/**
-	 * Similar to the deadband method in the Gamepad class, this corrects if the input is where nothing
-	 * should happen (0.0)
+	 * Similar to the deadband method in the Gamepad class, this corrects if the
+	 * input is where nothing should happen (0.0)
 	 * 
 	 * @param input
 	 * @param deadband
@@ -109,11 +111,11 @@ public class SixWheelDrive extends RobotDrive {
 	 */
 	public double correctDriveStall(double input) {
 		double output = 0.0;
-		
+
 		if (Math.abs(input) > Math.abs(driveStall)) {
 			output = input;
 		}
-		
+
 		return output;
 	}
 }

@@ -15,68 +15,46 @@ public class DriveForADistance extends Command {
 	public DriveForADistance(double distance, double speed) {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.drivetrain);
-		this.distance = distance; // in units of inches (ideally)
+		this.distance = distance;
 		this.speed = speed;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.drivetrain.leftEncoder.reset();
 		Robot.drivetrain.setUsingTurnPID(true);
-		// Robot.drivetrain.rightEncoder.reset();
-		Robot.navX.reset();
-		Robot.drivetrain.getDistanceController().setSetpoint(Robot.navX.getYaw());
+
+		Robot.drivetrain.leftEncoder.reset();
+
+		Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
+		Robot.drivetrain.getDistanceController().setSetpoint(distance);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-
-		Robot.drivetrain.arcadeDrive(speed, Robot.drivetrain.getPIDRotateRate());
-
-		// }
-
+		Robot.drivetrain.arcadeDrive(speed * Robot.drivetrain.getPIDSpeed(), 0.7 * Robot.drivetrain.getPIDRotateRate());
 	}
 
-	// Returns true once the distance travelled by the encoder is greater than
-	// distance.
-	// Unit conversions are done in Constants.
-	// The size of the wheel MUST be changed in Constants if changed!
 	protected boolean isFinished() {
-
-		// Robot isn't at the immediate start of command and may be stopped b/c it never
-		// even started
-		// if(this.timeSinceInitialized() > .2) {
-		// PID stuff is done
-		// if(!Robot.navX.isMoving()) {
-		// return true;
-		// }
-
-		// if(Robot.drivetrain.rightEncoder.getRate() < 2.5 &&
-		// Robot.drivetrain.rightEncoder.getRate() > -2.5) {
-		// return true;
-		// }
-		// }
-		// return false;
-		// only tests right side... we're driving straight, so who cares.
-		if (SmartDashboard.getNumber("Drivetrain Left Encoder Distance", 0) > distance) {
-			Robot.drivetrain.arcadeDrive(-speed, Robot.drivetrain.getPIDRotateRate());
+		if (timeSinceInitialized() > 0.2 && Robot.drivetrain.leftEncoder.getRate() < 2.5
+				&& Robot.drivetrain.leftEncoder.getRate() > -2.5) {
 			return true;
 		}
+
 		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.drivetrain.leftEncoder.reset();
 		Robot.drivetrain.setUsingTurnPID(false);
+		Robot.drivetrain.setUsingDistancePID(false);
 		Robot.drivetrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		Robot.drivetrain.leftEncoder.reset();
 		Robot.drivetrain.setUsingTurnPID(false);
+		Robot.drivetrain.setUsingDistancePID(false);
 		Robot.drivetrain.stop();
 	}
 }

@@ -17,9 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	PIDController distanceController;
-
 	private double PIDdistanceSpeed;
-
 	private boolean usingDistancePID;
 
 	/* The following PID Controller coefficients will need to be tuned */
@@ -29,16 +27,14 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	/* and D constants and test the mechanism. */
 
 	public final double distanceTolerance = 0.1f;
+
 	public double last_world_linear_accel_x;
 	public double last_world_linear_accel_y;
 	public double last_world_linear_accel_z;
+
 	public double currentJerkX;
 	public double currentJerkY;
 	public double currentJerkZ;
-
-	// VictorSP motor controllers
-	// VictorSP leftMotor = new VictorSP(RobotMap.drivetrainLeftMotor);
-	// VictorSP rightMotor = new VictorSP(RobotMap.drivetrainRightMotor);
 
 	public DrivetrainCompanion() {
 
@@ -53,7 +49,6 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 		/* tuning of the Turn Controller's P, I and D coefficients. */
 		/* Typically, only the P value needs to be modified. */
 		LiveWindow.addActuator("DriveSystem", "DistanceController", distanceController);
-
 	}
 
 	public void initDefaultCommand() {
@@ -75,12 +70,10 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	}
 
 	public void setUsingDistancePID(boolean set) {
-		usingDistancePID = true;
-		if (set == true) {
+		if (usingDistancePID = set) {
 			distanceController.enable();
 		} else {
 			distanceController.disable();
-
 		}
 	}
 

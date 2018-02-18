@@ -18,11 +18,10 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Drivetrain extends Subsystem implements PIDOutput {
 
-	PIDController turnController;
-
+	public PIDController turnController;
 	public RobotDrive drivetrain;
 	public Encoder leftEncoder;
-	public Ultrasonic rangeFinder;
+
 	private double PIDrotateToAngleRate;
 	private boolean usingTurnPID;
 
@@ -41,7 +40,7 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 		leftEncoder = new Encoder(RobotMap.leftMotorEncoderA, RobotMap.leftMotorEncoderB, false,
 				Encoder.EncodingType.k4X);
 
-		leftEncoder.setDistancePerPulse(1 / (695.5 / 36));
+		leftEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
 
 		turnController = new PIDController(RobotMap.drivetrainRotationP, RobotMap.drivetrainRotationI,
 				RobotMap.drivetrainRotationD, RobotMap.drivetrainRotationF, Robot.navX, this);
@@ -52,7 +51,6 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 		turnController.setContinuous(true);
 
 		LiveWindow.addActuator("DriveSystem", "RotateController", turnController);
-
 	}
 
 	public void initDefaultCommand() {
@@ -64,7 +62,6 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 	public void arcadeDrive(double moveValue, double rotateValue) {
 		// TODO Auto-generated method stub
 		drivetrain.arcadeDrive(moveValue, -rotateValue);
-
 	}
 
 	public void stop() {

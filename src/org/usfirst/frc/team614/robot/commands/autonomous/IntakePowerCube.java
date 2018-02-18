@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class IntakePowerCube extends CommandGroup {
-	
-	public IntakePowerCube()
-	{
+
+	public IntakePowerCube() {
 		addParallel(new RevIntakeTimed());
 		addParallel(new ToggleIntakePistonWithDelay());
 	}

@@ -20,6 +20,7 @@ public class RevShooterLow extends Command {
 
 	protected void initialize() {
 		Robot.shooter.setShooter(0);
+		Robot.shooter.setAccelerator(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -45,7 +45,7 @@ public class DriveUntilCollisionDetectedZ extends Command {
 		Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
 	}
-	
+
 	protected void interrupted() {
 		Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();

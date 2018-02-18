@@ -8,23 +8,24 @@ package org.team708.robot.util;
 import edu.wpi.first.wpilibj.AnalogGyro;
 
 /**
- * Wrapper class for the gyro allowing interchanging of
- * encoders gyro for measuring rotation.
+ * Wrapper class for the gyro allowing interchanging of encoders gyro for
+ * measuring rotation.
+ * 
  * @author 708
  */
-public class GyroRotationSensor extends RotationSensor{
+public class GyroRotationSensor extends RotationSensor {
 
-    private AnalogGyro gyro;
+	private AnalogGyro gyro;
 
-    public GyroRotationSensor(AnalogGyro gyro){
-        this.gyro = gyro;
-    }
+	public GyroRotationSensor(AnalogGyro gyro) {
+		this.gyro = gyro;
+	}
 
-    public double getAngle(){
-        return gyro.getAngle();
-    }
+	public double getAngle() {
+		return gyro.getAngle();
+	}
 
-    public void reset(){
-        gyro.reset();
-    }
+	public void reset() {
+		gyro.reset();
+	}
 }

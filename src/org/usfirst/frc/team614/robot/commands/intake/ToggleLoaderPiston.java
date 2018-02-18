@@ -19,10 +19,10 @@ public class ToggleLoaderPiston extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (Robot.pneumatics.getLoaderState().equals(RobotMap.PistonIn)) {
-			Robot.pneumatics.setLoaderState(RobotMap.PistonOut);
+		if (Robot.pneumatics.getLoaderState().equals(RobotMap.pistonIn)) {
+			Robot.pneumatics.setLoaderState(RobotMap.pistonOut);
 		} else {
-			Robot.pneumatics.setLoaderState(RobotMap.PistonIn);
+			Robot.pneumatics.setLoaderState(RobotMap.pistonIn);
 		}
 	}
 

@@ -14,53 +14,52 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Pneumatics extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
 	public Compressor compressor;
 	public DoubleSolenoid loaderPiston;
 	public DoubleSolenoid intakePiston;
 	public Solenoid intakeRingLight;
 
-	public Pneumatics()
-	{
+	public Pneumatics() {
 		compressor = new Compressor(RobotMap.compressor);
 		intakePiston = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
-		intakePiston.set(RobotMap.PistonIn);
+		intakePiston.set(RobotMap.pistonIn);
 		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
-		loaderPiston.set(RobotMap.PistonIn);
+		loaderPiston.set(RobotMap.pistonIn);
 		intakeRingLight = new Solenoid(RobotMap.ringLightSolenoid);
 	}
 
-    public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new CompressorControl());
-		
-    }
-    
-   public void extendLoader(){
-    	loaderPiston.set(RobotMap.PistonOut);
-    }
-    
-    public void retractLoader(){
-    	loaderPiston.set(RobotMap.PistonIn);
-    }
-    
-    public DoubleSolenoid.Value getLoaderState(){
-    	return loaderPiston.get();
-    }
-    
-    public void setLoaderState(DoubleSolenoid.Value state){
-    	loaderPiston.set(state);
-    }
-	
-    public void extendIntake() {
-		intakePiston.set(RobotMap.PistonOut);
+
+	}
+
+	public void extendLoader() {
+		loaderPiston.set(RobotMap.pistonOut);
+	}
+
+	public void retractLoader() {
+		loaderPiston.set(RobotMap.pistonIn);
+	}
+
+	public DoubleSolenoid.Value getLoaderState() {
+		return loaderPiston.get();
+	}
+
+	public void setLoaderState(DoubleSolenoid.Value state) {
+		loaderPiston.set(state);
+	}
+
+	public void extendIntake() {
+		intakePiston.set(RobotMap.pistonOut);
 	}
 
 	public void retractIntake() {
-		intakePiston.set(RobotMap.PistonIn);
+		intakePiston.set(RobotMap.pistonIn);
 	}
 
 	public DoubleSolenoid.Value getIntakeState() {
@@ -71,4 +70,3 @@ public class Pneumatics extends Subsystem {
 		intakePiston.set(state);
 	}
 }
-

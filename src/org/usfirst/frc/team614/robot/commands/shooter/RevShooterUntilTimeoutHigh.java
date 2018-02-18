@@ -16,31 +16,38 @@ public class RevShooterUntilTimeoutHigh extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
-		setTimeout(2.3);
+		setTimeout(2);
 	}
 
 	protected void initialize() {
 		Robot.shooter.setShooter(0);
+		Robot.shooter.setAccelerator(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter High RPM", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter High Setpoint", 0));
+		if (this.timeSinceInitialized() > 1.7) {    		
+    	    Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Low Speed", 0));
+    	    Robot.intake.set(SmartDashboard.getNumber("Intake Speed", 0));
+    	}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return isTimedOut();
+		return this.isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.shooter.stop();
+		Robot.intake.set(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		Robot.shooter.stop();
+		Robot.intake.set(0);
 	}
 }

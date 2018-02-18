@@ -22,7 +22,6 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 
 	public RobotDrive drivetrain;
 	public Encoder leftEncoder;
-	// public Encoder rightEncoder;
 	public Ultrasonic rangeFinder;
 	private double PIDrotateToAngleRate;
 	private boolean usingTurnPID;
@@ -41,11 +40,8 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 		drivetrain = new RobotDrive(leftMotorA, leftMotorB, rightMotorA, rightMotorB);
 		leftEncoder = new Encoder(RobotMap.leftMotorEncoderA, RobotMap.leftMotorEncoderB, false,
 				Encoder.EncodingType.k4X);
-		// rightEncoder = new Encoder(RobotMap.rightMotorEncoderA,
-		// RobotMap.rightMotorEncoderB, false, Encoder.EncodingType.k4X);
 
-		leftEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
-		// rightEncoder.setDistancePerPulse(RobotMap.DRIVETRAIN_DISTANCE_PER_PULSE);
+		leftEncoder.setDistancePerPulse(1 / (695.5 / 36));
 
 		turnController = new PIDController(RobotMap.drivetrainRotationP, RobotMap.drivetrainRotationI,
 				RobotMap.drivetrainRotationD, RobotMap.drivetrainRotationF, Robot.navX, this);
@@ -72,18 +68,15 @@ public class Drivetrain extends Subsystem implements PIDOutput {
 	}
 
 	public void stop() {
-
 		drivetrain.arcadeDrive(0, 0);
 	}
 
 	public void setDistancePerPulse(double dpp) {
 		leftEncoder.setDistancePerPulse(dpp);
-		// rightEncoder.setDistancePerPulse(dpp);
 	}
 
 	public void reset() {
 		leftEncoder.reset();
-		// rightEncoder.reset();
 	}
 
 	public void setUsingTurnPID(boolean set) {

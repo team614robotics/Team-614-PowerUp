@@ -62,6 +62,7 @@ public class Robot extends IterativeRobot {
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
+		
 		chooser.addDefault("Default Auto", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
@@ -197,6 +198,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
+		SmartDashboard.putNumber("Drivetrain Left Encoder DPP", drivetrain.leftEncoder.getDistancePerPulse());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Get", drivetrain.leftEncoder.get());
 	}
 
 	/**

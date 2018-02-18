@@ -11,7 +11,7 @@ public class RevAcceleratorUntilTimeoutLow extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
-		setTimeout(2.3);
+		setTimeout(2);
 	}
 
 	// Called just before this Command runs the first time

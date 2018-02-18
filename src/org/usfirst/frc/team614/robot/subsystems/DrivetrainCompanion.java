@@ -28,13 +28,13 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	/* controllers by displaying a form where you can enter new P, I, */
 	/* and D constants and test the mechanism. */
 
-    public final double distanceTolerance = 0.1f;
-    public double last_world_linear_accel_x;
-    public double last_world_linear_accel_y;
-    public double last_world_linear_accel_z;
-    public double currentJerkX;
-    public double currentJerkY;
-    public double currentJerkZ;
+	public final double distanceTolerance = 0.1f;
+	public double last_world_linear_accel_x;
+	public double last_world_linear_accel_y;
+	public double last_world_linear_accel_z;
+	public double currentJerkX;
+	public double currentJerkY;
+	public double currentJerkZ;
 
 	// VictorSP motor controllers
 	// VictorSP leftMotor = new VictorSP(RobotMap.drivetrainLeftMotor);
@@ -44,37 +44,34 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 
 		usingDistancePID = false;
 
-		distanceController = new PIDController(RobotMap.drivetrainDistanceP,
-				RobotMap.drivetrainDistanceI, RobotMap.drivetrainDistanceD,
-				RobotMap.drivetrainDistanceF, Robot.drivetrain.leftEncoder,
-				this);
+		distanceController = new PIDController(RobotMap.drivetrainDistanceP, RobotMap.drivetrainDistanceI,
+				RobotMap.drivetrainDistanceD, RobotMap.drivetrainDistanceF, Robot.drivetrain.leftEncoder, this);
 		distanceController.setOutputRange(-1.0, 1.0);
 		distanceController.setAbsoluteTolerance(distanceTolerance);
 
 		/* Add the PID Controller to the Test-mode dashboard, allowing manual */
 		/* tuning of the Turn Controller's P, I and D coefficients. */
 		/* Typically, only the P value needs to be modified. */
-		LiveWindow.addActuator("DriveSystem", "DistanceController",
-				distanceController);
+		LiveWindow.addActuator("DriveSystem", "DistanceController", distanceController);
 
 	}
-	public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    	 //setDefaultCommand(new CollisionDetected());
-    }
 
-	
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+		// setDefaultCommand(new CollisionDetected());
+	}
+
 	public void runCollisionDetection() {
 		double curr_world_linear_accel_x = Robot.navX.getWorldLinearAccelX();
-        currentJerkX = curr_world_linear_accel_x - last_world_linear_accel_x;
-        last_world_linear_accel_x = curr_world_linear_accel_x;
-        double curr_world_linear_accel_y = Robot.navX.getWorldLinearAccelY();
-        currentJerkY = curr_world_linear_accel_y - last_world_linear_accel_y;
-        last_world_linear_accel_y = curr_world_linear_accel_y;
-        double curr_world_linear_accel_z = Robot.navX.getWorldLinearAccelZ();
-        currentJerkZ = curr_world_linear_accel_z - last_world_linear_accel_z;
-        last_world_linear_accel_z = curr_world_linear_accel_z;
+		currentJerkX = curr_world_linear_accel_x - last_world_linear_accel_x;
+		last_world_linear_accel_x = curr_world_linear_accel_x;
+		double curr_world_linear_accel_y = Robot.navX.getWorldLinearAccelY();
+		currentJerkY = curr_world_linear_accel_y - last_world_linear_accel_y;
+		last_world_linear_accel_y = curr_world_linear_accel_y;
+		double curr_world_linear_accel_z = Robot.navX.getWorldLinearAccelZ();
+		currentJerkZ = curr_world_linear_accel_z - last_world_linear_accel_z;
+		last_world_linear_accel_z = curr_world_linear_accel_z;
 	}
 
 	public void setUsingDistancePID(boolean set) {
@@ -83,7 +80,7 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 			distanceController.enable();
 		} else {
 			distanceController.disable();
-			
+
 		}
 	}
 
@@ -104,6 +101,4 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 			PIDdistanceSpeed = output;
 		}
 	}
-
-	
 }

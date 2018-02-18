@@ -6,7 +6,9 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
 import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRight;
+import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
@@ -18,6 +20,7 @@ import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.RevAcceleratorLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooter;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterUntilTimeoutHigh;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -66,6 +69,10 @@ public class OI {
 	
 	private static final Button auto1 = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
 	private static final Button auto2 = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+	private static final Button auto3 = new JoystickButton(driverGamepad, Gamepad.button_B);
+	private static final Button auto4 = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button auto5 = new JoystickButton(driverGamepad, Gamepad.button_Y);
+	private static final Button auto6 = new JoystickButton(driverGamepad, Gamepad.button_X);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -77,7 +84,11 @@ public class OI {
 		deliverScale.whileHeld(new DeliverScale());
 		deliverSwitch.whileHeld(new DeliverSwitch());
 		
-		auto1.whenPressed(new DriveForADistance(100, 0.5));
+		auto1.whenPressed(new DriveForADistance(320, 0.5));
 		auto2.whenPressed(new RotateToAngle(90, false));
+		auto3.whenPressed(new DrivePastBaseline());
+		auto5.whenPressed(new DeliverScaleAuto());
+		auto4.whenPressed(new RevShooterUntilTimeoutHigh());
+		auto6.whenPressed(new DeliverFromRight());
 	}
 }

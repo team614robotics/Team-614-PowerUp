@@ -51,7 +51,7 @@ public class RotateToAngle extends Command {
 	protected boolean isFinished() {
 		// Robot isn't at the immediate start of command and may be stopped b/c
 		// it never even started
-		if (this.timeSinceInitialized() > .5) {
+		if (this.timeSinceInitialized() > 1) {
 			// PID stuff is done, robot has been at target angle for a short
 			// time
 			if (Robot.drivetrain.leftEncoder.getRate() < 10.0 && Robot.drivetrain.leftEncoder.getRate() > -10.0) {
@@ -63,6 +63,7 @@ public class RotateToAngle extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.navX.reset();
 		Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
 	}
@@ -70,6 +71,7 @@ public class RotateToAngle extends Command {
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		Robot.navX.reset();
 		Robot.drivetrain.setUsingTurnPID(false);
 		Robot.drivetrain.stop();
 	}

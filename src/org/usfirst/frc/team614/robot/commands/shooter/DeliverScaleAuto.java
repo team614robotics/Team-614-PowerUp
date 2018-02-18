@@ -1,5 +1,7 @@
 package org.usfirst.frc.team614.robot.commands.shooter;
 
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 
@@ -31,9 +33,13 @@ public class DeliverScaleAuto extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	
-    	addParallel(new RevShooterUntilTimeoutHigh());
-    	addParallel(new RevAcceleratorUntilTimeoutLow());
-    	addParallel(new RevOutakeUntilTimeout());
+//    	addParallel(new RevShooterUntilTimeoutHigh());
+
+		addSequential(new DriveForADistance(250, 1));
+		addParallel(new RotateToAngle(-90, false));
+		addParallel(new RevShooterUntilTimeoutHigh());
+//    	addSequential(new RevShooterUntilTimeoutHigh());
+//    	addParallel(new RevOutakeUntilTimeout());
     }
 
 	

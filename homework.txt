@@ -1,5 +1,0 @@
-1) make a new motor called "motor2" in a new subsystem called "intake"
-2) make a new command called "revMotor"
-3) make the command take in SmartDashboard input (however you like).
-4) in OI, make he command be activated by a toggleActiveWhenPressed rather than a while held (refer to previous year for help)
- 

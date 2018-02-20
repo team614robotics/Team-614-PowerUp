@@ -25,6 +25,7 @@ public class RotateToAngle extends Command {
 		requires(Robot.drivetrain);
 		this.angle = angle;
 		this.useAbsoluteAngle = useAbsoluteAngle;
+		setTimeout(3);
 	}
 
 	// Called just before this Command runs the first time
@@ -49,16 +50,12 @@ public class RotateToAngle extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		// Robot isn't at the immediate start of command and may be stopped b/c
-		// it never even started
 		if (timeSinceInitialized() > 1.5) {
-			// PID stuff is done, robot has been at target angle for a short
-			// time
 			if (Robot.drivetrain.leftEncoder.getRate() < 10.0 && Robot.drivetrain.leftEncoder.getRate() > -10.0) {
 				return true;
 			}
 		}
-		return false;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true

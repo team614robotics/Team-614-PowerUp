@@ -34,22 +34,22 @@ public class DeliverFromLeftScale extends CommandGroup {
 
 		double speed = 0.8;
 
-		if (SmartDashboard.getBoolean("L2", false) && SmartDashboard.getBoolean("Go For Scale", false)) {
-			addSequential(new DriveForADistance(250, speed));
+		if (SmartDashboard.getBoolean("L2", false)) {
+			addSequential(new DriveForADistance(150, speed));
 			addParallel(new RotateToAngle(-90, false));
 			addParallel(new DeliverScaleAuto());
 		} else if (SmartDashboard.getBoolean("L1", false)) {
 			addSequential(new DriveForADistance(168, speed));
 			addSequential(new RotateToAngle(-90, false));
 			addSequential(new DeliverSwitchAuto());
-		} else if (SmartDashboard.getBoolean("R2", false) && SmartDashboard.getBoolean("Go For Scale", false)
-				&& SmartDashboard.getBoolean("Go For Opposite Side", false)) {
+		} else if (SmartDashboard.getBoolean("R2", false)) {
 			addSequential(new DriveForADistance(261.47, speed));
 			addSequential(new RotateToAngle(90, false));
-			addSequential(new DriveUntilCollisionDetected(speed));
+			addSequential(new DriveForADistance(294, speed));
 			addSequential(new RotateToAngle(-90, false));
-			addSequential(new DriveForADistance(65.47, speed));
-			addSequential(new DeliverScaleAuto());
+			addSequential(new DriveForADistance(108, speed));
+			addParallel(new RotateToAngle(90, false));
+			addParallel(new DeliverScaleAuto());
 		} else {
 			addSequential(new DrivePastBaseline());
 		}

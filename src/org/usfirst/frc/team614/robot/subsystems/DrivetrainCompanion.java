@@ -79,11 +79,10 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 
 	public void setUsingDistancePID(boolean set) {
 		usingDistancePID = true;
-		if (set == true) {
+		if (usingDistancePID) {
 			distanceController.enable();
 		} else {
 			distanceController.disable();
-			
 		}
 	}
 
@@ -103,7 +102,5 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 		if (usingDistancePID) {
 			PIDdistanceSpeed = output;
 		}
-	}
-
-	
+	}	
 }

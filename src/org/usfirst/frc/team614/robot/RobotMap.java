@@ -28,11 +28,6 @@ public class RobotMap {
 	public static final double shooterRightD = 0.001;
 	public static final double shooterRightF = 0.154;
 	
-	public static final double talonP = 0.10;
-	public static final double talonI = 0.0005;
-	public static final double talonD = 0.0;
-	public static final double talonF = 0.0404;
-	
 	public static final int kTimeoutMs = 10;
 	
 	// PWM
@@ -52,16 +47,17 @@ public class RobotMap {
 	
 	// DRIVETRAIN CONSTANTS
 	
-	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6;
-	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 350.0;
+	public static final double DRIVETRAIN_WHEEL_DIAMETER = 4; // 6
+	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 220; // 358
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	
 	public static final double kCollisionThreshold_DeltaG = 0.6f;
 	
-	public static final double drivetrainRotationP = 0.1;
+	public static final double drivetrainRotationP = 0.17;
 	public static final double drivetrainRotationI = 0;
-	public static final double drivetrainRotationD = 0.12;
+	public static final double drivetrainRotationD = 0.0001;
 	public static final double drivetrainRotationF = 0;
+	
 	public static final double drivetrainDistanceP = 0.05;
 	public static final double drivetrainDistanceI = 0;
 	public static final double drivetrainDistanceD = 0.0;

@@ -68,14 +68,14 @@ public class Robot extends IterativeRobot {
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
-		
-        chooser.addDefault("Drive Past Baseline", new DrivePastBaseline());
-        chooser.addObject("Deliver From Center", new DeliverFromCenter());
-        chooser.addObject("Deliver From Left", new DeliverFromLeft());
-        chooser.addObject("Deliver From Right", new DeliverFromRight());
-        chooser.addObject("Deliver From Left Scale", new DeliverFromLeftScale());
-        chooser.addObject("Deliver From Right Scale", new DeliverFromRightScale());
-        chooser.addObject("DO Nothing", new DoNothing());
+
+		chooser.addObject("Drive Past Baseline", new DrivePastBaseline());
+		chooser.addObject("Deliver From Center", new DeliverFromCenter());
+		chooser.addObject("Deliver From Left", new DeliverFromLeft());
+		chooser.addObject("Deliver From Right", new DeliverFromRight());
+		chooser.addObject("Deliver From Left Scale", new DeliverFromLeftScale());
+		chooser.addObject("Deliver From Right Scale", new DeliverFromRightScale());
+		chooser.addObject("DO Nothing", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
 
@@ -88,39 +88,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
-
-		SmartDashboard.putNumber("High Accelerator Intialize Time", 0);
-		SmartDashboard.putNumber("Low Accelerator Intialize Time", 0);
-
-		SmartDashboard.putNumber("Shooter High Timeout", 0);
-		SmartDashboard.putNumber("Shooter Low Timeout", 0);
-		SmartDashboard.putNumber("Shooter Switch Timeout", 0);
-		SmartDashboard.putNumber("Intake Piston Delay", 0);
-
-		// Use Values for Testing
-		SmartDashboard.putNumber("rightP", 0.16);
-		SmartDashboard.putNumber("rightI", 0.001);
-		SmartDashboard.putNumber("rightD", 0.001);
-		SmartDashboard.putNumber("rightF", 0.154);
-
-		SmartDashboard.putNumber("leftP", 0.26);
-		SmartDashboard.putNumber("leftI", 0.0006);
-		SmartDashboard.putNumber("leftD", 0.001);
-		SmartDashboard.putNumber("leftF", 0.154);
-
-		SmartDashboard.putBoolean("Go For Scale", true);
-		SmartDashboard.putBoolean("Go For The Opposite Side", false);
-
-		SmartDashboard.putBoolean("L1", false);
-		SmartDashboard.putBoolean("L2", false);
-		SmartDashboard.putBoolean("L3", false);
-		SmartDashboard.putBoolean("R1", false);
-		SmartDashboard.putBoolean("R1", false);
-		SmartDashboard.putBoolean("R1", false);
-
-		SmartDashboard.putBoolean("Accelerometer", false);
-
-		SmartDashboard.putNumber("Drivetrain Target Speed", 0);
 	}
 
 	/**
@@ -159,6 +126,16 @@ public class Robot extends IterativeRobot {
 
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
 
+		while (gameData.length() != 3) {
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException ie) {
+				ie.printStackTrace();
+			}
+
+			gameData = DriverStation.getInstance().getGameSpecificMessage();
+		}
+
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
 		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
 		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
@@ -185,6 +162,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
+		SmartDashboard.putNumber("Drivetrain Left Encoder Get", drivetrain.leftEncoder.get());
 	}
 
 	@Override

@@ -28,30 +28,15 @@ public class DriveForADistance extends Command
 		Robot.drivetrain.leftEncoder.reset();
 		//Robot.drivetrain.rightEncoder.reset();
 //        Robot.drivetrain.getDistanceController().setSetpoint(SmartDashboard.getNumber("Drivetrain Target Distance", 0));
-<<<<<<< HEAD
 		Robot.drivetrain.setUsingTurnPID(true);
 
         Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
-=======
->>>>>>> parent of 5d14542... presave-post-saturday-testing
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-<<<<<<< HEAD
-		
-
-		Robot.drivetrain.arcadeDrive(speed, Robot.drivetrain.getPIDRotateRate());
-
-=======
-
-		Robot.drivetrain.arcadeDrive(speed, 0);
-
->>>>>>> parent of 5d14542... presave-post-saturday-testing
-//		}
-		
-		
+		Robot.drivetrain.arcadeDrive(speed, /*0.5 */ Robot.drivetrain.getPIDRotateRate());
 	}
 
 	// Returns true once the distance travelled by the encoder is greater than
@@ -75,11 +60,7 @@ public class DriveForADistance extends Command
 //    	}	
 //		return false; 
 //		 only tests right side... we're driving straight, so who cares.
-<<<<<<< HEAD
-		if(SmartDashboard.getNumber("Drivetrain Left Encoder Distance", 0) > distance) {
-=======
-		if (SmartDashboard.getNumber("Drivetrain left Encoder Distance", 0) > distance * 1.18) {
->>>>>>> parent of 5d14542... presave-post-saturday-testing
+		if (SmartDashboard.getNumber("Drivetrain Left Encoder Distance", 0) > distance * 1.18) {
 			return true;
 		}
 		return false;
@@ -88,10 +69,7 @@ public class DriveForADistance extends Command
 	// Called once after isFinished returns true
 	protected void end()
 	{
-<<<<<<< HEAD
 		Robot.drivetrain.setUsingTurnPID(false);
-=======
->>>>>>> parent of 5d14542... presave-post-saturday-testing
 		Robot.drivetrain.stop();
 	}
 
@@ -99,10 +77,7 @@ public class DriveForADistance extends Command
 	// subsystems is scheduled to run
 	protected void interrupted()
 	{
-<<<<<<< HEAD
 		Robot.drivetrain.setUsingTurnPID(false);
-=======
->>>>>>> parent of 5d14542... presave-post-saturday-testing
 		Robot.drivetrain.stop();
 	}
 }

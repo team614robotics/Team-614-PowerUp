@@ -67,16 +67,13 @@ public class Robot extends IterativeRobot {
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
-<<<<<<< HEAD
 		
         chooser.addDefault("Do Nothing", new DrivePastBaseline());
         chooser.addObject("Drive Past The Baseline", new DrivePastBaseline());
         chooser.addObject("Deliver From Left Side", new DeliverFromLeft());
         chooser.addObject("Deliver From Center", new DeliverFromCenter());
         chooser.addDefault("Deliver From Right Side", new DeliverFromRight());
-=======
 		chooser.addDefault("Default Auto", new DoNothing());
->>>>>>> parent of 5d14542... presave-post-saturday-testing
 
 		SmartDashboard.putData("Autonomous", chooser);
 
@@ -211,6 +208,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
+		SmartDashboard.putNumber("Drivetrain Left Encoder", drivetrain.leftEncoder.get());
 	}
 
 	/**

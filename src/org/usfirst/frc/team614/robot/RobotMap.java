@@ -53,10 +53,8 @@ public class RobotMap {
 
 	// ENCODERS
 
-	public static final int leftMotorEncoderA = 0;
-	public static final int leftMotorEncoderB = 1;
-	public static final int rightMotorEncoderA = 2;
-	public static final int rightMotorEncoderB = 3;
+	public static final int leftMotorEncoderA = 2;
+	public static final int leftMotorEncoderB = 3;
 
 	// DRIVETRAIN CONSTANTS
 

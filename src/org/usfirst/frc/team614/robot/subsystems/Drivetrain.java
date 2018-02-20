@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Drivetrain extends Subsystem implements PIDOutput {
 
-	public PIDController turnController;
+	private PIDController turnController;
 	public RobotDrive drivetrain;
 	public Encoder leftEncoder;
 

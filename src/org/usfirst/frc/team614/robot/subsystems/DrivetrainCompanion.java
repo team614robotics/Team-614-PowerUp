@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  *
  */
 public class DrivetrainCompanion extends Subsystem implements PIDOutput {
-	PIDController distanceController;
+	private PIDController distanceController;
 	private double PIDdistanceSpeed;
 	private boolean usingDistancePID;
 
@@ -70,7 +70,8 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	}
 
 	public void setUsingDistancePID(boolean set) {
-		if (usingDistancePID = set) {
+		usingDistancePID = set;
+		if (usingDistancePID) {
 			distanceController.enable();
 		} else {
 			distanceController.disable();

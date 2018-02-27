@@ -25,13 +25,12 @@ public class RotateToAngle extends Command {
 		requires(Robot.drivetrain);
 		this.angle = angle;
 		this.useAbsoluteAngle = useAbsoluteAngle;
-		setTimeout(3);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		// Robot.navX.reset();
-		// Robot.navX.zeroYaw();
+//		 Robot.navX.reset();
+//		 Robot.navX.zeroYaw();
 
 		Robot.drivetrain.setUsingTurnPID(true);
 
@@ -44,18 +43,18 @@ public class RotateToAngle extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.arcadeDrive(0.0, .7 * Robot.drivetrain.getPIDRotateRate());
+		Robot.drivetrain.arcadeDrive(0.0, .8 * Robot.drivetrain.getPIDRotateRate());
 //		Robot.drivetrain.arcadeDrive(0.0, Robot.drivetrain.getPIDRotateRate());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		if (timeSinceInitialized() > 1.5) {
-			if (Robot.drivetrain.leftEncoder.getRate() < 10.0 && Robot.drivetrain.leftEncoder.getRate() > -10.0) {
+			if (Robot.drivetrain.leftEncoder.getRate() < 2.5 && Robot.drivetrain.leftEncoder.getRate() > -2.5) {
 				return true;
 			}
 		}
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true

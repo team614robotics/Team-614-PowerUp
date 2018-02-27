@@ -24,8 +24,10 @@ public class DriveForADistance extends Command {
 		Robot.drivetrain.leftEncoder.reset();
 		Robot.drivetrain.setUsingTurnPID(true);
 		Robot.drivetrain.setUsingDistancePID(true);
-		Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw() + 1);
+		Robot.drivetrain.getTurnController().setSetpoint(Robot.navX.getYaw());
 		Robot.drivetrain.getDistanceController().setSetpoint(distance);
+		// PID Controller Setting the setpoint which
+		// just returns the setpoint
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -34,11 +36,13 @@ public class DriveForADistance extends Command {
 		SmartDashboard.putNumber("PID Speed", Robot.drivetrain.getPIDSpeed());
 		SmartDashboard.putNumber("navX Yaw", Robot.navX.getYaw());
 		Robot.drivetrain.arcadeDrive(speed * Robot.drivetrain.getPIDSpeed(), Robot.drivetrain.getPIDRotateRate());
+		// Sets the setpoint at which how far you want the robot to go, it will
+		// manipulate the output whenever it needs to
 	}
 
 	protected boolean isFinished() {
-		return timeSinceInitialized() > 0.2 && Robot.drivetrain.leftEncoder.getRate() < 2.5
-				&& Robot.drivetrain.leftEncoder.getRate() > -2.5;
+		return timeSinceInitialized() > 0.2 && Robot.drivetrain.leftEncoder.getRate() < 1
+				&& Robot.drivetrain.leftEncoder.getRate() > -1;
 	}
 
 	// Called once after isFinished returns true

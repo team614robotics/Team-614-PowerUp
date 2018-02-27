@@ -7,9 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DoNothing extends Command {
 
-    public DoNothing() {
+    public DoNothing(double seconds) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.setTimeout(seconds);
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +23,7 @@ public class DoNothing extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true

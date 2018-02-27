@@ -16,16 +16,23 @@ public class DeliverSwitchAuto extends Command {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
+		requires(Robot.intake);
 		setTimeout(2.3);
 	}
 
 	protected void initialize() {
 		Robot.shooter.setShooter(0);
+		Robot.shooter.setAccelerator(0);
+		Robot.intake.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter DeliverSwitch RPM", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Low Setpoint", 0));
+		if (timeSinceInitialized() > 0.2) {
+			Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Low Speed", 0));
+    	    Robot.intake.set(SmartDashboard.getNumber("Intake Speed", 0));
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -36,11 +43,13 @@ public class DeliverSwitchAuto extends Command {
 	// Called once after isFinished returns true
 	protected void end() {
 		Robot.shooter.stop();
+		Robot.intake.set(0);
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
 		Robot.shooter.stop();
+		Robot.intake.set(0);
 	}
 }

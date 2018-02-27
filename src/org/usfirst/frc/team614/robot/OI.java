@@ -76,7 +76,7 @@ public class OI {
 		deliverScale.whileHeld(new DeliverScale());
 		deliverSwitch.whileHeld(new DeliverSwitch());
 		
-		auto1.whenPressed(new DeliverFromLeftScale());
+		auto1.whenPressed(new DriveForADistance(150, 0.7));
 		auto2.whenPressed(new RotateToAngle(90, false));
 	}
 }

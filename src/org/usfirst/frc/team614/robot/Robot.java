@@ -75,7 +75,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Deliver From Right", new DeliverFromRight());
 		chooser.addObject("Deliver From Left Scale", new DeliverFromLeftScale());
 		chooser.addObject("Deliver From Right Scale", new DeliverFromRightScale());
-		chooser.addObject("DO Nothing", new DoNothing());
+//		chooser.addObject("D Nothing", new DoNothing());
 
 		SmartDashboard.putData("Autonomous", chooser);
 
@@ -136,6 +136,10 @@ public class Robot extends IterativeRobot {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 		}
 
+		RobotMap.left1 = gameData.charAt(0) == 'L';
+		RobotMap.left2 = gameData.charAt(1) == 'L';
+		RobotMap.left3 = gameData.charAt(2) == 'L';
+		
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
 		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
 		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
@@ -189,6 +193,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", drivetrain.leftEncoder.get());
+		SmartDashboard.putNumber("navX Yaw", Robot.navX.getYaw());
 	}
 
 	/**

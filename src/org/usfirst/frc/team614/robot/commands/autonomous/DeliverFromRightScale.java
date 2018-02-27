@@ -34,16 +34,19 @@ public class DeliverFromRightScale extends CommandGroup {
 		// a CommandGroup containing them would require both the chassis and the
 		// arm.
 
-		double speed = 0.8;
+		double speed = 0.7;
 
 		if (SmartDashboard.getBoolean("R2", false)) {
-			addSequential(new DriveForADistance(150, speed));
+			addSequential(new DriveForADistance(300, speed));
 			addParallel(new RotateToAngle(90, false));
 			addParallel(new DeliverScaleAuto());
-		} else if (SmartDashboard.getBoolean("R1", false)) {
-			addSequential(new DriveForADistance(168, speed));
-			addSequential(new RotateToAngle(90, false));
-			addSequential(new DeliverSwitchAuto());
+			addSequential(new DoNothing(3));
+			addSequential(new RotateToAngle(-240, false));
+			addParallel(new DriveForADistance(100, 0.5));
+//			addParallel(new IntakePowerCube());
+//			addSequential(new DriveForADistance(128, -0.5));
+//			addParallel(new RotateToAngle(-128, false));
+//			addParallel(new DeliverScaleAuto());
 		} else if (SmartDashboard.getBoolean("L2", false)) {
 			addSequential(new DriveForADistance(261.47, speed));
 			addSequential(new RotateToAngle(-90, false));
@@ -52,6 +55,10 @@ public class DeliverFromRightScale extends CommandGroup {
 			addSequential(new DriveForADistance(108, speed));
 			addParallel(new RotateToAngle(-90, false));
 			addParallel(new DeliverScaleAuto());
+		} else if (SmartDashboard.getBoolean("R1", false)) {
+			addSequential(new DriveForADistance(168, speed));
+			addSequential(new RotateToAngle(90, false));
+			addSequential(new DeliverSwitchAuto());
 		} else {
 			addSequential(new DrivePastBaseline());
 		}

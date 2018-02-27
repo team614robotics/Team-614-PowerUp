@@ -91,7 +91,7 @@ public class DrivetrainCompanion extends Subsystem implements PIDOutput {
 	}
 
 	public double getPIDSpeed() {
-		return PIDdistanceSpeed;
+		return PIDdistanceSpeed; //Returns Output
 	}
 
 	public PIDController getDistanceController() {

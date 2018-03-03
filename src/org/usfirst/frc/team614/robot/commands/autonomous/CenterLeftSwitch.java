@@ -2,10 +2,7 @@ package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
-import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilHitCube;
-import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilStopped;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
-import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -14,9 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverFromCenter extends CommandGroup {
+public class CenterLeftSwitch extends CommandGroup {
 
-    public DeliverFromCenter() {
+    public CenterLeftSwitch() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -33,30 +30,12 @@ public class DeliverFromCenter extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	double speed = 0.7;
     	
-    	double speed = 0.8;
-    	
-    	if (SmartDashboard.getBoolean("L1", false))
-    	{
-    		addSequential(new RotateToAngle(-45, false));
-    		addSequential(new DriveForADistance(121.14, speed));
-    		addSequential(new RotateToAngle(-135, false));
-    		addSequential(new DriveUntilCollisionDetected(-speed));
-    		addSequential(new DeliverSwitchAuto());
-    	}
-    	
-    	else if (SmartDashboard.getBoolean("R1", false))
-    	{
-    		addSequential(new RotateToAngle(45, false));
-    		addSequential(new DriveForADistance(121.14, speed));
-    		addSequential(new RotateToAngle(135, false));
-    		addSequential(new DriveUntilCollisionDetected(-speed));
-    		addSequential(new DeliverSwitchAuto());
-    	}
-    	
-    	else
-    	{
-    		addSequential(new DrivePastBaseline());
-    	}
+    	addSequential(new RotateToAngle(-45, false));
+		addSequential(new DriveForADistance(121.14, speed));
+		addSequential(new RotateToAngle(-135, false));
+		addSequential(new DriveUntilCollisionDetected(-speed));
+		addSequential(new DeliverSwitchAuto());
     }
 }

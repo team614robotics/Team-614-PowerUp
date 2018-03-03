@@ -4,9 +4,6 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeftScale;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRight;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
@@ -15,6 +12,7 @@ import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchHigh;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScale;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
 
@@ -63,8 +61,10 @@ public class OI {
 	private static final Button deliverScale = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
 	private static final Button deliverSwitch = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	
-	private static final Button auto1 = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
-	private static final Button auto2 = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+	private static final Button deliverSwitchHigh = new JoystickButton(operatorGamepad, Gamepad.button_Start);
+	
+//	private static final Button auto1 = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
+//	private static final Button auto2 = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -76,7 +76,9 @@ public class OI {
 		deliverScale.whileHeld(new DeliverScale());
 		deliverSwitch.whileHeld(new DeliverSwitch());
 		
-		auto1.whenPressed(new DriveForADistance(150, 0.7));
-		auto2.whenPressed(new RotateToAngle(90, false));
+		deliverSwitchHigh.whileHeld(new DeliverSwitchHigh());
+		
+//		auto1.whenPressed(new DriveForADistance(150, 0.7));
+//		auto2.whenPressed(new RotateToAngle(90, false));
 	}
 }

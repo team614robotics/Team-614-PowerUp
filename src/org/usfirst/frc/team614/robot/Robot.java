@@ -10,14 +10,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromCenter;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeft;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromLeftScale;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRight;
-import org.usfirst.frc.team614.robot.commands.autonomous.DeliverFromRightScale;
-import org.usfirst.frc.team614.robot.commands.autonomous.DoNothing;
+import org.usfirst.frc.team614.robot.commands.autonomous.CenterLeftSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.CenterRightSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
-import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightSwitch;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
@@ -46,7 +45,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<String> chooser = new SendableChooser<>();
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -69,13 +68,12 @@ public class Robot extends IterativeRobot {
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
 
-		chooser.addObject("Drive Past Baseline", new DrivePastBaseline());
-		chooser.addObject("Deliver From Center", new DeliverFromCenter());
-		chooser.addObject("Deliver From Left", new DeliverFromLeft());
-		chooser.addObject("Deliver From Right", new DeliverFromRight());
-		chooser.addObject("Deliver From Left Scale", new DeliverFromLeftScale());
-		chooser.addObject("Deliver From Right Scale", new DeliverFromRightScale());
-//		chooser.addObject("D Nothing", new DoNothing());
+		chooser.addObject("Drive Past Baseline", "DrivePastBaseline");
+		chooser.addObject("Center Switch Auto", "CenterSwitchAuto");
+		chooser.addObject("Left Switch Auto", "LeftSwitchAuto");
+		chooser.addObject("Right Switch Auto", "RightSwitchAuto");
+		chooser.addObject("Left Scale Auto", "LeftScaleAuto");
+		chooser.addObject("Right Scale Auto", "RightScaleAuto");
 
 		SmartDashboard.putData("Autonomous", chooser);
 
@@ -136,10 +134,6 @@ public class Robot extends IterativeRobot {
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
 		}
 
-		RobotMap.left1 = gameData.charAt(0) == 'L';
-		RobotMap.left2 = gameData.charAt(1) == 'L';
-		RobotMap.left3 = gameData.charAt(2) == 'L';
-		
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
 		SmartDashboard.putBoolean("L2", gameData.charAt(1) == 'L');
 		SmartDashboard.putBoolean("L3", gameData.charAt(2) == 'L');
@@ -147,17 +141,57 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("R2", gameData.charAt(1) == 'R');
 		SmartDashboard.putBoolean("R3", gameData.charAt(2) == 'R');
 
-		autonomousCommand = chooser.getSelected();
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
-		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-		 * SpinFlyWheel(); break; }
-		 */
+		String chooserCommand = chooser.getSelected();
 
-		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
+		if (chooserCommand == null) {
+			autonomousCommand = null;
+		} else if (chooserCommand.equals("LeftScaleAuto")) {
+			if (gameData.charAt(1) == 'L') {
+				autonomousCommand = new LeftScale();
+			} else if (gameData.charAt(0) == 'L') {
+				autonomousCommand = new LeftSwitch();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else if (chooserCommand.equals("RightScaleAuto")) {
+			if (gameData.charAt(1) == 'R') {
+				autonomousCommand = new RightScale();
+			} else if (gameData.charAt(0) == 'R') {
+				autonomousCommand = new RightSwitch();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else if (chooserCommand.equals("LeftSwitchAuto")) {
+			if (gameData.charAt(0) == 'L') {
+				autonomousCommand = new LeftSwitch();
+			} else if (gameData.charAt(1) == 'L') {
+				autonomousCommand = new LeftScale();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else if (chooserCommand.equals("RightSwitchAuto")) {
+			if (gameData.charAt(0) == 'R') {
+				autonomousCommand = new RightSwitch();
+			} else if (gameData.charAt(1) == 'R') {
+				autonomousCommand = new RightScale();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else if (chooserCommand.equals("CenterSwitchAuto")) {
+			if (gameData.charAt(0) == 'L') {
+				autonomousCommand = new CenterLeftSwitch();
+			} else if (gameData.charAt(0) == 'R') {
+				autonomousCommand = new CenterRightSwitch();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else {
+			autonomousCommand = new DrivePastBaseline();
+		}
+
+		if (autonomousCommand != null) {
 			autonomousCommand.start();
+		}
 	}
 
 	/**

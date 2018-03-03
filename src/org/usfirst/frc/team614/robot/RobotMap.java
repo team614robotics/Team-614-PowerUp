@@ -9,10 +9,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  * floating around.
  */
 public class RobotMap {
-	public static boolean left1;
-	public static boolean left2;
-	public static boolean left3;
-	
 	// SHOOTER
 	
 	public static final int shooterLeft = 2;

@@ -33,7 +33,7 @@ public class RightSwitch extends CommandGroup {
 
 		addSequential(new DriveForADistance(135, speed));
 		addSequential(new RotateToAngle(90, false));
-		//addParallel(new DeliverSwitchAuto());
+		addParallel(new DeliverSwitchAuto());
 		addParallel(new DriveForADistance(10, -speed));
     }
 }

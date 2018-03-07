@@ -33,7 +33,7 @@ public class RightScale extends CommandGroup {
     	
 		addSequential(new DriveForADistance(300, speed));
 		addParallel(new RotateToAngle(90, false));
-		//addParallel(new DeliverScaleAuto());
+		addParallel(new DeliverScaleAuto());
 		addSequential(new DoNothing(3));
 		addSequential(new RotateToAngle(-240, false));
 		addParallel(new DriveForADistance(100, 0.5));

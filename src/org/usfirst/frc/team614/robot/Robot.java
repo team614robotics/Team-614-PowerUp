@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", 0);
 
-		SmartDashboard.putNumber("Shooter High Setpoint", 15000);
+		SmartDashboard.putNumber("Shooter High Setpoint", 1300);
 		SmartDashboard.putNumber("Shooter Low Setpoint", 3000);
 		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.5);

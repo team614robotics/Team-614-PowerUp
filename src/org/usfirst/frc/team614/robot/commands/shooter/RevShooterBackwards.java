@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverScaleLow extends Command {
+public class RevShooterBackwards extends Command {
 
-	public DeliverScaleLow() {
+	public RevShooterBackwards() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
@@ -25,8 +25,8 @@ public class DeliverScaleLow extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale Low Setpoint", 0));
-		Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator High Speed", 0));
+		Robot.shooter.setShooter(-SmartDashboard.getNumber("Shooter Switch High Setpoint", 0));
+		Robot.shooter.setAccelerator(-SmartDashboard.getNumber("Accelerator High Speed", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

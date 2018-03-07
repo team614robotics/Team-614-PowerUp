@@ -14,17 +14,16 @@ public class RevIntakeTimed extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
-
+		setTimeout(2.5);
     }
 
 	protected void initialize() {
 		Robot.intake.set(0);
-		setTimeout(2);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.intake.set(SmartDashboard.getNumber("Intake Speed", 0));
+		Robot.intake.set(-SmartDashboard.getNumber("Intake Speed", 0));
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

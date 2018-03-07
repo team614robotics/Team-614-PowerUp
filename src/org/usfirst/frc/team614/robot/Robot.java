@@ -14,8 +14,10 @@ import org.usfirst.frc.team614.robot.commands.autonomous.CenterLeftSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.CenterRightSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.commands.autonomous.LeftScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.LeftSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.RightScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.RightSwitch;
 import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
@@ -81,8 +83,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", 0);
 
-		SmartDashboard.putNumber("Shooter High Setpoint", 1300);
-		SmartDashboard.putNumber("Shooter Low Setpoint", 3000);
+		SmartDashboard.putNumber("Shooter Scale High Setpoint", 13500);
+		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12000);
+		SmartDashboard.putNumber("Shooter Switch High Setpoint", 6000);
+		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 3000);
+		
 		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
@@ -146,7 +151,9 @@ public class Robot extends IterativeRobot {
 		if (chooserCommand == null) {
 			autonomousCommand = null;
 		} else if (chooserCommand.equals("LeftScaleAuto")) {
-			if (gameData.charAt(1) == 'L') {
+			if (gameData.charAt(1) == 'L' && gameData.charAt(0) == 'L') {
+				autonomousCommand = new LeftScaleSwitch();
+			} else if (gameData.charAt(1) == 'L') {
 				autonomousCommand = new LeftScale();
 			} else if (gameData.charAt(0) == 'L') {
 				autonomousCommand = new LeftSwitch();
@@ -154,7 +161,9 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new DrivePastBaseline();
 			}
 		} else if (chooserCommand.equals("RightScaleAuto")) {
-			if (gameData.charAt(1) == 'R') {
+			if (gameData.charAt(1) == 'R' && gameData.charAt(0) == 'R') {
+				autonomousCommand = new RightScaleSwitch();
+			} else if (gameData.charAt(1) == 'R') {
 				autonomousCommand = new RightScale();
 			} else if (gameData.charAt(0) == 'R') {
 				autonomousCommand = new RightSwitch();

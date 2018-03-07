@@ -25,7 +25,7 @@ public class DeliverSwitchHigh extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(6000);
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Switch High Setpoint", 0));
 		Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Low Speed", 0));
 	}
 

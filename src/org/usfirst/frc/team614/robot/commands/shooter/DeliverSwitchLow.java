@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverSwitch extends Command {
+public class DeliverSwitchLow extends Command {
 
-	public DeliverSwitch() {
+	public DeliverSwitchLow() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
@@ -25,7 +25,7 @@ public class DeliverSwitch extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Low Setpoint", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Switch Low Setpoint", 0));
 		Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Low Speed", 0));
 	}
 

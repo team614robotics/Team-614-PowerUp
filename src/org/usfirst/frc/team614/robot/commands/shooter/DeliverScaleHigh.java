@@ -10,9 +10,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverScale extends Command {
+public class DeliverScaleHigh extends Command {
 
-	public DeliverScale() {
+	public DeliverScaleHigh() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
@@ -25,7 +25,7 @@ public class DeliverScale extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter High Setpoint", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale High Setpoint", 0));
 		Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator High Speed", 0));
 	}
 

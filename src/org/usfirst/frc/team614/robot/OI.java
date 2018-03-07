@@ -14,8 +14,9 @@ import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleLow;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchHigh;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverScale;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitch;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleHigh;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchLow;
+import org.usfirst.frc.team614.robot.commands.shooter.RevShooterBackwards;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -59,14 +60,13 @@ public class OI {
 	private static final Button toggleIntakePiston = new JoystickButton(operatorGamepad, Gamepad.button_X);
 	private static final Button toggleLoaderPiston = new JoystickButton(operatorGamepad, Gamepad.button_Y);
 	
-	private static final Button deliverScale = new JoystickButton(operatorGamepad, Gamepad.button_Back);
-	private static final Button deliverSwitch = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
+//	private static final Button deliverScaleHigh = new JoystickButton(operatorGamepad, Gamepad.button_Back);
+//	private static final Button deliverSwitchHigh = new JoystickButton(operatorGamepad, Gamepad.button_Start);
 	
-	private static final Button deliverSwitchHigh = new JoystickButton(operatorGamepad, Gamepad.button_Start);
 	private static final Button deliverScaleLow = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
+	private static final Button deliverSwitchLow = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	
-//	private static final Button auto1 = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
-//	private static final Button auto2 = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+	private static final Button revShooterBackwards = new JoystickButton(operatorGamepad, Gamepad.button_Back);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -75,13 +75,12 @@ public class OI {
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
 		toggleLoaderPiston.whenPressed(new ToggleLoaderPiston());
 		
-		deliverScale.whileHeld(new DeliverScale());
-		deliverSwitch.whileHeld(new DeliverSwitch());
+//		deliverScaleHigh.whileHeld(new DeliverScaleHigh());
+//		deliverSwitchHigh.whileHeld(new DeliverSwitchHigh());
 		
-		deliverSwitchHigh.whileHeld(new DeliverSwitchHigh());
 		deliverScaleLow.whileHeld(new DeliverScaleLow());
+		deliverSwitchLow.whileHeld(new DeliverSwitchLow());
 		
-//		auto1.whenPressed(new DriveForADistance(150, 0.7));
-//		auto2.whenPressed(new RotateToAngle(90, false));
+		revShooterBackwards.whileHeld(new RevShooterBackwards());
 	}
 }

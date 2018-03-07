@@ -27,7 +27,7 @@ public class CompressorControl extends Command {
 				Robot.pneumatics.compressor.stop();
 			}
 		} else {
-			if (DriverStation.getInstance().getBatteryVoltage() > 10.5) {
+			if (DriverStation.getInstance().getBatteryVoltage() >= 9.5) {
 				Robot.pneumatics.compressor.start();
 			}
 		}

@@ -2,7 +2,6 @@ package org.usfirst.frc.team614.robot.subsystems;
 
 import org.usfirst.frc.team614.robot.Robot;
 import org.usfirst.frc.team614.robot.RobotMap;
-import org.usfirst.frc.team614.robot.commands.drivetrain.CollisionDetected;
 import org.usfirst.frc.team614.robot.commands.drivetrain.TankDrive;
 
 import edu.wpi.first.wpilibj.DigitalInput;

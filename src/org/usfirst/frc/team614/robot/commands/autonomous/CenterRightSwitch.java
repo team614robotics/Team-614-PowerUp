@@ -1,7 +1,6 @@
 package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
-import org.usfirst.frc.team614.robot.commands.drivetrain.DriveUntilCollisionDetected;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 
@@ -33,9 +32,7 @@ public class CenterRightSwitch extends CommandGroup {
     	double speed = 0.7;
     	
 		addSequential(new RotateToAngle(45, false));
-		addSequential(new DriveForADistance(121.14, speed));
-		addSequential(new RotateToAngle(135, false));
-		addSequential(new DriveUntilCollisionDetected(-speed));
+		addSequential(new DriveForADistance(121.14, -speed));
 		addSequential(new DeliverSwitchAuto());
     }
 }

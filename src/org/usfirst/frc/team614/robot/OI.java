@@ -9,7 +9,8 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
-import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderFullIn;
+import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderHalfIn;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleLow;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
@@ -58,10 +59,9 @@ public class OI {
 	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_B);
 	
 	private static final Button toggleIntakePiston = new JoystickButton(operatorGamepad, Gamepad.button_X);
-	private static final Button toggleLoaderPiston = new JoystickButton(operatorGamepad, Gamepad.button_Y);
 	
-//	private static final Button deliverScaleHigh = new JoystickButton(operatorGamepad, Gamepad.button_Back);
-//	private static final Button deliverSwitchHigh = new JoystickButton(operatorGamepad, Gamepad.button_Start);
+	private static final Button toggleLoaderFullIn = new JoystickButton(operatorGamepad, Gamepad.button_Y);
+	private static final Button toggleLoaderHalfIn = new JoystickButton(operatorGamepad, Gamepad.button_Start);
 	
 	private static final Button deliverScaleLow = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
 	private static final Button deliverSwitchLow = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
@@ -73,10 +73,9 @@ public class OI {
 		revOutake.whileHeld(new RevOutake());
 		
 		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
-		toggleLoaderPiston.whenPressed(new ToggleLoaderPiston());
 		
-//		deliverScaleHigh.whileHeld(new DeliverScaleHigh());
-//		deliverSwitchHigh.whileHeld(new DeliverSwitchHigh());
+		toggleLoaderFullIn.whenPressed(new ToggleLoaderFullIn());
+		toggleLoaderHalfIn.whenPressed(new ToggleLoaderHalfIn());
 		
 		deliverScaleLow.whileHeld(new DeliverScaleLow());
 		deliverSwitchLow.whileHeld(new DeliverSwitchLow());

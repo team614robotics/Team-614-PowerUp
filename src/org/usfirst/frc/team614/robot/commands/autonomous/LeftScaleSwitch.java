@@ -4,7 +4,7 @@ import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntakeTimed;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
-import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderFullIn;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -39,7 +39,7 @@ public class LeftScaleSwitch extends CommandGroup {
 		addParallel(new DeliverScaleAuto());
 		addSequential(new DoNothing(3));
 		addSequential(new RotateToAngle(240, false));
-		addSequential(new ToggleLoaderPiston());
+		addSequential(new ToggleLoaderFullIn());
 		addSequential(new ToggleIntakePiston());
 //		addParallel(new DriveForADistance(100, 0.5));
 //		addParallel(new RevIntakeTimed());

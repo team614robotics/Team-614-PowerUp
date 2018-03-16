@@ -21,42 +21,6 @@ public class ToggleIntakeLight extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
-     if(Robot.intake.testForCube()){
-        setTimeout(2147483647);
-        if(!isTimedOut()){   		
-    		if(Robot.intake.testForCube() && this.timeSinceInitialized() < .5 ) {
-        		Robot.pneumatics.intakeRingLight.set(true);
-        	}
-        	else if(Robot.intake.testForCube() && this.timeSinceInitialized() > .5 && this.timeSinceInitialized() < 1 ) {
-        		Robot.pneumatics.intakeRingLight.set(false);
-        	}
-        	else if(Robot.intake.testForCube() && this.timeSinceInitialized() > 1 && this.timeSinceInitialized() < 1.5 ) {
-        		Robot.pneumatics.intakeRingLight.set(true);
-        	}
-        	else if(Robot.intake.testForCube() && this.timeSinceInitialized() > 1.5 && this.timeSinceInitialized() < 2 ) {
-        		Robot.pneumatics.intakeRingLight.set(false);
-        	}
-        	else if(Robot.intake.testForCube() && this.timeSinceInitialized() > 2 && this.timeSinceInitialized() < 2.5 ) {
-        		Robot.pneumatics.intakeRingLight.set(true);
-        	}
-        	else if(Robot.intake.testForCube() && this.timeSinceInitialized() > 2.5 && this.timeSinceInitialized() < 3 ) {
-        		Robot.pneumatics.intakeRingLight.set(false);
-        	}
-        	else if(Robot.intake.testForCube() && this.timeSinceInitialized() > 3 ) {
-        		Robot.pneumatics.intakeRingLight.set(false);        		
-        	}
-    	   else{
-    	        Robot.pneumatics.intakeRingLight.set(false);
-    	    }
-    	 }
-    	  
-    	}
-     else
-     {
-        	Robot.pneumatics.intakeRingLight.set(false);
-        	setTimeout(0);
-     }
   }
 
     // Make this return true when this Command no longer needs to run execute()

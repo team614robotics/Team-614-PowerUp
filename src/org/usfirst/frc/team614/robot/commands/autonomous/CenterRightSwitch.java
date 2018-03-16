@@ -31,8 +31,11 @@ public class CenterRightSwitch extends CommandGroup {
         // arm.
     	double speed = 0.7;
     	
-		addSequential(new RotateToAngle(45, false));
-		addSequential(new DriveForADistance(121.14, -speed));
-		addSequential(new DeliverSwitchAuto());
+    	addSequential(new DriveForADistance(40, speed));
+    	addSequential(new RotateToAngle(-90, false));
+    	addSequential(new DriveForADistance(60, -speed));
+    	addSequential(new RotateToAngle(-90, false));
+    	addParallel(new DriveForADistance(50, -speed)); //this is too small, increase ***KERNS***
+		addParallel(new DeliverSwitchAuto());
     }
 }

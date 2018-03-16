@@ -36,9 +36,9 @@ public class RobotMap {
 	public static final int intakeRight = 5;
 	
 	public static final int leftMotorA = 0; // blue
-	public static final int leftMotorB = 1;
+	public static final int leftMotorB = 1; //1 
 	public static final int rightMotorA = 2; // pink
-	public static final int rightMotorB = 3;
+	public static final int rightMotorB = 3; //3
 	
 	// ENCODERS
 	
@@ -82,4 +82,7 @@ public class RobotMap {
 	
 	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;
+	
+	public static final int IMG_HEIGHT = 320;
+	public static final int IMG_WIDTH = 240;
 }

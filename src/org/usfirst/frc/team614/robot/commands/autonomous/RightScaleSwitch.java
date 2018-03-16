@@ -35,7 +35,7 @@ public class RightScaleSwitch extends CommandGroup {
 		addParallel(new RotateToAngle(90, false));
 		addParallel(new DeliverScaleAuto());
 		addSequential(new DoNothing(3));
-		addSequential(new RotateToAngle(-240, false));
-		addParallel(new DriveForADistance(100, 0.5));
+		addSequential(new RotateToAngle(-240, false)); // reduce this angle (to get the first cube instead of second) ***KERNS***
+		addParallel(new DriveForADistance(100, 0.5)); //increase this speed, to enable picking up the second cube ***KERNS***
     }
 }

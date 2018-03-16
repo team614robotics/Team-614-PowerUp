@@ -1,5 +1,7 @@
 package org.usfirst.frc.team614.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -46,6 +48,8 @@ public class Robot extends IterativeRobot {
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
 
+	public static CameraServer serverOne;
+	public static UsbCamera camera;
 	Command autonomousCommand;
 	SendableChooser<String> chooser = new SendableChooser<>();
 
@@ -60,6 +64,8 @@ public class Robot extends IterativeRobot {
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
+		
+		CameraServer.getInstance().startAutomaticCapture();
 
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
@@ -91,6 +97,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Intake Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
+		
+		cameraInit();
 	}
 
 	/**
@@ -245,5 +253,16 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
+	}
+	public void cameraInit() {
+		serverOne = CameraServer.getInstance();
+        //serverOne.startAutomaticCapture();
+        //serverOne.startAutomaticCapture(0)
+
+        camera = serverOne.startAutomaticCapture(0);
+
+        camera.setExposureManual(50);
+        camera.setFPS(15);
+        camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);       
 	}
 }

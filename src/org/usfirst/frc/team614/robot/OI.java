@@ -4,18 +4,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
-import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
-import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
-import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderFullIn;
-import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderHalfIn;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
+import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleLow;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchHigh;
-import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleHigh;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooterBackwards;
 
@@ -58,10 +51,9 @@ public class OI {
 	private static final Button revIntake = new JoystickButton(operatorGamepad, Gamepad.button_A);
 	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_B);
 	
-	private static final Button toggleIntakePiston = new JoystickButton(operatorGamepad, Gamepad.button_X);
+	private static final Button toggleIntake = new JoystickButton(operatorGamepad, Gamepad.button_X);
 	
-	private static final Button toggleLoaderFullIn = new JoystickButton(operatorGamepad, Gamepad.button_Y);
-	private static final Button toggleLoaderHalfIn = new JoystickButton(operatorGamepad, Gamepad.button_Start);
+	private static final Button toggleLoader = new JoystickButton(operatorGamepad, Gamepad.button_Y);
 	
 	private static final Button deliverScaleLow = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
 	private static final Button deliverSwitchLow = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
@@ -72,10 +64,8 @@ public class OI {
 		revIntake.whileHeld(new RevIntake());
 		revOutake.whileHeld(new RevOutake());
 		
-		toggleIntakePiston.whenPressed(new ToggleIntakePiston());
-		
-		toggleLoaderFullIn.whenPressed(new ToggleLoaderFullIn());
-		toggleLoaderHalfIn.whenPressed(new ToggleLoaderHalfIn());
+		toggleIntake.whenPressed(new ToggleIntakePiston());
+		toggleLoader.whenPressed(new ToggleLoaderPiston());
 		
 		deliverScaleLow.whileHeld(new DeliverScaleLow());
 		deliverSwitchLow.whileHeld(new DeliverSwitchLow());

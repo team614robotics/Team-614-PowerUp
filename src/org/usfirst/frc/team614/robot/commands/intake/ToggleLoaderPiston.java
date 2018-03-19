@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ToggleLoaderHalfIn extends Command {
+public class ToggleLoaderPiston extends Command {
 
-	public ToggleLoaderHalfIn() {
+	public ToggleLoaderPiston() {
 		requires(Robot.pneumatics);
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
@@ -19,10 +19,10 @@ public class ToggleLoaderHalfIn extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (Robot.pneumatics.isLoaderHalfIn()) {
-			Robot.pneumatics.setLoaderOut();
+		if (Robot.pneumatics.getLoaderState().equals(RobotMap.PistonIn)) {
+			Robot.pneumatics.setLoaderState(RobotMap.PistonOut);
 		} else {
-			Robot.pneumatics.setLoaderHalfIn();
+			Robot.pneumatics.setLoaderState(RobotMap.PistonIn);
 		}
 	}
 

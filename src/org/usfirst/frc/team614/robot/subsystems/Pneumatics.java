@@ -17,8 +17,7 @@ public class Pneumatics extends Subsystem {
 	// here. Call these from Commands.
 
 	public Compressor compressor;
-	public DoubleSolenoid loaderTopPiston;
-	public DoubleSolenoid loaderBottomPiston;
+	public DoubleSolenoid loaderPiston;
 	public DoubleSolenoid intakePiston;
 	public Solenoid intakeRingLight;
 
@@ -26,10 +25,8 @@ public class Pneumatics extends Subsystem {
 		compressor = new Compressor(RobotMap.compressor);
 		intakePiston = new DoubleSolenoid(RobotMap.intakeSolenoidA, RobotMap.intakeSolenoidB);
 		intakePiston.set(RobotMap.PistonIn);
-		loaderTopPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
-		loaderTopPiston.set(RobotMap.PistonIn);
-		loaderBottomPiston = new DoubleSolenoid(RobotMap.loaderSolenoidC, RobotMap.loaderSolenoidD);
-		loaderBottomPiston.set(RobotMap.PistonIn);
+		loaderPiston = new DoubleSolenoid(RobotMap.loaderSolenoidA, RobotMap.loaderSolenoidB);
+		loaderPiston.set(RobotMap.PistonIn);
 		intakeRingLight = new Solenoid(RobotMap.ringLightSolenoid);
 	}
 
@@ -38,28 +35,13 @@ public class Pneumatics extends Subsystem {
 		// setDefaultCommand(new MySpecialCommand());
 		setDefaultCommand(new CompressorControl());
 	}
-
-	public void setLoaderFullIn() {
-		loaderTopPiston.set(RobotMap.PistonIn);
-		loaderBottomPiston.set(RobotMap.PistonIn);
+	
+	public DoubleSolenoid.Value getLoaderState() {
+		return loaderPiston.get();
 	}
-
-	public void setLoaderHalfIn() {
-		loaderTopPiston.set(RobotMap.PistonIn);
-		loaderBottomPiston.set(RobotMap.PistonOut);
-	}
-
-	public void setLoaderOut() {
-		loaderTopPiston.set(RobotMap.PistonOut);
-		loaderBottomPiston.set(RobotMap.PistonOut);
-	}
-
-	public boolean isLoaderFullIn() {
-		return loaderTopPiston.get().equals(RobotMap.PistonIn) && loaderBottomPiston.get().equals(RobotMap.PistonIn);
-	}
-
-	public boolean isLoaderHalfIn() {
-		return loaderTopPiston.get().equals(RobotMap.PistonIn) && loaderBottomPiston.get().equals(RobotMap.PistonOut);
+	
+	public void setLoaderState(DoubleSolenoid.Value state) {
+		loaderPiston.set(state);
 	}
 
 	public DoubleSolenoid.Value getIntakeState() {

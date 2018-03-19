@@ -81,5 +81,8 @@ public class RobotMap {
 	public static final DoubleSolenoid.Value pistonOut = DoubleSolenoid.Value.kForward;
 	public static final DoubleSolenoid.Value pistonIn = DoubleSolenoid.Value.kReverse;
 	public static final DoubleSolenoid.Value PistonOut = DoubleSolenoid.Value.kForward;
-	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;	
+	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;
+	
+	public static final int IMG_HEIGHT = 640;
+	public static final int IMG_WIDTH = 480;
 }

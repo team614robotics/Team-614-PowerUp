@@ -65,8 +65,9 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 		
-		CameraServer.getInstance().startAutomaticCapture();
-
+//		CameraServer.getInstance().startAutomaticCapture();
+		cameraInit();
+		
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
 		shooter = new Shooter();
@@ -90,15 +91,14 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", 0);
 
 		SmartDashboard.putNumber("Shooter Scale High Setpoint", 13500);
-		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12000);
-		SmartDashboard.putNumber("Shooter Switch High Setpoint", 6000);
-		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 3000);
+		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12500);
+		SmartDashboard.putNumber("Shooter Switch High Setpoint", 0.25);
+		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 0.17);
 		
-		SmartDashboard.putNumber("Intake Speed", 0.5);
-		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
+		SmartDashboard.putNumber("Intake Speed", 0.7);
+		SmartDashboard.putNumber("Accelerator High Speed", 0.7);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
-		
-		cameraInit();
+
 	}
 
 	/**
@@ -136,8 +136,9 @@ public class Robot extends IterativeRobot {
 		drivetrain.reset();
 
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-
-		while (gameData.length() != 3) {
+		
+		for (int i = 0; i < 1000; ++i)
+		{
 			try {
 				Thread.sleep(5);
 			} catch (InterruptedException ie) {
@@ -145,6 +146,10 @@ public class Robot extends IterativeRobot {
 			}
 
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
+			
+			if (gameData.length() == 3) {
+				break;
+			}
 		}
 
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
@@ -261,7 +266,7 @@ public class Robot extends IterativeRobot {
 
         camera = serverOne.startAutomaticCapture(0);
 
-        camera.setExposureManual(50);
+        camera.setBrightness(0);
         camera.setFPS(15);
         camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);       
 	}

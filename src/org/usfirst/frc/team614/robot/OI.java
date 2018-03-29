@@ -8,6 +8,7 @@ import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleHigh;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleLow;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooterBackwards;
@@ -52,13 +53,14 @@ public class OI {
 	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_B);
 	
 	private static final Button toggleIntake = new JoystickButton(operatorGamepad, Gamepad.button_X);
-	
 	private static final Button toggleLoader = new JoystickButton(operatorGamepad, Gamepad.button_Y);
 	
 	private static final Button deliverScaleLow = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
+	private static final Button deliverScaleHigh = new JoystickButton(operatorGamepad, Gamepad.button_Back);
+	
 	private static final Button deliverSwitchLow = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	
-	private static final Button revShooterBackwards = new JoystickButton(operatorGamepad, Gamepad.button_Back);
+	private static final Button revShooterBackwards = new JoystickButton(operatorGamepad, Gamepad.button_Start);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -68,6 +70,8 @@ public class OI {
 		toggleLoader.whenPressed(new ToggleLoaderPiston());
 		
 		deliverScaleLow.whileHeld(new DeliverScaleLow());
+		deliverScaleHigh.whileHeld(new DeliverScaleHigh());
+		
 		deliverSwitchLow.whileHeld(new DeliverSwitchLow());
 		
 		revShooterBackwards.whileHeld(new RevShooterBackwards());

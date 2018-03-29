@@ -32,6 +32,9 @@ public class RobotMap {
 	
 	// PWM
 	
+	public static final int winch = -1;
+	public static final int servo = -1;
+	
 	public static final int intakeLeft = 4; // grey
 	public static final int intakeRight = 5;
 	

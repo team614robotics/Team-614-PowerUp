@@ -72,14 +72,9 @@ public class Shooter extends Subsystem {
 		return shooterLeft.getClosedLoopTarget(0);
 	}
 
-	public void setShooter(double speed, boolean pid) {
-		if (pid) {
-			shooterRight.set(ControlMode.Velocity, speed);
-			shooterLeft.set(ControlMode.Velocity, -speed);
-		} else {
-			shooterRight.set(ControlMode.PercentOutput, speed);
-			shooterLeft.set(ControlMode.PercentOutput, -speed);
-		}
+	public void setShooter(double speed) {
+		shooterRight.set(ControlMode.Velocity, speed);
+		shooterLeft.set(ControlMode.Velocity, -speed);
 	}
 
 	public void setAccelerator(double speed) {

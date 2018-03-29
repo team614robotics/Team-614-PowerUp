@@ -17,18 +17,18 @@ public class DeliverSwitchAuto extends Command {
 		// eg. requires(chassis);
 		requires(Robot.shooter);
 		requires(Robot.intake);
-		setTimeout(3);
+		setTimeout(2.3);
 	}
 
 	protected void initialize() {
-		Robot.shooter.setShooter(0, false);
+		Robot.shooter.setShooter(0);
 		Robot.shooter.setAccelerator(0);
 		Robot.intake.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Switch Low Setpoint", 0), false);
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Switch Low Setpoint", 0));
 		if (timeSinceInitialized() > 0.2) {
 			Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Low Speed", 0));
     	    Robot.intake.set(SmartDashboard.getNumber("Intake Speed", 0));

@@ -2,8 +2,6 @@ package org.usfirst.frc.team614.robot.commands.autonomous;
 
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
-import org.usfirst.frc.team614.robot.commands.intake.RevIntakeTimed;
-import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchAuto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -35,22 +33,9 @@ public class CenterLeftSwitch extends CommandGroup {
     	
     	addSequential(new DriveForADistance(40, speed));
     	addSequential(new RotateToAngle(90, false));
-    	addSequential(new DriveForADistance(-60, speed));
+    	addSequential(new DriveForADistance(60, -speed));
     	addSequential(new RotateToAngle(90, false));
-    	addParallel(new DriveForADistance(-80, speed)); //this is too small, increase ***KERNS***
-		addSequential(new DeliverSwitchAuto());
-		
-		// Two Cube Auto
-
-//		addSequential(new DriveForADistance(15, speed));
-//    	addSequential(new RotateToAngle(-90, false));
-//    	addSequential(new ToggleLoaderPiston());
-//    	addParallel(new DriveForADistance(40, speed));
-//    	addSequential(new RevIntakeTimed());
-//    	addSequential(new ToggleLoaderPiston());
-//    	addSequential(new DriveForADistance(-40, speed));
-//    	addSequential(new RotateToAngle(90, false));
-//    	addParallel(new DriveForADistance(-25, speed));
-//		addSequential(new DeliverSwitchAuto());
+    	addParallel(new DriveForADistance(50, -speed));
+		addParallel(new DeliverSwitchAuto());
     }
 }

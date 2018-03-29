@@ -33,9 +33,9 @@ public class LeftScale extends CommandGroup {
     	
 		addSequential(new DriveForADistance(300, speed));
 		addParallel(new RotateToAngle(-90, false));
-		addSequential(new DeliverScaleAuto());
-//		addSequential(new DoNothing(3));
-//		addSequential(new RotateToAngle(240, false));
-//		addParallel(new DriveForADistance(100, 0.5));
+		addParallel(new DeliverScaleAuto());
+		addSequential(new DoNothing(3));
+		addSequential(new RotateToAngle(240, false));
+		addParallel(new DriveForADistance(100, 0.5));
     }
 }

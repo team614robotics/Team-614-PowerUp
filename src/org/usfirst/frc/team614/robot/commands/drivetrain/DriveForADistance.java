@@ -17,8 +17,6 @@ public class DriveForADistance extends Command {
 		requires(Robot.drivetrain);
 		this.distance = distance;
 		this.speed = speed;
-
-		Robot.drivetrain.leftEncoder.reset();
 	}
 
 	// Called just before this Command runs the first time

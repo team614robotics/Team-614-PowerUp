@@ -33,9 +33,9 @@ public class RightScale extends CommandGroup {
     	
 		addSequential(new DriveForADistance(300, speed));
 		addParallel(new RotateToAngle(90, false));
-		addParallel(new DeliverScaleAuto());
-		addSequential(new DoNothing(3));
-		addSequential(new RotateToAngle(-240, false)); // Reduce this angle (or technically make it more negative) ***KERNS***
-		addParallel(new DriveForADistance(100, 0.5)); //increase this speed, to enable picking up the second cube ***KERNS***
+		addSequential(new DeliverScaleAuto());
+//		addSequential(new DoNothing(3));
+//		addSequential(new RotateToAngle(-240, false)); // Reduce this angle (or technically make it more negative) ***KERNS***
+//		addParallel(new DriveForADistance(100, 0.5)); //increase this speed, to enable picking up the second cube ***KERNS***
     }
 }

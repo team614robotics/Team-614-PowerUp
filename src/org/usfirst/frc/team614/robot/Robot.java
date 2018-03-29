@@ -26,7 +26,6 @@ import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Shooter;
 import org.usfirst.frc.team614.robot.subsystems.Intake;
-import org.usfirst.frc.team614.robot.subsystems.Climber;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -45,7 +44,6 @@ public class Robot extends IterativeRobot {
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static Intake intake;
 	public static Pneumatics pneumatics;
-	public static Climber climber;
 
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -66,21 +64,15 @@ public class Robot extends IterativeRobot {
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
-<<<<<<< HEAD
-
-		// CameraServer.getInstance().startAutomaticCapture();
-		cameraInit();
-=======
 		
-		CameraServer.getInstance().startAutomaticCapture();
->>>>>>> parent of 28a9cd3... Pre-Climber
-
+//		CameraServer.getInstance().startAutomaticCapture();
+		cameraInit();
+		
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
 		shooter = new Shooter();
 		intake = new Intake();
 		pneumatics = new Pneumatics();
-		climber = new Climber();
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
@@ -99,27 +91,14 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", 0);
 
 		SmartDashboard.putNumber("Shooter Scale High Setpoint", 13500);
-<<<<<<< HEAD
 		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12500);
 		SmartDashboard.putNumber("Shooter Switch High Setpoint", 0.25);
 		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 0.17);
-
+		
 		SmartDashboard.putNumber("Intake Speed", 0.7);
-		SmartDashboard.putNumber("Climber Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.7);
-		SmartDashboard.putNumber("Accelerator Low Speed", 0.5);
-
-=======
-		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12000);
-		SmartDashboard.putNumber("Shooter Switch High Setpoint", 6000);
-		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 3000);
-		
-		SmartDashboard.putNumber("Intake Speed", 0.5);
-		SmartDashboard.putNumber("Accelerator High Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
-		
-		cameraInit();
->>>>>>> parent of 28a9cd3... Pre-Climber
+
 	}
 
 	/**
@@ -157,12 +136,9 @@ public class Robot extends IterativeRobot {
 		drivetrain.reset();
 
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-
-<<<<<<< HEAD
-		for (int i = 0; i < 1000; ++i) {
-=======
-		while (gameData.length() != 3) {
->>>>>>> parent of 28a9cd3... Pre-Climber
+		
+		for (int i = 0; i < 1000; ++i)
+		{
 			try {
 				Thread.sleep(5);
 			} catch (InterruptedException ie) {
@@ -170,13 +146,10 @@ public class Robot extends IterativeRobot {
 			}
 
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
-<<<<<<< HEAD
-
+			
 			if (gameData.length() == 3) {
 				break;
 			}
-=======
->>>>>>> parent of 28a9cd3... Pre-Climber
 		}
 
 		SmartDashboard.putBoolean("L1", gameData.charAt(0) == 'L');
@@ -286,22 +259,15 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-
 	public void cameraInit() {
 		serverOne = CameraServer.getInstance();
-		// serverOne.startAutomaticCapture();
-		// serverOne.startAutomaticCapture(0)
+        //serverOne.startAutomaticCapture();
+        //serverOne.startAutomaticCapture(0)
 
-		camera = serverOne.startAutomaticCapture(0);
+        camera = serverOne.startAutomaticCapture(0);
 
-<<<<<<< HEAD
-		camera.setBrightness(0);
-		camera.setFPS(15);
-		camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
-=======
-        camera.setExposureManual(50);
+        camera.setBrightness(0);
         camera.setFPS(15);
         camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);       
->>>>>>> parent of 28a9cd3... Pre-Climber
 	}
 }

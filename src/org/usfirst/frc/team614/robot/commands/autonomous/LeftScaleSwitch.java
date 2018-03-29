@@ -36,11 +36,11 @@ public class LeftScaleSwitch extends CommandGroup {
     	
 		addSequential(new DriveForADistance(300, speed));
 		addParallel(new RotateToAngle(-90, false));
-		addParallel(new DeliverScaleAuto());
-		addSequential(new DoNothing(3));
-		addSequential(new RotateToAngle(240, false)); // Reduce this angle ***KERNS***
-		addSequential(new ToggleLoaderPiston());
-		addSequential(new ToggleIntakePiston()); // this may be extra keep for now
+		addSequential(new DeliverScaleAuto());
+//		addSequential(new DoNothing(3));
+//		addSequential(new RotateToAngle(240, false)); // Reduce this angle ***KERNS***
+//		addSequential(new ToggleLoaderPiston());
+//		addSequential(new ToggleIntakePiston()); // this may be extra keep for now
 //		addParallel(new DriveForADistance(100, 0.5)); // Make this faster ***KERNS***
 //		addParallel(new RevIntakeTimed());
 //		addSequential(new ToggleIntakePiston());

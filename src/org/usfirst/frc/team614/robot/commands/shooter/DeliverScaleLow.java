@@ -19,13 +19,13 @@ public class DeliverScaleLow extends Command {
 	}
 
 	protected void initialize() {
-		Robot.shooter.setShooter(0);
+		Robot.shooter.setShooter(0, true);
 		Robot.shooter.setAccelerator(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale Low Setpoint", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale Low Setpoint", 0), true);
 		Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator High Speed", 0));
 	}
 

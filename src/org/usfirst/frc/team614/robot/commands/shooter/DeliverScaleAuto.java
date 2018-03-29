@@ -21,14 +21,14 @@ public class DeliverScaleAuto extends Command {
 	}
 
 	protected void initialize() {
-		Robot.shooter.setShooter(0);
+		Robot.shooter.setShooter(0, true);
 		Robot.shooter.setAccelerator(0);
 		Robot.intake.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale Low Setpoint", 0));
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale Low Setpoint", 0), true);
 		if (timeSinceInitialized() > 1.7) {
 			Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator High Speed", 0));
     	    Robot.intake.set(SmartDashboard.getNumber("Intake Speed", 0));

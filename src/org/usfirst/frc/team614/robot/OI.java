@@ -4,6 +4,9 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.team708.robot.util.Gamepad;
+import org.usfirst.frc.team614.robot.commands.climber.DeployClimber;
+import org.usfirst.frc.team614.robot.commands.climber.RevWinchDown;
+import org.usfirst.frc.team614.robot.commands.climber.RevWinchUp;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
@@ -61,6 +64,10 @@ public class OI {
 	private static final Button deliverSwitchLow = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	
 	private static final Button revShooterBackwards = new JoystickButton(operatorGamepad, Gamepad.button_Start);
+	
+	private static final Button revWinchUp = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
+	private static final Button revWinchDown = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
+	private static final Button deployClimber = new JoystickButton(driverGamepad, Gamepad.button_X);
 
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
@@ -75,5 +82,9 @@ public class OI {
 		deliverSwitchLow.whileHeld(new DeliverSwitchLow());
 		
 		revShooterBackwards.whileHeld(new RevShooterBackwards());
+		
+		revWinchUp.whileHeld(new RevWinchUp());
+		revWinchDown.whileHeld(new RevWinchDown());
+		deployClimber.whenPressed(new DeployClimber());
 	}
 }

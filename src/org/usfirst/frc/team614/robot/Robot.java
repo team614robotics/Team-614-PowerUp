@@ -1,5 +1,25 @@
 package org.usfirst.frc.team614.robot;
 
+import org.usfirst.frc.team614.robot.commands.autonomous.CenterLeftSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.CenterRightSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleTwoCube;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleSwitch;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleTwoCube;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightSwitch;
+import org.usfirst.frc.team614.robot.subsystems.Climber;
+import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
+import org.usfirst.frc.team614.robot.subsystems.Intake;
+import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team614.robot.subsystems.Shooter;
+
+import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -11,23 +31,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team614.robot.commands.autonomous.CenterLeftSwitch;
-import org.usfirst.frc.team614.robot.commands.autonomous.CenterRightSwitch;
-import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
-import org.usfirst.frc.team614.robot.commands.autonomous.LeftScale;
-import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleSwitch;
-import org.usfirst.frc.team614.robot.commands.autonomous.LeftSwitch;
-import org.usfirst.frc.team614.robot.commands.autonomous.RightScale;
-import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleSwitch;
-import org.usfirst.frc.team614.robot.commands.autonomous.RightSwitch;
-import org.usfirst.frc.team614.robot.subsystems.Drivetrain;
-import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
-import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team614.robot.subsystems.Shooter;
-import org.usfirst.frc.team614.robot.subsystems.Intake;
-
-import com.kauailabs.navx.frc.AHRS;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,6 +47,7 @@ public class Robot extends IterativeRobot {
 	public static DrivetrainCompanion drivetrainCompanion;
 	public static Intake intake;
 	public static Pneumatics pneumatics;
+	public static Climber climber;
 
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
@@ -64,15 +68,16 @@ public class Robot extends IterativeRobot {
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
-		
-//		CameraServer.getInstance().startAutomaticCapture();
+
+		// CameraServer.getInstance().startAutomaticCapture();
 		cameraInit();
-		
+
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
 		shooter = new Shooter();
 		intake = new Intake();
 		pneumatics = new Pneumatics();
+		climber = new Climber();
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
@@ -83,6 +88,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Right Switch Auto", "RightSwitchAuto");
 		chooser.addObject("Left Scale Auto", "LeftScaleAuto");
 		chooser.addObject("Right Scale Auto", "RightScaleAuto");
+		chooser.addObject("Left Scale Two Cube Auto", "LeftScaleTwoCubeAuto");
+		chooser.addObject("Right Scale Two Cube Auto", "RightScaleTwoCubeAuto");
 
 		SmartDashboard.putData("Autonomous", chooser);
 
@@ -94,10 +101,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12500);
 		SmartDashboard.putNumber("Shooter Switch High Setpoint", 0.25);
 		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 0.17);
-		
+
 		SmartDashboard.putNumber("Intake Speed", 0.7);
-		SmartDashboard.putNumber("Accelerator High Speed", 0.7);
-		SmartDashboard.putNumber("Accelerator Low Speed", 0.3);
+		SmartDashboard.putNumber("Winch Speed", 1.0);
+		SmartDashboard.putNumber("Accelerator High Speed", 0.6);
+		SmartDashboard.putNumber("Accelerator Low Speed", 0.5);
 
 	}
 
@@ -136,9 +144,8 @@ public class Robot extends IterativeRobot {
 		drivetrain.reset();
 
 		String gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
-		for (int i = 0; i < 1000; ++i)
-		{
+
+		for (int i = 0; i < 1000; ++i) {
 			try {
 				Thread.sleep(5);
 			} catch (InterruptedException ie) {
@@ -146,7 +153,7 @@ public class Robot extends IterativeRobot {
 			}
 
 			gameData = DriverStation.getInstance().getGameSpecificMessage();
-			
+
 			if (gameData.length() == 3) {
 				break;
 			}
@@ -163,6 +170,22 @@ public class Robot extends IterativeRobot {
 
 		if (chooserCommand == null) {
 			autonomousCommand = null;
+		} else if (chooserCommand.equals("LeftScaleTwoCubeAuto")) {
+			if (gameData.charAt(1) == 'L') {
+				autonomousCommand = new LeftScaleTwoCube();
+			} else if (gameData.charAt(0) == 'L') {
+				autonomousCommand = new LeftSwitch();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else if (chooserCommand.equals("RightScaleTwoCubeAuto")) {
+			if (gameData.charAt(1) == 'R') {
+				autonomousCommand = new RightScaleTwoCube();
+			} else if (gameData.charAt(0) == 'R') {
+				autonomousCommand = new RightSwitch();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
 		} else if (chooserCommand.equals("LeftScaleAuto")) {
 			if (gameData.charAt(1) == 'L' && gameData.charAt(0) == 'L') {
 				autonomousCommand = new LeftScaleSwitch();
@@ -178,6 +201,7 @@ public class Robot extends IterativeRobot {
 				autonomousCommand = new RightScaleSwitch();
 			} else if (gameData.charAt(1) == 'R') {
 				autonomousCommand = new RightScale();
+
 			} else if (gameData.charAt(0) == 'R') {
 				autonomousCommand = new RightSwitch();
 			} else {
@@ -259,15 +283,16 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+
 	public void cameraInit() {
 		serverOne = CameraServer.getInstance();
-        //serverOne.startAutomaticCapture();
-        //serverOne.startAutomaticCapture(0)
+		// serverOne.startAutomaticCapture();
+		// serverOne.startAutomaticCapture(0)
 
-        camera = serverOne.startAutomaticCapture(0);
+		camera = serverOne.startAutomaticCapture(0);
 
-        camera.setBrightness(0);
-        camera.setFPS(15);
-        camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);       
+		camera.setBrightness(0);
+		camera.setFPS(15);
+		camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
 	}
 }

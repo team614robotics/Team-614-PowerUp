@@ -82,6 +82,11 @@ public class RobotMap {
 	public static final DoubleSolenoid.Value PistonIn = DoubleSolenoid.Value.kReverse;
 	
 	// CAM
+	
 	public static final int IMG_HEIGHT = 320;
 	public static final int IMG_WIDTH = 240;
+	public static final int IMG_FPS = 15;
+	public static final int IMG_BRIGHTNESS = 0;
+	public static boolean cameraSwitchPressedLastTime = false;
+	public static boolean rearCam = true;
 }

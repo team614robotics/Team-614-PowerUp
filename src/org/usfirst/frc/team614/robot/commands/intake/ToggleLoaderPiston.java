@@ -21,8 +21,10 @@ public class ToggleLoaderPiston extends Command {
 	protected void initialize() {
 		if (Robot.pneumatics.getLoaderState().equals(RobotMap.PistonOut)) {
 			Robot.pneumatics.setLoaderState(RobotMap.PistonIn);
+			Robot.server.setSource(Robot.camera1);
 		} else {
 			Robot.pneumatics.setLoaderState(RobotMap.PistonOut);
+			Robot.server.setSource(Robot.camera2);
 		}
 	}
 
@@ -30,7 +32,7 @@ public class ToggleLoaderPiston extends Command {
 	protected void execute() {
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	// Make this .  true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return true;
 	}

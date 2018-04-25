@@ -20,7 +20,9 @@ import org.usfirst.frc.team614.robot.subsystems.Shooter;
 
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -49,11 +51,16 @@ public class Robot extends IterativeRobot {
 	public static Pneumatics pneumatics;
 	public static Climber climber;
 
+	public static CameraServer serverOne;	
+	public static UsbCamera camera1;
+	public static UsbCamera camera2;	
+	public static CvSink cvSink1;
+	public static CvSink cvSink2;	
+	public static VideoSink server;
+	
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
-
-	public static CameraServer serverOne;
-	public static UsbCamera camera;
+	
 	Command autonomousCommand;
 	SendableChooser<String> chooser = new SendableChooser<>();
 
@@ -69,7 +76,6 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 
-		// CameraServer.getInstance().startAutomaticCapture();
 		cameraInit();
 
 		drivetrain = new Drivetrain();
@@ -92,6 +98,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Right Scale Two Cube Auto", "RightScaleTwoCubeAuto");
 
 		SmartDashboard.putData("Autonomous", chooser);
+		
+		SmartDashboard.putString("Camera Status", "Shooter View");
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
@@ -284,15 +292,35 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 
-	public void cameraInit() {
-		serverOne = CameraServer.getInstance();
-		// serverOne.startAutomaticCapture();
-		// serverOne.startAutomaticCapture(0)
-
-		camera = serverOne.startAutomaticCapture(0);
-
-		camera.setBrightness(0);
-		camera.setFPS(15);
-		camera.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
+	public void cameraInit() {		
+//		 If you need to change camera positions don't change the code but rather just switch the camera USB ports
+//		
+//        serverOne = CameraServer.getInstance();
+        
+//       Keep an eye out
+		
+		camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		camera1.setBrightness(RobotMap.IMG_BRIGHTNESS);
+		camera1.setFPS(RobotMap.IMG_FPS);
+		camera1.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
+		
+		camera2 = CameraServer.getInstance().startAutomaticCapture(1);	
+		camera2.setBrightness(RobotMap.IMG_BRIGHTNESS);
+		camera2.setFPS(RobotMap.IMG_FPS);
+		camera2.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
+		
+	    server = CameraServer.getInstance().getServer();
+	    
+	    cvSink1 = new CvSink("camera1cv");
+	    cvSink1.setSource(camera1);
+	    cvSink1.setEnabled(true);
+	    
+	    cvSink2 = new CvSink("camera2cv");
+	    cvSink2.setSource(camera2);
+	    cvSink2.setEnabled(true);
+		
+		server.setSource(camera1);
+		
+     // If you wish to use only one camera go to ToggleLoaderPiston.java and comment out the setSource method
 	}
 }

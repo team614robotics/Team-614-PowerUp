@@ -35,10 +35,10 @@ public class CenterLeftSwitch extends CommandGroup {
     	
     	addSequential(new DriveForADistance(40, speed));
     	addSequential(new RotateToAngle(90, false));
-    	addSequential(new DriveForADistance(-60, speed));
+    	addSequential(new DriveForADistance(-65, speed));
     	addSequential(new RotateToAngle(90, false));
-    	addParallel(new DriveForADistance(-80, speed)); //this is too small, increase ***KERNS***
-		addSequential(new DeliverSwitchAuto());
+    	addParallel(new DriveForADistance(-120, speed)); //this is too small, increase ***KERNS***
+		addSequential(new DeliverSwitchAuto(1.3));
 		
 		// Two Cube Auto
 

@@ -10,30 +10,26 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DeliverSwitchAuto extends Command {
+public class DeliverScaleOppositeAuto extends Command {
 
-	private double delay;
-	
-	public DeliverSwitchAuto(double delay) {
+	public DeliverScaleOppositeAuto() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(Robot.shooter);
 		requires(Robot.intake);
-		setTimeout(3);
-		
-		this.delay = delay;
+		setTimeout(2.3);
 	}
 
 	protected void initialize() {
-		Robot.shooter.setShooter(0, false);
+		Robot.shooter.setShooter(0, true);
 		Robot.shooter.setAccelerator(0);
 		Robot.intake.set(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Switch Low Setpoint", 0), false);
-		if (timeSinceInitialized() > delay) {
+		Robot.shooter.setShooter(12500, true);
+		if (timeSinceInitialized() > 1.7) {
 			Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Low Speed", 0));
     	    Robot.intake.set(SmartDashboard.getNumber("Outake Speed", 0));
 		}

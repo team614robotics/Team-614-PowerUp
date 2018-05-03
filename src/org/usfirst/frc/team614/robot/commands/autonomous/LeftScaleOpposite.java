@@ -3,6 +3,7 @@ package org.usfirst.frc.team614.robot.commands.autonomous;
 import org.usfirst.frc.team614.robot.commands.drivetrain.DriveForADistance;
 import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleAuto;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleOppositeAuto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -31,11 +32,11 @@ public class LeftScaleOpposite extends CommandGroup {
 
     	double speed = 0.7;
     	
-		addSequential(new DriveForADistance(200, speed));
+		addSequential(new DriveForADistance(210, speed));
 		addSequential(new RotateToAngle(-90, false));
-		addSequential(new DriveForADistance(-250, speed));
-		addSequential(new RotateToAngle(-90, false));
-		addParallel(new DriveForADistance(-40, speed));
+		addSequential(new DriveForADistance(-190, speed));
+		addSequential(new RotateToAngle(-95, false));
+		addParallel(new DriveForADistance(-20, speed));
 		addSequential(new DeliverScaleAuto());
     }
 }

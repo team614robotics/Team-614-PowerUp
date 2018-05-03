@@ -13,6 +13,7 @@ import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleLoaderPiston;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleHigh;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleLow;
+import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleMedium;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchLow;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooterBackwards;
 
@@ -34,7 +35,7 @@ public class OI {
 	// commands the same as any other Button.
 
 	// // TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a\[] button, it's trivial to bind it to a button in one of
+	// Once you have a button, it's trivial to bind it to a button in one of
 	// three ways:
 
 	// Start the command when the button is pressed and let it run the command
@@ -59,11 +60,12 @@ public class OI {
 	private static final Button toggleLoader = new JoystickButton(operatorGamepad, Gamepad.button_Y);
 	
 	private static final Button deliverScaleLow = new JoystickButton(operatorGamepad, Gamepad.button_L_Shoulder);
-	private static final Button deliverScaleHigh = new JoystickButton(operatorGamepad, Gamepad.button_Back);
+	private static final Button deliverScaleMedium = new JoystickButton(operatorGamepad, Gamepad.button_Back);
+	private static final Button deliverScaleHigh = new JoystickButton(operatorGamepad, Gamepad.button_Start);
 	
 	private static final Button deliverSwitchLow = new JoystickButton(operatorGamepad, Gamepad.button_R_Shoulder);
 	
-	private static final Button revShooterBackwards = new JoystickButton(operatorGamepad, Gamepad.button_Start);
+//	private static final Button revShooterBackwards = new JoystickButton(driverGamepad, Gamepad.button_Back);
 	
 	private static final Button revWinchUp = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
 	private static final Button revWinchDown = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
@@ -77,11 +79,12 @@ public class OI {
 		toggleLoader.whenPressed(new ToggleLoaderPiston());
 		
 		deliverScaleLow.whileHeld(new DeliverScaleLow());
+		deliverScaleMedium.whileHeld(new DeliverScaleMedium());
 		deliverScaleHigh.whileHeld(new DeliverScaleHigh());
 		
 		deliverSwitchLow.whileHeld(new DeliverSwitchLow());
 		
-		revShooterBackwards.whileHeld(new RevShooterBackwards());
+//		revShooterBackwards.whileHeld(new RevShooterBackwards());
 		
 		revWinchUp.whileHeld(new RevWinchUp());
 		revWinchDown.whileHeld(new RevWinchDown());

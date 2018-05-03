@@ -18,15 +18,20 @@ public class RobotMap {
 	public static final int acceleratorRight = 7;
 	
 	// TALONSRXMOTORS CONSTANTS
-	public static final double shooterLeftP = 0.26;
-	public static final double shooterLeftI = 0.0006;
-	public static final double shooterLeftD = 0.001;
-	public static final double shooterLeftF = 0.154;
+	public static final double shooterLeftP = 0.15;
+	public static final double shooterLeftI = 0.001;
+	public static final double shooterLeftD = 0.0035;
+	public static final double shooterLeftF = 0.10;
 	
 	public static final double shooterRightP = 0.16;
 	public static final double shooterRightI = 0.001;
-	public static final double shooterRightD = 0.001;
+	public static final double shooterRightD = 0.0005;
 	public static final double shooterRightF = 0.154;
+	
+	public static final double switchP = 0.0;
+	public static final double switchI = 0.0;
+	public static final double switchD = 0.0;
+	public static final double switchF = 0.0;
 	
 	public static final int kTimeoutMs = 10;
 	
@@ -51,7 +56,7 @@ public class RobotMap {
 	// DRIVETRAIN CONSTANTS
 	
 	public static final double DRIVETRAIN_WHEEL_DIAMETER = 6; // 6
-	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 358; // 358
+	public static final double DRIVETRAIN_ENCODER_PULSES_PER_REV = 245; // 358
 	public static final double DRIVETRAIN_DISTANCE_PER_PULSE = (RobotMap.DRIVETRAIN_WHEEL_DIAMETER * Math.PI) / RobotMap.DRIVETRAIN_ENCODER_PULSES_PER_REV;
 	
 	public static final double kCollisionThreshold_DeltaG = 0.6f;

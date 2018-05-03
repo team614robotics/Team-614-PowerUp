@@ -4,10 +4,12 @@ import org.usfirst.frc.team614.robot.commands.autonomous.CenterLeftSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.CenterRightSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
 import org.usfirst.frc.team614.robot.commands.autonomous.LeftScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleOpposite;
 import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.LeftScaleTwoCube;
 import org.usfirst.frc.team614.robot.commands.autonomous.LeftSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.RightScale;
+import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleOpposite;
 import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.RightScaleTwoCube;
 import org.usfirst.frc.team614.robot.commands.autonomous.RightSwitch;
@@ -51,16 +53,17 @@ public class Robot extends IterativeRobot {
 	public static Pneumatics pneumatics;
 	public static Climber climber;
 
-	public static CameraServer serverOne;	
+	public static VideoSink serverOne;
+	public static VideoSink serverTwo;
 	public static UsbCamera camera1;
-	public static UsbCamera camera2;	
+	public static UsbCamera camera2;
 	public static CvSink cvSink1;
-	public static CvSink cvSink2;	
-	public static VideoSink server;
-	
+	public static CvSink cvSink2;
+
+
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
-	
+
 	Command autonomousCommand;
 	SendableChooser<String> chooser = new SendableChooser<>();
 
@@ -96,25 +99,38 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Right Scale Auto", "RightScaleAuto");
 		chooser.addObject("Left Scale Two Cube Auto", "LeftScaleTwoCubeAuto");
 		chooser.addObject("Right Scale Two Cube Auto", "RightScaleTwoCubeAuto");
+		chooser.addObject("Left Scale Opposite", "LeftScaleOpposite");
+		chooser.addObject("Right Scale Opposite", "RightScaleOpposite");
 
 		SmartDashboard.putData("Autonomous", chooser);
-		
+
 		SmartDashboard.putString("Camera Status", "Shooter View");
 
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", 0);
 
-		SmartDashboard.putNumber("Shooter Scale High Setpoint", 13500);
-		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 12500);
-		SmartDashboard.putNumber("Shooter Switch High Setpoint", 0.25);
-		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 0.17);
+		SmartDashboard.putNumber("Shooter Scale High Setpoint", 14500);
+		SmartDashboard.putNumber("Shooter Scale Medium Setpoint", 12500);
+		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 11500);
+		
+		SmartDashboard.putNumber("Shooter Switch High Setpoint", 6000);
+		SmartDashboard.putNumber("Shooter Switch Low Setpoint", 3500);
+		
+		SmartDashboard.putNumber("Switch P", 0.25);
+		SmartDashboard.putNumber("Switch I", 0.0);
+		SmartDashboard.putNumber("Switch D", 0.0);                                                                                                                                            
+		SmartDashboard.putNumber("Switch F", 0.154);
 
 		SmartDashboard.putNumber("Intake Speed", 0.7);
+		SmartDashboard.putNumber("Outake Speed", 0.5);
 		SmartDashboard.putNumber("Winch Speed", 1.0);
 		SmartDashboard.putNumber("Accelerator High Speed", 0.6);
-		SmartDashboard.putNumber("Accelerator Low Speed", 0.5);
-
+		SmartDashboard.putNumber("Accelerator Medium Speed", 0.5);
+		SmartDashboard.putNumber("Accelerator Low Speed", 0.4);
+	
+		SmartDashboard.putNumber("Error Left", 0.0);
+		SmartDashboard.putNumber("Error Right", 0.0);
 	}
 
 	/**
@@ -178,6 +194,22 @@ public class Robot extends IterativeRobot {
 
 		if (chooserCommand == null) {
 			autonomousCommand = null;
+		} else if (chooserCommand.equals("LeftScaleOpposite")) {
+			if (gameData.charAt(1) == 'L') {
+				autonomousCommand = new LeftScaleTwoCube();
+			} else if (gameData.charAt(1) == 'R') {
+				autonomousCommand = new LeftScaleOpposite();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
+		} else if (chooserCommand.equals("RightScaleOpposite")) {
+			if (gameData.charAt(1) == 'R') {
+				autonomousCommand = new RightScaleTwoCube();
+			} else if (gameData.charAt(1) == 'L') {
+				autonomousCommand = new RightScaleOpposite();
+			} else {
+				autonomousCommand = new DrivePastBaseline();
+			}
 		} else if (chooserCommand.equals("LeftScaleTwoCubeAuto")) {
 			if (gameData.charAt(1) == 'L') {
 				autonomousCommand = new LeftScaleTwoCube();
@@ -292,35 +324,15 @@ public class Robot extends IterativeRobot {
 		LiveWindow.run();
 	}
 
-	public void cameraInit() {		
-//		 If you need to change camera positions don't change the code but rather just switch the camera USB ports
-//		
-//        serverOne = CameraServer.getInstance();
-        
-//       Keep an eye out
-		
+	public void cameraInit() {
 		camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera1.setBrightness(RobotMap.IMG_BRIGHTNESS);
 		camera1.setFPS(RobotMap.IMG_FPS);
 		camera1.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
-		
-		camera2 = CameraServer.getInstance().startAutomaticCapture(1);	
+
+		camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		camera2.setBrightness(RobotMap.IMG_BRIGHTNESS);
 		camera2.setFPS(RobotMap.IMG_FPS);
 		camera2.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
-		
-	    server = CameraServer.getInstance().getServer();
-	    
-	    cvSink1 = new CvSink("camera1cv");
-	    cvSink1.setSource(camera1);
-	    cvSink1.setEnabled(true);
-	    
-	    cvSink2 = new CvSink("camera2cv");
-	    cvSink2.setSource(camera2);
-	    cvSink2.setEnabled(true);
-		
-		server.setSource(camera1);
-		
-     // If you wish to use only one camera go to ToggleLoaderPiston.java and comment out the setSource method
 	}
 }

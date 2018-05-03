@@ -1,7 +1,8 @@
-package org.usfirst.frc.team614.robot.commands.intake;
+package org.usfirst.frc.team614.robot.commands.shooter;
 
 import org.usfirst.frc.team614.robot.Robot;
-import org.usfirst.frc.team614.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,38 +10,38 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ToggleLoaderPiston extends Command {
+public class DeliverScaleMedium extends Command {
 
-	public ToggleLoaderPiston() {
-		requires(Robot.pneumatics);
+	public DeliverScaleMedium() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
+		requires(Robot.shooter);
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (Robot.pneumatics.getLoaderState().equals(RobotMap.PistonOut)) {
-			Robot.pneumatics.setLoaderState(RobotMap.PistonIn);
-		} else {
-			Robot.pneumatics.setLoaderState(RobotMap.PistonOut);
-		}
+		Robot.shooter.setShooter(0, true);
+		Robot.shooter.setAccelerator(0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		Robot.shooter.setShooter(SmartDashboard.getNumber("Shooter Scale Medium Setpoint", 0), true);
+		Robot.shooter.setAccelerator(SmartDashboard.getNumber("Accelerator Medium Speed", 0));
 	}
 
-	// Make this .  true when this Command no longer needs to run execute()
+	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
+		Robot.shooter.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
+		Robot.shooter.stop();
 	}
 }

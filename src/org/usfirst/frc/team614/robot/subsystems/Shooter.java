@@ -72,13 +72,50 @@ public class Shooter extends Subsystem {
 		return shooterLeft.getClosedLoopTarget(0);
 	}
 
-	public void setShooter(double speed, boolean pid) {
-		if (pid) {
+	public void setShooter(double speed, boolean scale) {
+
+		SmartDashboard.putNumber("Error Left", getErrorLeft());
+		SmartDashboard.putNumber("Error Right", getErrorRight());
+		
+		if (scale) {
+			shooterRight.config_kP(0, RobotMap.shooterRightP, RobotMap.kTimeoutMs);
+			shooterRight.config_kI(0, RobotMap.shooterRightI, RobotMap.kTimeoutMs);
+			shooterRight.config_kD(0, RobotMap.shooterRightD, RobotMap.kTimeoutMs);
+			shooterRight.config_kF(0, RobotMap.shooterRightF, RobotMap.kTimeoutMs);
+
+			shooterLeft.config_kP(0, RobotMap.shooterLeftP, RobotMap.kTimeoutMs);
+			shooterLeft.config_kI(0, RobotMap.shooterLeftI, RobotMap.kTimeoutMs);
+			shooterLeft.config_kD(0, RobotMap.shooterLeftD, RobotMap.kTimeoutMs);
+			shooterLeft.config_kF(0, RobotMap.shooterLeftF, RobotMap.kTimeoutMs);
+			
 			shooterRight.set(ControlMode.Velocity, speed);
 			shooterLeft.set(ControlMode.Velocity, -speed);
 		} else {
-			shooterRight.set(ControlMode.PercentOutput, speed);
-			shooterLeft.set(ControlMode.PercentOutput, -speed);
+//			shooterRight.config_kP(0, RobotMap.switchP, RobotMap.kTimeoutMs);
+//			shooterRight.config_kI(0, RobotMap.switchI, RobotMap.kTimeoutMs);
+//			shooterRight.config_kD(0, RobotMap.switchD, RobotMap.kTimeoutMs);
+//			shooterRight.config_kF(0, RobotMap.switchF, RobotMap.kTimeoutMs);
+//			
+//			shooterLeft.config_kP(0, RobotMap.switchP, RobotMap.kTimeoutMs);
+//			shooterLeft.config_kI(0, RobotMap.switchI, RobotMap.kTimeoutMs);
+//			shooterLeft.config_kD(0, RobotMap.switchD, RobotMap.kTimeoutMs);
+//			shooterLeft.config_kF(0, RobotMap.switchF, RobotMap.kTimeoutMs);
+			
+			shooterRight.config_kP(0, SmartDashboard.getNumber("Switch P", 0.0), RobotMap.kTimeoutMs);
+			shooterRight.config_kI(0, SmartDashboard.getNumber("Switch I", 0.0), RobotMap.kTimeoutMs);
+			shooterRight.config_kD(0, SmartDashboard.getNumber("Switch D", 0.0), RobotMap.kTimeoutMs);
+			shooterRight.config_kF(0, SmartDashboard.getNumber("Switch F", 0.0), RobotMap.kTimeoutMs);
+			
+			shooterLeft.config_kP(0, SmartDashboard.getNumber("Switch P", 0.0), RobotMap.kTimeoutMs);
+			shooterLeft.config_kI(0, SmartDashboard.getNumber("Switch I", 0.0), RobotMap.kTimeoutMs);
+			shooterLeft.config_kD(0, SmartDashboard.getNumber("Switch D", 0.0), RobotMap.kTimeoutMs);
+			shooterLeft.config_kF(0, SmartDashboard.getNumber("Switch F", 0.0), RobotMap.kTimeoutMs);
+			
+			SmartDashboard.putNumber("Error Left", this.getErrorLeft());
+			SmartDashboard.putNumber("Error Left", this.getErrorLeft());
+			
+			shooterRight.set(ControlMode.Velocity, speed);
+			shooterLeft.set(ControlMode.Velocity, -speed);
 		}
 	}
 

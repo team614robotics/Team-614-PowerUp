@@ -7,6 +7,8 @@ import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.climber.DeployClimber;
 import org.usfirst.frc.team614.robot.commands.climber.RevWinchDown;
 import org.usfirst.frc.team614.robot.commands.climber.RevWinchUp;
+import org.usfirst.frc.team614.robot.commands.drivetrain.DriveToTarget;
+import org.usfirst.frc.team614.robot.commands.drivetrain.RotateToAngle;
 import org.usfirst.frc.team614.robot.commands.intake.RevIntake;
 import org.usfirst.frc.team614.robot.commands.intake.RevOutake;
 import org.usfirst.frc.team614.robot.commands.intake.ToggleIntakePiston;
@@ -15,6 +17,7 @@ import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleHigh;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleLow;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverScaleMedium;
 import org.usfirst.frc.team614.robot.commands.shooter.DeliverSwitchLow;
+import org.usfirst.frc.team614.robot.commands.shooter.MotionMagic;
 import org.usfirst.frc.team614.robot.commands.shooter.RevShooterBackwards;
 
 /**
@@ -54,7 +57,7 @@ public class OI {
 	public static final Gamepad operatorGamepad = new Gamepad(1);
 
 	private static final Button revIntake = new JoystickButton(operatorGamepad, Gamepad.button_A);
-	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_B);
+//	private static final Button revOutake = new JoystickButton(operatorGamepad, Gamepad.button_B);
 	
 	private static final Button toggleIntake = new JoystickButton(operatorGamepad, Gamepad.button_X);
 	private static final Button toggleLoader = new JoystickButton(operatorGamepad, Gamepad.button_Y);
@@ -67,13 +70,13 @@ public class OI {
 	
 //	private static final Button revShooterBackwards = new JoystickButton(driverGamepad, Gamepad.button_Back);
 	
-	private static final Button revWinchUp = new JoystickButton(driverGamepad, Gamepad.button_R_Shoulder);
-	private static final Button revWinchDown = new JoystickButton(driverGamepad, Gamepad.button_L_Shoulder);
-	private static final Button deployClimber = new JoystickButton(driverGamepad, Gamepad.button_X);
+	private static final Button driveToTarget = new JoystickButton(driverGamepad, Gamepad.button_A);
+	private static final Button rotateToAngle = new JoystickButton(driverGamepad, Gamepad.button_B);
 
+	private static final Button setMotionMagic = new JoystickButton(operatorGamepad, Gamepad.button_B);
 	public OI() {
 		revIntake.whileHeld(new RevIntake());
-		revOutake.whileHeld(new RevOutake());
+//		revOutake.whileHeld(new RevOutake());
 		
 		toggleIntake.whenPressed(new ToggleIntakePiston());
 		toggleLoader.whenPressed(new ToggleLoaderPiston());
@@ -86,8 +89,8 @@ public class OI {
 		
 //		revShooterBackwards.whileHeld(new RevShooterBackwards());
 		
-		revWinchUp.whileHeld(new RevWinchUp());
-		revWinchDown.whileHeld(new RevWinchDown());
-		deployClimber.whenPressed(new DeployClimber());
+		driveToTarget.whenPressed(new DriveToTarget(0, 0));
+		rotateToAngle.whenPressed(new RotateToAngle(180, false));
+		setMotionMagic.whenPressed(new MotionMagic());
 	}
 }

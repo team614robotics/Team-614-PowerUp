@@ -70,6 +70,11 @@ public class RobotMap {
 	public static final double drivetrainDistanceI = 0;
 	public static final double drivetrainDistanceD = 0.0;
 	public static final double drivetrainDistanceF = 0;
+	
+	public static final double talonRotationP = 2;
+	public static final double talonRotationI = 0;
+	public static final double talonRotationD = 4;
+	public static final double talonRotationF = 0;
 
 	// DIO
 	

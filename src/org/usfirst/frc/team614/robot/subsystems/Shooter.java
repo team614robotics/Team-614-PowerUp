@@ -4,6 +4,7 @@ import org.usfirst.frc.team614.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.VictorSP;
@@ -29,10 +30,14 @@ public class Shooter extends Subsystem {
 		shooterRight.configPeakOutputForward(1, RobotMap.kTimeoutMs);
 		shooterRight.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
 
-		shooterRight.config_kP(0, RobotMap.shooterRightP, RobotMap.kTimeoutMs);
-		shooterRight.config_kI(0, RobotMap.shooterRightI, RobotMap.kTimeoutMs);
-		shooterRight.config_kD(0, RobotMap.shooterRightD, RobotMap.kTimeoutMs);
-		shooterRight.config_kF(0, RobotMap.shooterRightF, RobotMap.kTimeoutMs);
+		shooterRight.config_kP(0, 0, RobotMap.kTimeoutMs);
+		shooterRight.config_kI(0, 0, RobotMap.kTimeoutMs);
+		shooterRight.config_kD(0, 0, RobotMap.kTimeoutMs);
+		shooterRight.config_kF(0, 0, RobotMap.kTimeoutMs);
+		shooterRight.config_kP(1, RobotMap.talonRotationP, RobotMap.kTimeoutMs);
+		shooterRight.config_kI(1, RobotMap.talonRotationI, RobotMap.kTimeoutMs);
+		shooterRight.config_kD(1, RobotMap.talonRotationD, RobotMap.kTimeoutMs);
+		shooterRight.config_kF(1, RobotMap.talonRotationF, RobotMap.kTimeoutMs);
 
 		shooterRight.set(ControlMode.Velocity, 0);
 
@@ -44,12 +49,18 @@ public class Shooter extends Subsystem {
 		shooterLeft.configPeakOutputForward(1, RobotMap.kTimeoutMs);
 		shooterLeft.configPeakOutputReverse(-1, RobotMap.kTimeoutMs);
 
-		shooterLeft.config_kP(0, RobotMap.shooterLeftP, RobotMap.kTimeoutMs);
-		shooterLeft.config_kI(0, RobotMap.shooterLeftI, RobotMap.kTimeoutMs);
-		shooterLeft.config_kD(0, RobotMap.shooterLeftD, RobotMap.kTimeoutMs);
-		shooterLeft.config_kF(0, RobotMap.shooterLeftF, RobotMap.kTimeoutMs);
+		shooterLeft.config_kP(0, 0, RobotMap.kTimeoutMs);
+		shooterLeft.config_kI(0, 0, RobotMap.kTimeoutMs);
+		shooterLeft.config_kD(0, 0, RobotMap.kTimeoutMs);
+		shooterLeft.config_kF(0, 0, RobotMap.kTimeoutMs);
+		shooterLeft.config_kP(1, RobotMap.talonRotationP, RobotMap.kTimeoutMs);
+		shooterLeft.config_kI(1, RobotMap.talonRotationI, RobotMap.kTimeoutMs);
+		shooterLeft.config_kD(1, RobotMap.talonRotationD, RobotMap.kTimeoutMs);
+		shooterLeft.config_kF(1, RobotMap.talonRotationF, RobotMap.kTimeoutMs);
 
 		shooterLeft.set(ControlMode.Velocity, 0);
+		shooterLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, RobotMap.kTimeoutMs);
+		shooterLeft.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 	}
 
 	public void reset() {
@@ -129,5 +140,13 @@ public class Shooter extends Subsystem {
 		shooterRight.neutralOutput();
 		acceleratorLeft.set(0);
 		acceleratorRight.set(0);
+	} 
+	
+	public void setMotionMagic(double distance) {
+		shooterLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, RobotMap.kTimeoutMs);
+		shooterLeft.configMotionCruiseVelocity(1600, RobotMap.kTimeoutMs);
+		shooterLeft.configMotionAcceleration(1300, RobotMap.kTimeoutMs);
+		shooterLeft.set(ControlMode.MotionMagic, distance);
+		shooterRight.follow(shooterLeft);
 	}
 }

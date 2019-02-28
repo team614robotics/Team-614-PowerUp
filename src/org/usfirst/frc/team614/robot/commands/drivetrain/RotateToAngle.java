@@ -43,18 +43,22 @@ public class RotateToAngle extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.drivetrain.arcadeDrive(0.0, .8 * Robot.drivetrain.getPIDRotateRate());
+		double speed = 0.5 * Robot.drivetrain.getPIDRotateRate();
+		
+		if (speed < 0.35 && speed > 0) {
+			speed = 0.35;
+		} else if (speed > -0.35 && speed < 0) {
+			speed = -0.35;
+		}
+		
+		Robot.drivetrain.arcadeDrive(0.0, speed);
 //		Robot.drivetrain.arcadeDrive(0.0, Robot.drivetrain.getPIDRotateRate());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (timeSinceInitialized() > 1.5) {
-			if (Robot.drivetrain.leftEncoder.getRate() < 2.5 && Robot.drivetrain.leftEncoder.getRate() > -2.5) {
-				return true;
-			}
-		}
 		return false;
+//		return timeSinceInitialized() > 1.5 && Robot.drivetrain.leftEncoder.getRate() < 1 && Robot.drivetrain.leftEncoder.getRate() > -1;
 	}
 
 	// Called once after isFinished returns true

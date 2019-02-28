@@ -1,5 +1,6 @@
 package org.usfirst.frc.team614.robot;
 
+import org.team708.robot.util.Gamepad;
 import org.usfirst.frc.team614.robot.commands.autonomous.CenterLeftSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.CenterRightSwitch;
 import org.usfirst.frc.team614.robot.commands.autonomous.DrivePastBaseline;
@@ -19,6 +20,7 @@ import org.usfirst.frc.team614.robot.subsystems.DrivetrainCompanion;
 import org.usfirst.frc.team614.robot.subsystems.Intake;
 import org.usfirst.frc.team614.robot.subsystems.Pneumatics;
 import org.usfirst.frc.team614.robot.subsystems.Shooter;
+import org.usfirst.frc.team614.robot.subsystems.Vision;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -30,6 +32,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -52,17 +55,15 @@ public class Robot extends IterativeRobot {
 	public static Intake intake;
 	public static Pneumatics pneumatics;
 	public static Climber climber;
-
-	public static VideoSink serverOne;
-	public static VideoSink serverTwo;
-	public static UsbCamera camera1;
-	public static UsbCamera camera2;
-	public static CvSink cvSink1;
-	public static CvSink cvSink2;
-
+	public static Vision vision;
 
 	public static PowerDistributionPanel pdp;
 	public static OI oi;
+	
+
+	  double last_world_linear_accel_x;
+	  double last_world_linear_accel_y;
+	  double COLLISION_THRESHOLD_DELTA_G = 0.5f;
 
 	Command autonomousCommand;
 	SendableChooser<String> chooser = new SendableChooser<>();
@@ -79,14 +80,16 @@ public class Robot extends IterativeRobot {
 			DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
 		}
 
-		cameraInit();
-
 		drivetrain = new Drivetrain();
 		drivetrainCompanion = new DrivetrainCompanion();
 		shooter = new Shooter();
 		intake = new Intake();
 		pneumatics = new Pneumatics();
 		climber = new Climber();
+		vision = new Vision("limelight");
+		
+		last_world_linear_accel_x = 0.0f;
+		last_world_linear_accel_y = 0.0f;
 
 		pdp = new PowerDistributionPanel();
 		oi = new OI();
@@ -110,7 +113,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", 0);
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", 0);
 
-		SmartDashboard.putNumber("Shooter Scale High Setpoint", 14500);
+		SmartDashboard.putNumber("Shooter Scale High Setpoint", 16000);
 		SmartDashboard.putNumber("Shooter Scale Medium Setpoint", 12500);
 		SmartDashboard.putNumber("Shooter Scale Low Setpoint", 11500);
 		
@@ -123,9 +126,9 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Switch F", 0.154);
 
 		SmartDashboard.putNumber("Intake Speed", 0.7);
-		SmartDashboard.putNumber("Outake Speed", 0.5);
+		SmartDashboard.putNumber("Outake Speed", 0.7);
 		SmartDashboard.putNumber("Winch Speed", 1.0);
-		SmartDashboard.putNumber("Accelerator High Speed", 0.6);
+		SmartDashboard.putNumber("Accelerator High Speed", 0.7);
 		SmartDashboard.putNumber("Accelerator Medium Speed", 0.5);
 		SmartDashboard.putNumber("Accelerator Low Speed", 0.4);
 	
@@ -302,6 +305,8 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		
+		Robot.vision.setLED(0);
 	}
 
 	/**
@@ -313,7 +318,39 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Drivetrain Left Encoder Distance", drivetrain.leftEncoder.getDistance());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Rate", drivetrain.leftEncoder.getRate());
 		SmartDashboard.putNumber("Drivetrain Left Encoder Get", drivetrain.leftEncoder.get());
+		
 		SmartDashboard.putNumber("navX Yaw", Robot.navX.getYaw());
+		
+		SmartDashboard.putNumber("Limelight X", Robot.vision.getX());
+		SmartDashboard.putNumber("Limelight Y", Robot.vision.getY());
+		SmartDashboard.putNumber("Limelight Area", Robot.vision.getArea());
+		SmartDashboard.putNumber("Limelight Distance", Robot.vision.getDistance());
+		
+		SmartDashboard.putNumber("Driver Controller Drive", OI.driverGamepad.getAxis(Gamepad.leftStick_Y));
+		SmartDashboard.putNumber("Driver Controller Rotate", OI.driverGamepad.getAxis(Gamepad.rightStick_X));
+		
+		SmartDashboard.putNumber("Acceleration X", Robot.navX.getRawAccelX());
+		SmartDashboard.putNumber("Acceleration Y", Robot.navX.getRawAccelY());
+		SmartDashboard.putNumber("Acceleration Z", Robot.navX.getRawAccelZ());
+		
+		SmartDashboard.putNumber("Motion Magic Distance", Robot.shooter.shooterLeft.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Motion Magic Velocity", Robot.shooter.shooterLeft.getSelectedSensorVelocity(0));
+		boolean collisionDetected = false;
+
+      double curr_world_linear_accel_x = navX.getWorldLinearAccelX();
+      double currentJerkX = curr_world_linear_accel_x - last_world_linear_accel_x;
+      last_world_linear_accel_x = curr_world_linear_accel_x;
+      double curr_world_linear_accel_y = navX.getWorldLinearAccelY();
+      double currentJerkY = curr_world_linear_accel_y - last_world_linear_accel_y;
+      last_world_linear_accel_y = curr_world_linear_accel_y;
+
+      if ( ( Math.abs(currentJerkX) > COLLISION_THRESHOLD_DELTA_G ) ||
+           ( Math.abs(currentJerkY) > COLLISION_THRESHOLD_DELTA_G) ) {
+          collisionDetected = true;
+      }
+      
+      SmartDashboard.putBoolean("Collision Detected", collisionDetected);
+      SmartDashboard.putNumber("Encoder Ticks", Robot.shooter.shooterLeft.getSelectedSensorPosition(0));
 	}
 
 	/**
@@ -322,17 +359,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		LiveWindow.run();
-	}
-
-	public void cameraInit() {
-		camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-		camera1.setBrightness(RobotMap.IMG_BRIGHTNESS);
-		camera1.setFPS(RobotMap.IMG_FPS);
-		camera1.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
-
-		camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		camera2.setBrightness(RobotMap.IMG_BRIGHTNESS);
-		camera2.setFPS(RobotMap.IMG_FPS);
-		camera2.setResolution(RobotMap.IMG_HEIGHT, RobotMap.IMG_WIDTH);
 	}
 }
